@@ -337,6 +337,38 @@ body {
   font-size: 12px; color: var(--text-dim);
   margin-bottom: 16px;
 }
+.player-meta {
+  display: flex; justify-content: space-between;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.pm { text-align: center; flex: 1; }
+.pm span {
+  display: block;
+  font-size: 9px; color: var(--text-dim);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pm b {
+  font-size: 13px; color: var(--gold);
+  font-weight: 700;
+  display: block;
+}
+
+.player-card.captain {
+  border-color: rgba(255,215,0,0.4);
+  background: linear-gradient(180deg, #2a1f00 0%, var(--ink-3) 100%);
+}
+.player-card.captain::before {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--gold), var(--red), var(--gold));
+}
+.player-card.captain .player-pos-badge {
+  background: var(--gold);
+  color: #1a1a2e;
+}
+
 .player-stats {
   display: flex; justify-content: space-between;
   padding-top: 16px;
@@ -984,11 +1016,10 @@ body {
 </head>
 <body>
 
-<!-- ANIMATED BACKGROUND -->
 <div class="bg-grid"></div>
 <div class="bg-glow"></div>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <div class="logo">
@@ -999,8 +1030,7 @@ body {
             <stop offset="100%" stop-color="#E5A100"/>
           </linearGradient>
         </defs>
-        <path d="M50 5 L90 25 L90 60 Q90 85 50 95 Q10 85 10 60 L10 25 Z"
-              fill="#EF0107" stroke="#FFD700" stroke-width="2.5"/>
+        <path d="M50 5 L90 25 L90 60 Q90 85 50 95 Q10 85 10 60 L10 25 Z" fill="#EF0107" stroke="#FFD700" stroke-width="2.5"/>
         <path d="M20 45 L75 45 L80 50 L75 55 L20 55 Z" fill="url(#cannonGrad)"/>
         <circle cx="78" cy="50" r="2" fill="#1a1a2e"/>
         <rect x="15" y="42" width="6" height="16" fill="#8B4513"/>
@@ -1015,25 +1045,20 @@ body {
     <ul class="nav-links">
       <li><a href="#hero" class="active">Главная</a></li>
       <li><a href="#squad">Состав</a></li>
-      <li><a href="#stats">Статистика</a></li>
-      <li><a href="#matches">Матчи</a></li>
+      <li><a href="#records">Рекорды</a></li>
       <li><a href="#trophies">Трофеи</a></li>
       <li><a href="#legends">Легенды</a></li>
       <li><a href="#derbies">Дерби</a></li>
       <li><a href="#history">История</a></li>
     </ul>
-    <div class="nav-cta">
-      <span class="live-dot"></span> COYG
-    </div>
+    <div class="nav-cta"><span class="live-dot"></span> COYG</div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero" class="hero">
   <div class="hero-content">
-    <div class="hero-tag">
-      <span class="pulse"></span> Premier League · Season 2025/26
-    </div>
+    <div class="hero-tag"><span class="pulse"></span> Arsenal Football Club · est. 1886</div>
     <h1 class="hero-title">
       <span class="line-1">VICTORIA</span>
       <span class="line-2">CONCORDIA</span>
@@ -1041,30 +1066,17 @@ body {
     </h1>
     <p class="hero-motto">«Победа приходит через гармонию» — девиз клуба с 1949 года</p>
     <div class="hero-meta">
-      <div class="meta-item">
-        <div class="meta-label">Стадион</div>
-        <div class="meta-value">Emirates · 60 704</div>
-      </div>
+      <div class="meta-item"><div class="meta-label">Полное имя</div><div class="meta-value">Arsenal Football Club</div></div>
       <div class="meta-divider"></div>
-      <div class="meta-item">
-        <div class="meta-label">Тренер</div>
-        <div class="meta-value">Mikel Arteta · с 2019</div>
-      </div>
+      <div class="meta-item"><div class="meta-label">Основан</div><div class="meta-value">1886 · Вулидж, Лондон</div></div>
       <div class="meta-divider"></div>
-      <div class="meta-item">
-        <div class="meta-label">Капитан</div>
-        <div class="meta-value">Martin Ødegaard</div>
-      </div>
+      <div class="meta-item"><div class="meta-label">Стадион</div><div class="meta-value">Emirates · 60 704</div></div>
       <div class="meta-divider"></div>
-      <div class="meta-item">
-        <div class="meta-label">Владелец</div>
-        <div class="meta-value">Stan Kroenke · KSE</div>
-      </div>
+      <div class="meta-item"><div class="meta-label">Тренер</div><div class="meta-value">Mikel Arteta · с 2019</div></div>
       <div class="meta-divider"></div>
-      <div class="meta-item">
-        <div class="meta-label">Прозвища</div>
-        <div class="meta-value">The Gunners · The Arsenal</div>
-      </div>
+      <div class="meta-item"><div class="meta-label">Капитан</div><div class="meta-value">Martin Ødegaard</div></div>
+      <div class="meta-divider"></div>
+      <div class="meta-item"><div class="meta-label">Прозвища</div><div class="meta-value">The Gunners · The Arsenal</div></div>
     </div>
     <div class="hero-cannons">
       <svg viewBox="0 0 600 80" class="cannon-bar">
@@ -1076,28 +1088,13 @@ body {
   </div>
 </section>
 
-<!-- LIVE STATS BAR -->
+<!-- STATS BAR -->
 <section class="stats-bar">
-  <div class="stat-cell">
-    <div class="stat-num" data-target="140">0</div>
-    <div class="stat-label">Лет истории · с 1886</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-num" data-target="13">0</div>
-    <div class="stat-label">Чемпионств Англии</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-num" data-target="14">0</div>
-    <div class="stat-label">Кубков Англии · рекорд</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-num" data-target="49">0</div>
-    <div class="stat-label">Матчей без поражений</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-num" data-target="60704">0</div>
-    <div class="stat-label">Вместимость Emirates</div>
-  </div>
+  <div class="stat-cell"><div class="stat-num" data-target="140">0</div><div class="stat-label">Лет истории · с 1886</div></div>
+  <div class="stat-cell"><div class="stat-num" data-target="13">0</div><div class="stat-label">Чемпионств Англии</div></div>
+  <div class="stat-cell"><div class="stat-num" data-target="14">0</div><div class="stat-label">Кубков Англии · рекорд</div></div>
+  <div class="stat-cell"><div class="stat-num" data-target="49">0</div><div class="stat-label">Матчей без поражений</div></div>
+  <div class="stat-cell"><div class="stat-num" data-target="60704">0</div><div class="stat-label">Вместимость Emirates</div></div>
 </section>
 
 <!-- SQUAD -->
@@ -1105,7 +1102,7 @@ body {
   <div class="section-header">
     <div class="section-tag">01 / SQUAD</div>
     <h2 class="section-title">Первая команда</h2>
-    <p class="section-sub">Молодое и амбициозное поколение «канониров»</p>
+    <p class="section-sub">Действующий состав «канониров»</p>
   </div>
 
   <div class="squad-filters">
@@ -1116,97 +1113,501 @@ body {
     <button class="filter" data-pos="fw">Нападающие</button>
   </div>
 
-  <div class="squad-grid" id="squadGrid"></div>
+  <div class="squad-grid">
+    <!-- GOALKEEPERS -->
+    <div class="player-card" data-pos="gk">
+      <div class="player-top">
+        <div class="player-num">22</div>
+        <div class="player-flag">🇪🇸</div>
+        <div class="player-pos-badge">Вратарь</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">David Raya</div>
+        <div class="player-fullname">Давид Райя Мартин</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>30</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2023</b></div>
+          <div class="pm"><span>Откуда</span><b>Brentford</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="gk">
+      <div class="player-top">
+        <div class="player-num">31</div>
+        <div class="player-flag">🇪🇸</div>
+        <div class="player-pos-badge">Вратарь</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Kepa Arrizabalaga</div>
+        <div class="player-fullname">Кепа Аррисабалага Ревуэльта</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>31</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2025</b></div>
+          <div class="pm"><span>Откуда</span><b>Chelsea</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="gk">
+      <div class="player-top">
+        <div class="player-num">32</div>
+        <div class="player-flag">🇪🇪</div>
+        <div class="player-pos-badge">Вратарь</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Karl Hein</div>
+        <div class="player-fullname">Карл Якоб Хейн</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>24</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2018</b></div>
+          <div class="pm"><span>Откуда</span><b>Академия</b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEFENDERS -->
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">2</div>
+        <div class="player-flag">🇫🇷</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">William Saliba</div>
+        <div class="player-fullname">Уильям Салиба</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>25</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2019</b></div>
+          <div class="pm"><span>Откуда</span><b>Saint-Étienne</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">6</div>
+        <div class="player-flag">🇧🇷</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Gabriel Magalhães</div>
+        <div class="player-fullname">Габриэл душ Сантуш Магальяйнс</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>28</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2020</b></div>
+          <div class="pm"><span>Откуда</span><b>Lille</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">4</div>
+        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Ben White</div>
+        <div class="player-fullname">Бенджамин Уильям Уайт</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>28</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2021</b></div>
+          <div class="pm"><span>Откуда</span><b>Brighton</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">12</div>
+        <div class="player-flag">🇳🇱</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Jurriën Timber</div>
+        <div class="player-fullname">Юрриен Тимбер</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>24</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2023</b></div>
+          <div class="pm"><span>Откуда</span><b>Ajax</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">33</div>
+        <div class="player-flag">🇮🇹</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Riccardo Calafiori</div>
+        <div class="player-fullname">Риккардо Калафьори</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>24</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2024</b></div>
+          <div class="pm"><span>Откуда</span><b>Bologna</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">15</div>
+        <div class="player-flag">🇪🇸</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Cristhian Mosquera</div>
+        <div class="player-fullname">Кристиан Москера</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>21</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2025</b></div>
+          <div class="pm"><span>Откуда</span><b>Valencia</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">35</div>
+        <div class="player-flag">🇺🇦</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Oleksandr Zinchenko</div>
+        <div class="player-fullname">Олександр Зінченко</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>29</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2022</b></div>
+          <div class="pm"><span>Откуда</span><b>Manchester City</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">3</div>
+        <div class="player-flag">🇪🇨</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Piero Hincapié</div>
+        <div class="player-fullname">Пьеро Маркес Инкапье</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>23</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2025</b></div>
+          <div class="pm"><span>Откуда</span><b>Bayer Leverkusen</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="df">
+      <div class="player-top">
+        <div class="player-num">49</div>
+        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-pos-badge">Защитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Myles Lewis-Skelly</div>
+        <div class="player-fullname">Майлз Льюис-Скелли</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>19</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2010</b></div>
+          <div class="pm"><span>Откуда</span><b>Академия Hale End</b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIDFIELDERS -->
+    <div class="player-card captain" data-pos="mf">
+      <div class="player-top">
+        <div class="player-num">8</div>
+        <div class="player-flag">🇳🇴</div>
+        <div class="player-pos-badge">ⓒ Капитан</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Martin Ødegaard</div>
+        <div class="player-fullname">Мартин Эдегор · капитан</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>27</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2021</b></div>
+          <div class="pm"><span>Откуда</span><b>Real Madrid</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="mf">
+      <div class="player-top">
+        <div class="player-num">41</div>
+        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-pos-badge">Полузащитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Declan Rice</div>
+        <div class="player-fullname">Деклан Райс</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>27</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2023</b></div>
+          <div class="pm"><span>Откуда</span><b>West Ham</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="mf">
+      <div class="player-top">
+        <div class="player-num">36</div>
+        <div class="player-flag">🇪🇸</div>
+        <div class="player-pos-badge">Опорный п/з</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Martín Zubimendi</div>
+        <div class="player-fullname">Мартин Субименди Ибаньес</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>27</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2025</b></div>
+          <div class="pm"><span>Откуда</span><b>Real Sociedad</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="mf">
+      <div class="player-top">
+        <div class="player-num">23</div>
+        <div class="player-flag">🇪🇸</div>
+        <div class="player-pos-badge">Полузащитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Mikel Merino</div>
+        <div class="player-fullname">Микель Мерино Сасон</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>30</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2024</b></div>
+          <div class="pm"><span>Откуда</span><b>Real Sociedad</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="mf">
+      <div class="player-top">
+        <div class="player-num">16</div>
+        <div class="player-flag">🇩🇰</div>
+        <div class="player-pos-badge">Полузащитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Christian Nørgaard</div>
+        <div class="player-fullname">Кристиан Нёргор</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>31</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2025</b></div>
+          <div class="pm"><span>Откуда</span><b>Brentford</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="mf">
+      <div class="player-top">
+        <div class="player-num">53</div>
+        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-pos-badge">Талант академии</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Ethan Nwaneri</div>
+        <div class="player-fullname">Итан Кваме Колин Нванери</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>18</b></div>
+          <div class="pm"><span>В клубе</span><b>с детства</b></div>
+          <div class="pm"><span>Откуда</span><b>Академия Hale End</b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORWARDS -->
+    <div class="player-card" data-pos="fw">
+      <div class="player-top">
+        <div class="player-num">14</div>
+        <div class="player-flag">🇸🇪</div>
+        <div class="player-pos-badge">Центрфорвард</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Viktor Gyökeres</div>
+        <div class="player-fullname">Виктор Эйнар Гёкереш</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>27</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2025</b></div>
+          <div class="pm"><span>Откуда</span><b>Sporting CP</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="fw">
+      <div class="player-top">
+        <div class="player-num">7</div>
+        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-pos-badge">Правый вингер</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Bukayo Saka</div>
+        <div class="player-fullname">Букайо Сака</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>24</b></div>
+          <div class="pm"><span>В клубе</span><b>с детства</b></div>
+          <div class="pm"><span>Откуда</span><b>Академия Hale End</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="fw">
+      <div class="player-top">
+        <div class="player-num">10</div>
+        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-pos-badge">Атак. полузащитник</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Eberechi Eze</div>
+        <div class="player-fullname">Эберечи Эзе</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>27</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2025</b></div>
+          <div class="pm"><span>Откуда</span><b>Crystal Palace</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="fw">
+      <div class="player-top">
+        <div class="player-num">11</div>
+        <div class="player-flag">🇧🇷</div>
+        <div class="player-pos-badge">Левый вингер</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Gabriel Martinelli</div>
+        <div class="player-fullname">Габриэл Теодоро Мартинелли Силва</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>24</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2019</b></div>
+          <div class="pm"><span>Откуда</span><b>Ituano</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="fw">
+      <div class="player-top">
+        <div class="player-num">19</div>
+        <div class="player-flag">🇧🇪</div>
+        <div class="player-pos-badge">Нападающий</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Leandro Trossard</div>
+        <div class="player-fullname">Леандро Троссар</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>31</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2023</b></div>
+          <div class="pm"><span>Откуда</span><b>Brighton</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="fw">
+      <div class="player-top">
+        <div class="player-num">29</div>
+        <div class="player-flag">🇩🇪</div>
+        <div class="player-pos-badge">Универсал</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Kai Havertz</div>
+        <div class="player-fullname">Кай Лукас Хаверц</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>26</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2023</b></div>
+          <div class="pm"><span>Откуда</span><b>Chelsea</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="fw">
+      <div class="player-top">
+        <div class="player-num">20</div>
+        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-pos-badge">Вингер</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Noni Madueke</div>
+        <div class="player-fullname">Чуквунонсо «Нони» Мадуэке</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>23</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2025</b></div>
+          <div class="pm"><span>Откуда</span><b>Chelsea</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-card" data-pos="fw">
+      <div class="player-top">
+        <div class="player-num">9</div>
+        <div class="player-flag">🇧🇷</div>
+        <div class="player-pos-badge">Нападающий</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">Gabriel Jesus</div>
+        <div class="player-fullname">Габриел Фернанду де Жезуш</div>
+        <div class="player-meta">
+          <div class="pm"><span>Возраст</span><b>28</b></div>
+          <div class="pm"><span>В клубе</span><b>с 2022</b></div>
+          <div class="pm"><span>Откуда</span><b>Manchester City</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- STATS -->
-<section id="stats" class="section section-dark">
+<!-- RECORDS / FACTS -->
+<section id="records" class="section section-dark">
   <div class="section-header">
-    <div class="section-tag">02 / STATISTICS</div>
-    <h2 class="section-title">Сезон 2025/26 в цифрах</h2>
-    <p class="section-sub">Премьер-лига · итоги сезона на 22 мая 2026</p>
+    <div class="section-tag">02 / CLUB RECORDS</div>
+    <h2 class="section-title">Клубные рекорды</h2>
+    <p class="section-sub">Проверенные факты в истории «Арсенала»</p>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card highlight">
-      <div class="stat-card-head">
-        <div class="stat-card-title">Место в таблице</div>
-        <div class="stat-card-icon">🏆</div>
-      </div>
-      <div class="stat-card-value">1<span class="suffix">st</span></div>
-      <div class="stat-card-foot">89 очков · 28 побед · 5 ничьих · 5 поражений</div>
+      <div class="stat-card-head"><div class="stat-card-title">Лучший бомбардир</div><div class="stat-card-icon">⚽</div></div>
+      <div class="stat-card-value">228</div>
+      <div class="stat-card-foot">Тьерри Анри · 1999–2007, 2012</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card-head">
-        <div class="stat-card-title">Голов забито</div>
-        <div class="stat-card-icon">⚽</div>
-      </div>
-      <div class="stat-card-value">87</div>
-      <div class="progress"><div class="progress-fill" style="--w: 92%"></div></div>
-      <div class="stat-card-foot">2.29 за матч · лучшая атака лиги</div>
+      <div class="stat-card-head"><div class="stat-card-title">Больше всех матчей</div><div class="stat-card-icon">👕</div></div>
+      <div class="stat-card-value">722</div>
+      <div class="stat-card-foot">Дэвид О'Лири · 1975–1993</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card-head">
-        <div class="stat-card-title">Голов пропущено</div>
-        <div class="stat-card-icon">🛡️</div>
-      </div>
-      <div class="stat-card-value">29</div>
-      <div class="progress"><div class="progress-fill green" style="--w: 25%"></div></div>
-      <div class="stat-card-foot">Лучшая оборона лиги</div>
+      <div class="stat-card-head"><div class="stat-card-title">Серия без поражений</div><div class="stat-card-icon">🛡️</div></div>
+      <div class="stat-card-value">49</div>
+      <div class="stat-card-foot">Рекорд английского футбола · 2003–2004</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card-head">
-        <div class="stat-card-title">«Сухие» матчи</div>
-        <div class="stat-card-icon">🧤</div>
-      </div>
-      <div class="stat-card-value">17</div>
-      <div class="stat-card-foot">Дэвид Райя — Золотая перчатка ⭐</div>
+      <div class="stat-card-head"><div class="stat-card-title">Крупнейшая победа</div><div class="stat-card-icon">🔥</div></div>
+      <div class="stat-card-value">12–0</div>
+      <div class="stat-card-foot">vs Loughborough · Второй дивизион 1900</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card-head">
-        <div class="stat-card-title">Владение мячом</div>
-        <div class="stat-card-icon">🎯</div>
-      </div>
-      <div class="stat-card-value">60<span class="suffix">%</span></div>
-      <div class="progress"><div class="progress-fill" style="--w: 60%"></div></div>
-      <div class="stat-card-foot">xG: 78.4 · pressing-индекс лиги №1</div>
+      <div class="stat-card-head"><div class="stat-card-title">Самый молодой игрок</div><div class="stat-card-icon">⭐</div></div>
+      <div class="stat-card-value">15<span class="suffix">лет</span></div>
+      <div class="stat-card-foot">Итан Нванери · vs Brentford 2022</div>
     </div>
-    <div class="stat-card highlight">
-      <div class="stat-card-head">
-        <div class="stat-card-title">Лига Чемпионов</div>
-        <div class="stat-card-icon">⭐</div>
-      </div>
-      <div class="stat-card-value">Финал</div>
-      <div class="stat-card-foot">30 мая · vs Real Madrid · Будапешт</div>
+    <div class="stat-card">
+      <div class="stat-card-head"><div class="stat-card-title">Дольше всех в клубе</div><div class="stat-card-icon">🎩</div></div>
+      <div class="stat-card-value">22</div>
+      <div class="stat-card-foot">Арсен Венгер · главный тренер · 1996–2018</div>
     </div>
   </div>
-
-  <div class="top-scorers">
-    <h3 class="block-title">Бомбардиры сезона</h3>
-    <div class="scorer-list" id="scorerList"></div>
-  </div>
-</section>
-
-<!-- MATCHES -->
-<section id="matches" class="section">
-  <div class="section-header">
-    <div class="section-tag">03 / FIXTURES</div>
-    <h2 class="section-title">Матчи</h2>
-    <p class="section-sub">Последние и предстоящие игры</p>
-  </div>
-
-  <div class="match-tabs">
-    <button class="match-tab active" data-tab="upcoming">Предстоящие</button>
-    <button class="match-tab" data-tab="results">Результаты</button>
-  </div>
-
-  <div class="match-list" id="matchList"></div>
 </section>
 
 <!-- TROPHIES -->
-<section id="trophies" class="section section-dark">
+<section id="trophies" class="section">
   <div class="section-header">
-    <div class="section-tag">04 / HONOURS</div>
+    <div class="section-tag">03 / HONOURS</div>
     <h2 class="section-title">Трофейная комната</h2>
     <p class="section-sub">Один из самых титулованных клубов Англии</p>
   </div>
@@ -1221,39 +1622,41 @@ body {
     <div class="trophy big">
       <div class="trophy-icon">🥇</div>
       <div class="trophy-count">14</div>
-      <div class="trophy-name">Кубок Англии</div>
-      <div class="trophy-years">Рекорд турнира · последний — 2020</div>
+      <div class="trophy-name">Кубок Англии (FA Cup)</div>
+      <div class="trophy-years">Рекорд турнира · последний — 2020 vs Chelsea</div>
     </div>
     <div class="trophy">
       <div class="trophy-icon">🛡️</div>
       <div class="trophy-count">17</div>
       <div class="trophy-name">Community Shield</div>
+      <div class="trophy-years">Последний — 2023</div>
     </div>
     <div class="trophy">
       <div class="trophy-icon">🏅</div>
       <div class="trophy-count">2</div>
       <div class="trophy-name">Кубок Лиги</div>
+      <div class="trophy-years">1987 · 1993</div>
     </div>
     <div class="trophy">
       <div class="trophy-icon">🌍</div>
       <div class="trophy-count">1</div>
       <div class="trophy-name">Кубок обладателей кубков</div>
-      <div class="trophy-years">1994</div>
+      <div class="trophy-years">1994 vs Parma</div>
     </div>
     <div class="trophy">
       <div class="trophy-icon">✨</div>
       <div class="trophy-count">1</div>
       <div class="trophy-name">Кубок Ярмарок</div>
-      <div class="trophy-years">1970</div>
+      <div class="trophy-years">1970 vs Anderlecht</div>
     </div>
   </div>
 
   <div class="invincibles">
     <div class="invincibles-bg">THE INVINCIBLES</div>
     <div class="invincibles-content">
-      <div class="invincibles-tag">⚜️ Легенда</div>
+      <div class="invincibles-tag">⚜️ Легенда английского футбола</div>
       <h3>The Invincibles · 2003/04</h3>
-      <p>Единственная команда в истории Премьер-лиги, прошедшая весь сезон без поражений: <strong>26 побед, 12 ничьих, 0 поражений</strong>.</p>
+      <p>Единственная команда в эпоху Премьер-лиги, прошедшая весь чемпионат без поражений: <strong>26 побед, 12 ничьих, 0 поражений</strong>. Серия без поражений (49 матчей) — действующий рекорд английского футбола.</p>
       <div class="invincibles-stats">
         <div><b>38</b><span>матчей</span></div>
         <div><b>49</b><span>серия б/п</span></div>
@@ -1265,11 +1668,11 @@ body {
 </section>
 
 <!-- LEGENDS -->
-<section id="legends" class="section">
+<section id="legends" class="section section-dark">
   <div class="section-header">
-    <div class="section-tag">05 / LEGENDS</div>
+    <div class="section-tag">04 / LEGENDS</div>
     <h2 class="section-title">Легенды «Канониров»</h2>
-    <p class="section-sub">Игроки, навсегда вписавшие имена в историю клуба</p>
+    <p class="section-sub">Игроки, вписавшие имена в историю клуба</p>
   </div>
 
   <div class="legend-grid">
@@ -1277,7 +1680,7 @@ body {
       <div class="legend-num">14</div>
       <div class="legend-name">Thierry Henry</div>
       <div class="legend-pos">🇫🇷 Нападающий · 1999–2007, 2012</div>
-      <div class="legend-bio">Лучший бомбардир в истории клуба — <b>228 голов</b>. 4× игрок года АПЛ, 2× «Золотая бутса». Символ эры Венгера и непобеждённых.</div>
+      <div class="legend-bio">Лучший бомбардир в истории клуба — <b>228 голов</b>. 4-кратный обладатель «Золотой бутсы» АПЛ. Символ эры Венгера и «Непобеждённых».</div>
       <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>Памятник у Emirates</span></div>
     </div>
     <div class="legend-card">
@@ -1285,76 +1688,76 @@ body {
       <div class="legend-name">Dennis Bergkamp</div>
       <div class="legend-pos">🇳🇱 Атакующий п/з · 1995–2006</div>
       <div class="legend-bio">«Нелетающий голландец». Магия первого касания, гол года против «Ньюкасла» (2002), икона интеллигентного футбола.</div>
-      <div class="legend-tags"><span>3× АПЛ</span><span>120 голов</span><span>Памятник у Emirates</span></div>
+      <div class="legend-tags"><span>3× АПЛ</span><span>The Invincible</span><span>Памятник у Emirates</span></div>
     </div>
     <div class="legend-card">
       <div class="legend-num">04</div>
       <div class="legend-name">Patrick Vieira</div>
       <div class="legend-pos">🇫🇷 Полузащитник · 1996–2005</div>
-      <div class="legend-bio">Капитан The Invincibles. Двигатель и сердце команды, олицетворение характера «Арсенала» начала 2000-х.</div>
+      <div class="legend-bio">Капитан The Invincibles. Двигатель и сердце команды эры Венгера, олицетворение характера «Арсенала» начала 2000-х.</div>
       <div class="legend-tags"><span>3× АПЛ</span><span>4× FA Cup</span><span>406 матчей</span></div>
     </div>
     <div class="legend-card">
       <div class="legend-num">06</div>
       <div class="legend-name">Tony Adams</div>
-      <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Центральный защитник · 1983–2002</div>
-      <div class="legend-bio">«Mr. Arsenal». Капитан-легенда, выигравший чемпионство в трёх разных десятилетиях. Бронзовая статуя — на Emirates.</div>
-      <div class="legend-tags"><span>4× АПЛ</span><span>669 матчей</span><span>One-club man</span></div>
+      <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Центр. защитник · 1983–2002</div>
+      <div class="legend-bio">«Mr. Arsenal». Капитан-легенда, выигрывал чемпионство в трёх десятилетиях (80-е, 90-е, 00-е). Бронзовая статуя у Emirates.</div>
+      <div class="legend-tags"><span>4× чемпион</span><span>One-club man</span><span>669 матчей</span></div>
     </div>
     <div class="legend-card">
       <div class="legend-num">07</div>
-      <div class="legend-name">Robert Pires</div>
+      <div class="legend-name">Robert Pirès</div>
       <div class="legend-pos">🇫🇷 Полузащитник · 2000–2006</div>
-      <div class="legend-bio">Левый волшебник Венгера. Игрок года АПЛ-2002, ассист-машина, неотъемлемая часть The Invincibles.</div>
+      <div class="legend-bio">Левый волшебник Венгера. Игрок года АПЛ 2002, ассист-машина, неотъемлемая часть The Invincibles.</div>
       <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>84 гола</span></div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">11</div>
+      <div class="legend-num">08</div>
       <div class="legend-name">Ian Wright</div>
       <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Нападающий · 1991–1998</div>
-      <div class="legend-bio">До прихода Анри — главный бомбардир клуба. 185 голов, страсть и магия Хайбери. Народный любимец North Bank.</div>
-      <div class="legend-tags"><span>FA Cup 1993</span><span>Кубок кубков 1994</span><span>Wright Wright Wright!</span></div>
+      <div class="legend-bio">До прихода Анри — главный бомбардир клуба (185 голов). Страсть и магия Хайбери, народный любимец North Bank.</div>
+      <div class="legend-tags"><span>FA Cup 1993</span><span>Кубок кубков 1994</span><span>185 голов</span></div>
     </div>
     <div class="legend-card">
       <div class="legend-num">01</div>
       <div class="legend-name">David Seaman</div>
       <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Вратарь · 1990–2003</div>
-      <div class="legend-bio">«Safe hands». Один из величайших вратарей в истории Англии. 564 матча, 3 чемпионства, 4 Кубка Англии.</div>
+      <div class="legend-bio">«Safe hands». Один из величайших английских вратарей. 564 матча, 3 чемпионства, 4 Кубка Англии.</div>
       <div class="legend-tags"><span>3× АПЛ</span><span>4× FA Cup</span><span>Икона 90-х</span></div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">08</div>
+      <div class="legend-num">04</div>
       <div class="legend-name">Cesc Fàbregas</div>
       <div class="legend-pos">🇪🇸 Полузащитник · 2003–2011</div>
-      <div class="legend-bio">Чудо-ребёнок из Ла Масии. Самый молодой капитан в истории клуба. Король передач эпохи 2008–2011.</div>
+      <div class="legend-bio">Чудо-ребёнок из «Барсы». Стал самым молодым капитаном в истории клуба. Магистр передач конца 2000-х.</div>
       <div class="legend-tags"><span>FA Cup 2005</span><span>57 голов</span><span>91 ассист</span></div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">04</div>
-      <div class="legend-name">Per Mertesacker</div>
-      <div class="legend-pos">🇩🇪 Защитник · 2011–2018</div>
-      <div class="legend-bio">«Большая немецкая стена». Чемпион мира 2014, лидер раздевалки. Сегодня — глава академии клуба.</div>
-      <div class="legend-tags"><span>3× FA Cup</span><span>Капитан 2017/18</span><span>Глава академии</span></div>
+      <div class="legend-num">11</div>
+      <div class="legend-name">Robin van Persie</div>
+      <div class="legend-pos">🇳🇱 Нападающий · 2004–2012</div>
+      <div class="legend-bio">Лучший бомбардир АПЛ-2011/12 (30 голов). Капитан, технарь, мастер дальних ударов — пока не уехал к Фергюсону.</div>
+      <div class="legend-tags"><span>FA Cup 2005</span><span>132 гола</span><span>Игрок года АПЛ 2012</span></div>
     </div>
   </div>
 
   <div class="legends-extra">
-    <div class="legends-extra-title">⭐ Также вписаны в зал славы:</div>
+    <div class="legends-extra-title">⭐ Также в зале славы:</div>
     <div class="legends-extra-list">
-      <span>Charlie George</span><span>Liam Brady</span><span>Ian Wright</span>
-      <span>Frank McLintock</span><span>David Rocastle</span><span>Sol Campbell</span>
-      <span>Ashley Cole</span><span>Robin van Persie</span><span>Alex Song</span>
-      <span>Mesut Özil</span><span>Pierre-Emerick Aubameyang</span><span>Alexis Sánchez</span>
+      <span>Liam Brady</span><span>Charlie George</span><span>Frank McLintock</span>
+      <span>David Rocastle</span><span>Sol Campbell</span><span>Ashley Cole</span>
+      <span>Mesut Özil</span><span>Alexis Sánchez</span><span>Pierre-Emerick Aubameyang</span>
       <span>Aaron Ramsey</span><span>Jack Wilshere</span><span>Santi Cazorla</span>
       <span>Lukas Podolski</span><span>Olivier Giroud</span><span>Petr Čech</span>
+      <span>Per Mertesacker</span><span>Laurent Koscielny</span><span>Alex Song</span>
     </div>
   </div>
 </section>
 
 <!-- DERBIES -->
-<section id="derbies" class="section section-dark">
+<section id="derbies" class="section">
   <div class="section-header">
-    <div class="section-tag">06 / RIVALRIES</div>
+    <div class="section-tag">05 / RIVALRIES</div>
     <h2 class="section-title">Дерби и соперничества</h2>
     <p class="section-sub">Главные противостояния «канониров»</p>
   </div>
@@ -1365,12 +1768,12 @@ body {
       <div class="derby-feature-tag">🔥 Главное дерби</div>
       <h3>North London Derby</h3>
       <p class="derby-feature-sub">Arsenal · vs · Tottenham Hotspur</p>
-      <p class="derby-feature-text">Самое острое противостояние клуба — с тех пор, как «Арсенал» переехал на север Лондона в 1913 году. По разным сторонам Севен-Систерс-роуд, разделяющей фанатов на красно-белых и бело-синих.</p>
+      <p class="derby-feature-text">Самое острое противостояние клуба — с тех пор как «Арсенал» переехал на север Лондона в 1913 году. По разные стороны Севен-Систерс-роуд, разделяющей фанатов на красно-белых и бело-синих.</p>
       <div class="derby-feature-stats">
-        <div><b>200+</b><span>матчей</span></div>
-        <div><b>85+</b><span>побед «Арсенала»</span></div>
-        <div><b>11–1</b><span>NLD рекорд · 1934</span></div>
-        <div><b>5–0</b><span>последний разгром · 2025</span></div>
+        <div><b>200+</b><span>матчей всего</span></div>
+        <div><b>1913</b><span>год начала</span></div>
+        <div><b>5–0</b><span>победа в 1978</span></div>
+        <div><b>«St. Totteringham»</b><span>день финиша выше «Тоттенхэма»</span></div>
       </div>
     </div>
   </div>
@@ -1380,53 +1783,53 @@ body {
       <div class="derby-icon">⚔️</div>
       <h4>Manchester United</h4>
       <div class="derby-sub">Классика эпохи Премьер-лиги</div>
-      <p>Венгер против Фергюсона — самое яркое противостояние тренеров АПЛ. «Пицца-гейт», 6:1 в 2001-м, 8:2 в 2011-м, перевёрнутая страница.</p>
+      <p>Венгер против Фергюсона — самое яркое противостояние тренеров АПЛ. «Pizzagate» в 2004-м, ничьи и битвы за титул в конце 90-х и начале 2000-х.</p>
       <div class="derby-tags"><span>Венгер vs Фергюсон</span><span>Highbury 2003</span></div>
     </div>
     <div class="derby-card">
       <div class="derby-icon">🔵</div>
       <h4>Chelsea</h4>
       <div class="derby-sub">Лондонское дерби</div>
-      <p>«Дерби моста». Соседи по столице с 1907 года. С приходом Абрамовича в 2003-м рутина обострилась — финал ЛЕ-2019 в Баку, столкновения за топ-4.</p>
+      <p>Соседи по столице с начала XX века. С приходом Абрамовича в 2003-м соперничество обострилось — финал ЛЕ-2019 в Баку, регулярные битвы за топ-4.</p>
       <div class="derby-tags"><span>FA Cup 2017</span><span>EL Final 2019</span></div>
     </div>
     <div class="derby-card">
       <div class="derby-icon">🔴</div>
       <h4>Liverpool</h4>
       <div class="derby-sub">Битва эстетов</div>
-      <p>Два клуба, играющих в самый зрелищный футбол поколения. Решающий титул-матч 1989 («Анфилд-89») — один из величайших моментов английского футбола.</p>
-      <div class="derby-tags"><span>Анфилд 1989</span><span>Гонка за титул 2024/25</span></div>
+      <p>Два клуба, играющие в самый зрелищный футбол. Решающий титул-матч 1989 года в «Анфилде» (2:0, гол Майкла Томаса на последней минуте) — один из величайших моментов английского футбола.</p>
+      <div class="derby-tags"><span>Анфилд 1989</span><span>Финал FA Cup 2001</span></div>
     </div>
     <div class="derby-card">
       <div class="derby-icon">🌍</div>
       <h4>Manchester City</h4>
       <div class="derby-sub">Современный соперник</div>
-      <p>Главный визави эпохи Артеты — Гвардиолы. С 2022-го борются за каждый титул АПЛ. Драматичные матчи на Emirates и Etihad.</p>
-      <div class="derby-tags"><span>Артета vs Гвардиола</span><span>Топ-2 АПЛ 2024/25</span></div>
+      <p>Главный визави эпохи Артеты — Гвардиолы. С 2022 года битва за каждый титул АПЛ, драматичные матчи на «Эмирейтс» и «Этихаде».</p>
+      <div class="derby-tags"><span>Артета vs Гвардиола</span><span>Топ-2 АПЛ 2022/23 и 2023/24</span></div>
     </div>
     <div class="derby-card">
       <div class="derby-icon">⚒️</div>
       <h4>West Ham</h4>
       <div class="derby-sub">Лондонское дерби</div>
-      <p>Восточный Лондон vs Северный. Менее жгучее, чем NLD, но всегда заряженное — особенно с тех пор, как «молотобойцы» переехали на Олимпийский стадион.</p>
+      <p>Восточный Лондон vs Северный. Менее жгучее, чем NLD, но всегда заряженное — особенно после переезда «молотобойцев» на Олимпийский стадион.</p>
       <div class="derby-tags"><span>Дерби столицы</span></div>
     </div>
     <div class="derby-card">
-      <div class="derby-icon">⚪</div>
-      <h4>Real Madrid</h4>
-      <div class="derby-sub">Европейская сага</div>
-      <p>Финал ЛЧ-2026 в Будапеште — историческое противостояние с «Королевским клубом». Шанс на первый европейский кубок чемпионов в истории «Арсенала».</p>
-      <div class="derby-tags"><span>UCL Final 2026</span></div>
+      <div class="derby-icon">🐔</div>
+      <h4>Manchester United · 8:2</h4>
+      <div class="derby-sub">Болезненная страница</div>
+      <p>Старый Траффорд, август 2011. Самое тяжёлое поражение клуба в эпоху Премьер-лиги — символ кризиса того периода и точка отсчёта для перестройки.</p>
+      <div class="derby-tags"><span>Август 2011</span><span>Old Trafford</span></div>
     </div>
   </div>
 </section>
 
 <!-- HISTORY -->
-<section id="history" class="section">
+<section id="history" class="section section-dark">
   <div class="section-header">
-    <div class="section-tag">07 / HISTORY</div>
+    <div class="section-tag">06 / HISTORY</div>
     <h2 class="section-title">Хронология клуба</h2>
-    <p class="section-sub">От «Дайл Сквер» до Emirates Stadium</p>
+    <p class="section-sub">От «Dial Square» до Emirates Stadium</p>
   </div>
 
   <div class="timeline">
@@ -1434,63 +1837,84 @@ body {
       <div class="t-year">1886</div>
       <div class="t-card">
         <h4>Основание клуба</h4>
-        <p>Рабочие оружейного завода Royal Arsenal в Вулидже основали футбольный клуб «Dial Square».</p>
+        <p>Рабочие оружейного завода Royal Arsenal в Вулидже основали футбольный клуб «Dial Square». Затем — «Royal Arsenal», «Woolwich Arsenal», и наконец «Arsenal FC».</p>
       </div>
     </div>
     <div class="t-item">
       <div class="t-year">1913</div>
       <div class="t-card">
         <h4>Переезд в Хайбери</h4>
-        <p>Клуб переезжает на север Лондона и становится «Arsenal FC». Начало эпохи.</p>
+        <p>Клуб переезжает на север Лондона. Стадион «Highbury» становится домом клуба на следующие 93 года.</p>
+      </div>
+    </div>
+    <div class="t-item highlight">
+      <div class="t-year">1930-е</div>
+      <div class="t-card">
+        <h4>Эра Герберта Чепмена</h4>
+        <p>Чепмен революционизирует тактику и приводит «Арсенал» к 5 чемпионствам за десятилетие (1931, 1933, 1934, 1935, 1938). Он же придумал нумерацию футболок и систему «W-M».</p>
       </div>
     </div>
     <div class="t-item">
-      <div class="t-year">1930-е</div>
+      <div class="t-year">1971</div>
       <div class="t-card">
-        <h4>Эра Чепмена</h4>
-        <p>Герберт Чепмен приводит клуб к первым чемпионским титулам и революционизирует тактику.</p>
+        <h4>Первый «Дабл»</h4>
+        <p>«Арсенал» выигрывает чемпионат Англии и Кубок Англии в один сезон — второй клуб в XX веке, сделавший «дабл».</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">1989</div>
+      <div class="t-card">
+        <h4>«Анфилд-89»</h4>
+        <p>На последней минуте последнего матча сезона Майкл Томас забивает «Ливерпулю» 2:0 и приносит «Арсеналу» чемпионство — одна из самых драматичных развязок в истории АПЛ.</p>
       </div>
     </div>
     <div class="t-item">
       <div class="t-year">1996</div>
       <div class="t-card">
         <h4>Приход Венгера</h4>
-        <p>Арсен Венгер начинает 22-летнюю эпоху. Революция в питании, тренировках и стиле игры.</p>
+        <p>Арсен Венгер начинает 22-летнюю эпоху. Революция в питании, тренировках, стиле игры. С его приходом клуб переходит на современный технический футбол.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">1998</div>
+      <div class="t-card">
+        <h4>Второй «Дабл» Венгера</h4>
+        <p>Чемпионство и Кубок Англии в первый полный сезон Венгера. Команда Адамса, Симена, Виейра, Бергкампа, Анелька.</p>
       </div>
     </div>
     <div class="t-item highlight">
-      <div class="t-year">2004</div>
+      <div class="t-year">2003/04</div>
       <div class="t-card">
         <h4>The Invincibles</h4>
-        <p>Историческое чемпионство без единого поражения — навсегда в анналах английского футбола.</p>
+        <p>Историческое чемпионство без единого поражения: 26 побед, 12 ничьих, 0 поражений за 38 матчей. Команда Анри, Виейра, Пиреса, Юнгберга, Кэмпбелла.</p>
       </div>
     </div>
     <div class="t-item">
       <div class="t-year">2006</div>
       <div class="t-card">
         <h4>Emirates Stadium</h4>
-        <p>Прощание с легендарным Хайбери и переезд на современный 60-тысячник.</p>
+        <p>Прощание с легендарным Хайбери. Переезд на современный 60-тысячник в Эшберн-Гроуве. В том же году — финал Лиги чемпионов против «Барсы».</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">2014–2020</div>
+      <div class="t-card">
+        <h4>Эра Кубков Англии</h4>
+        <p>«Арсенал» выигрывает 4 FA Cup за 7 лет (2014, 2015, 2017, 2020) и устанавливает рекорд турнира — 14 побед.</p>
       </div>
     </div>
     <div class="t-item">
       <div class="t-year">2019</div>
       <div class="t-card">
-        <h4>Эра Артеты</h4>
-        <p>Микель Артета возвращается в клуб тренером и начинает строить новое поколение «канониров».</p>
+        <h4>Приход Артеты</h4>
+        <p>Микель Артета — бывший капитан клуба — возвращается на пост главного тренера. Начинается перестройка вокруг молодого ядра.</p>
       </div>
     </div>
     <div class="t-item">
       <div class="t-year">2025</div>
       <div class="t-card">
-        <h4>Летняя революция</h4>
-        <p>Виктор Гёкереш, Эберечи Эзе, Мартин Субименди, Нони Мадуэке — амбициозная трансферная кампания на ~£250 млн под решающий рывок Артеты.</p>
-      </div>
-    </div>
-    <div class="t-item highlight">
-      <div class="t-year">2026</div>
-      <div class="t-card">
-        <h4>Возвращение на вершину</h4>
-        <p>140 лет легенде. «Канониры» — лидеры Премьер-лиги и финалисты Лиги Чемпионов. Шанс на первый европейский кубок чемпионов в истории клуба.</p>
+        <h4>Летняя перезагрузка</h4>
+        <p>Крупнейшая летняя трансферная кампания за многие годы: Виктор Гёкереш, Эберечи Эзе, Мартин Субименди, Нони Мадуэке, Кристиан Нёргор и другие — около £250 млн вложений.</p>
       </div>
     </div>
   </div>
@@ -1501,8 +1925,7 @@ body {
   <div class="footer-inner">
     <div class="footer-brand">
       <svg viewBox="0 0 100 100" class="footer-logo" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 5 L90 25 L90 60 Q90 85 50 95 Q10 85 10 60 L10 25 Z"
-              fill="#EF0107" stroke="#FFD700" stroke-width="2"/>
+        <path d="M50 5 L90 25 L90 60 Q90 85 50 95 Q10 85 10 60 L10 25 Z" fill="#EF0107" stroke="#FFD700" stroke-width="2"/>
         <path d="M20 45 L75 45 L80 50 L75 55 L20 55 Z" fill="#FFD700"/>
       </svg>
       <div>
@@ -1517,176 +1940,25 @@ body {
       <div class="chant">«North London forever, whatever the weather...»</div>
     </div>
     <div class="footer-bottom">
-      Фанатское приложение · сделано с ❤️ для болельщиков «Арсенала» · <span class="coyg">COME ON YOU GUNNERS!</span>
+      Фанатское приложение · сделано с любовью для болельщиков «Арсенала» · <span class="coyg">COME ON YOU GUNNERS!</span>
     </div>
   </div>
 </footer>
 
 <script>
-// ===== Squad data — сезон 2025/26 =====
-const squad = [
-  // GK
-  { num: 22, name: 'David Raya', full: 'David Raya Martín', pos: 'gk', posName: 'Вратарь', flag: '🇪🇸', age: 30, apps: 36, goals: 0, assists: 0, cleansheets: 17 },
-  { num: 31, name: 'Kepa Arrizabalaga', full: 'Kepa Arrizabalaga Revuelta', pos: 'gk', posName: 'Вратарь', flag: '🇪🇸', age: 31, apps: 8, goals: 0, assists: 0, cleansheets: 3 },
-  { num: 32, name: 'Karl Hein', full: 'Karl Jakob Hein', pos: 'gk', posName: 'Вратарь', flag: '🇪🇪', age: 24, apps: 2, goals: 0, assists: 0, cleansheets: 1 },
+// ===== Squad filter (cards are static HTML) =====
+const filters = document.querySelectorAll('.filter');
+const cards = document.querySelectorAll('.player-card');
 
-  // DF
-  { num: 2, name: 'William Saliba', full: 'William Alain André Gabriel Saliba', pos: 'df', posName: 'Защитник', flag: '🇫🇷', age: 25, apps: 35, goals: 2, assists: 2, cleansheets: 16 },
-  { num: 6, name: 'Gabriel', full: 'Gabriel dos Santos Magalhães', pos: 'df', posName: 'Защитник', flag: '🇧🇷', age: 28, apps: 33, goals: 4, assists: 1, cleansheets: 15 },
-  { num: 4, name: 'Ben White', full: 'Benjamin William White', pos: 'df', posName: 'Защитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 28, apps: 26, goals: 1, assists: 5, cleansheets: 11 },
-  { num: 12, name: 'Jurriën Timber', full: 'Jurriën Timber', pos: 'df', posName: 'Защитник', flag: '🇳🇱', age: 24, apps: 36, goals: 2, assists: 4, cleansheets: 16 },
-  { num: 15, name: 'Cristhian Mosquera', full: 'Cristhian Felix Mosquera Erazo', pos: 'df', posName: 'Защитник', flag: '🇪🇸', age: 21, apps: 22, goals: 1, assists: 0, cleansheets: 11 },
-  { num: 33, name: 'Riccardo Calafiori', full: 'Riccardo Calafiori', pos: 'df', posName: 'Защитник', flag: '🇮🇹', age: 24, apps: 28, goals: 2, assists: 3, cleansheets: 12 },
-  { num: 35, name: 'Oleksandr Zinchenko', full: 'Oleksandr Zinchenko', pos: 'df', posName: 'Защитник', flag: '🇺🇦', age: 29, apps: 14, goals: 0, assists: 2, cleansheets: 5 },
-  { num: 17, name: 'Myles Lewis-Skelly', full: 'Myles Marvin Lewis-Skelly', pos: 'df', posName: 'Защитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 19, apps: 24, goals: 1, assists: 3, cleansheets: 10 },
-
-  // MF
-  { num: 8, name: 'Martin Ødegaard ©', full: 'Martin Ødegaard · Капитан', pos: 'mf', posName: 'Полузащитник', flag: '🇳🇴', age: 27, apps: 32, goals: 8, assists: 11, cleansheets: 0 },
-  { num: 41, name: 'Declan Rice', full: 'Declan Rice', pos: 'mf', posName: 'Полузащитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 27, apps: 37, goals: 7, assists: 9, cleansheets: 0 },
-  { num: 36, name: 'Martín Zubimendi', full: 'Martín Zubimendi Ibáñez', pos: 'mf', posName: 'Опорник', flag: '🇪🇸', age: 27, apps: 34, goals: 3, assists: 4, cleansheets: 0 },
-  { num: 16, name: 'Christian Nørgaard', full: 'Christian Nørgaard', pos: 'mf', posName: 'Полузащитник', flag: '🇩🇰', age: 31, apps: 21, goals: 1, assists: 2, cleansheets: 0 },
-  { num: 23, name: 'Mikel Merino', full: 'Mikel Merino Zazón', pos: 'mf', posName: 'Полузащитник', flag: '🇪🇸', age: 30, apps: 30, goals: 9, assists: 4, cleansheets: 0 },
-  { num: 53, name: 'Ethan Nwaneri', full: 'Ethan Kwame Colin Nwaneri', pos: 'mf', posName: 'Талант академии', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 18, apps: 28, goals: 6, assists: 4, cleansheets: 0 },
-
-  // FW
-  { num: 14, name: 'Viktor Gyökeres', full: 'Viktor Einar Gyökeres', pos: 'fw', posName: 'Нападающий', flag: '🇸🇪', age: 27, apps: 35, goals: 26, assists: 6, cleansheets: 0 },
-  { num: 7, name: 'Bukayo Saka', full: 'Bukayo Ayoyinka Temidayo Saka', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 24, apps: 34, goals: 14, assists: 15, cleansheets: 0 },
-  { num: 10, name: 'Eberechi Eze', full: 'Eberechi Oluchi Eze', pos: 'fw', posName: 'Атакующий п/з', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 27, apps: 31, goals: 11, assists: 8, cleansheets: 0 },
-  { num: 11, name: 'Gabriel Martinelli', full: 'Gabriel Teodoro Martinelli Silva', pos: 'fw', posName: 'Нападающий', flag: '🇧🇷', age: 24, apps: 32, goals: 9, assists: 5, cleansheets: 0 },
-  { num: 19, name: 'Leandro Trossard', full: 'Leandro Trossard', pos: 'fw', posName: 'Нападающий', flag: '🇧🇪', age: 31, apps: 31, goals: 8, assists: 6, cleansheets: 0 },
-  { num: 29, name: 'Kai Havertz', full: 'Kai Lukas Havertz', pos: 'fw', posName: 'Нападающий', flag: '🇩🇪', age: 26, apps: 14, goals: 4, assists: 2, cleansheets: 0 },
-  { num: 20, name: 'Noni Madueke', full: 'Chukwunonso Madueke', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 23, apps: 27, goals: 6, assists: 4, cleansheets: 0 },
-];
-
-const squadDedup = squad;
-
-// ===== Render Squad =====
-const squadGrid = document.getElementById('squadGrid');
-function renderSquad(filter = 'all') {
-  squadGrid.innerHTML = '';
-  const list = filter === 'all' ? squadDedup : squadDedup.filter(p => p.pos === filter);
-  list.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'player-card reveal';
-    card.style.transitionDelay = `${i * 30}ms`;
-    card.innerHTML = `
-      <div class="player-top">
-        <div class="player-num">${p.num}</div>
-        <div class="player-flag">${p.flag}</div>
-        <div class="player-pos-badge">${p.posName}</div>
-      </div>
-      <div class="player-info">
-        <div class="player-name">${p.name}</div>
-        <div class="player-fullname">${p.full} · ${p.age} лет</div>
-        <div class="player-stats">
-          <div class="pstat"><div class="pstat-val">${p.apps}</div><div class="pstat-lab">Матчи</div></div>
-          <div class="pstat"><div class="pstat-val">${p.goals}</div><div class="pstat-lab">Голы</div></div>
-          <div class="pstat"><div class="pstat-val">${p.assists}</div><div class="pstat-lab">Передачи</div></div>
-          ${p.pos === 'gk'
-            ? `<div class="pstat"><div class="pstat-val">${p.cleansheets}</div><div class="pstat-lab">Сухарей</div></div>`
-            : `<div class="pstat"><div class="pstat-val">${p.goals + p.assists}</div><div class="pstat-lab">Г+П</div></div>`}
-        </div>
-      </div>
-    `;
-    squadGrid.appendChild(card);
-  });
-  requestAnimationFrame(() => {
-    document.querySelectorAll('.player-card.reveal').forEach(el => el.classList.add('visible'));
-  });
-}
-renderSquad();
-
-document.querySelectorAll('.filter').forEach(btn => {
+filters.forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    filters.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    renderSquad(btn.dataset.pos);
-  });
-});
-
-// ===== Top scorers сезон 2025/26 =====
-const scorers = [
-  { name: 'Viktor Gyökeres', goals: 26 },
-  { name: 'Bukayo Saka', goals: 14 },
-  { name: 'Eberechi Eze', goals: 11 },
-  { name: 'Mikel Merino', goals: 9 },
-  { name: 'Gabriel Martinelli', goals: 9 },
-  { name: 'Martin Ødegaard', goals: 8 },
-  { name: 'Declan Rice', goals: 7 },
-].sort((a, b) => b.goals - a.goals);
-
-const max = Math.max(...scorers.map(s => s.goals));
-const scorerList = document.getElementById('scorerList');
-scorers.forEach((s, i) => {
-  const row = document.createElement('div');
-  row.className = 'scorer';
-  row.innerHTML = `
-    <div class="scorer-rank">${i + 1}</div>
-    <div class="scorer-name">${s.name}</div>
-    <div class="scorer-bar"><div class="scorer-bar-fill" style="width: ${(s.goals / max) * 100}%"></div></div>
-    <div class="scorer-goals">${s.goals}</div>
-  `;
-  scorerList.appendChild(row);
-});
-
-// ===== Matches =====
-const upcoming = [
-  { comp: 'Champions League · Финал', date: '30 мая 2026 · 22:00', home: 'Arsenal', away: 'Real Madrid', homeFlag: '🔴', awayFlag: '⚪', isHome: true, venue: 'Будапешт · Puskás Aréna' },
-  { comp: 'Pre-Season', date: '15 июля 2026 · 12:00', home: 'Arsenal', away: 'AC Milan', homeFlag: '🔴', awayFlag: '🔴', isHome: true, venue: 'Сингапур' },
-  { comp: 'Community Shield', date: '09 авг 2026 · 16:00', home: 'Arsenal', away: 'Liverpool', homeFlag: '🔴', awayFlag: '🔴', isHome: true, venue: 'Wembley' },
-  { comp: 'Premier League', date: '16 авг 2026 · 17:30', home: 'Manchester United', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', isHome: false, venue: 'Old Trafford' },
-];
-
-const results = [
-  { comp: 'Premier League', date: '17 мая 2026', home: 'Arsenal', away: 'Crystal Palace', homeFlag: '🔴', awayFlag: '🔵', score: '3 — 0', result: 'win', isHome: true, venue: 'Emirates · 38-й тур' },
-  { comp: 'Champions League', date: '13 мая 2026', home: 'Bayern', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', score: '1 — 2', result: 'win', isHome: false, venue: '1/2 · Allianz Arena' },
-  { comp: 'Champions League', date: '06 мая 2026', home: 'Arsenal', away: 'Bayern', homeFlag: '🔴', awayFlag: '🔴', score: '2 — 1', result: 'win', isHome: true, venue: '1/2 · Emirates' },
-  { comp: 'Premier League', date: '03 мая 2026', home: 'Liverpool', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', score: '1 — 2', result: 'win', isHome: false, venue: 'Anfield · решающий' },
-  { comp: 'Champions League', date: '29 апр 2026', home: 'Arsenal', away: 'Inter', homeFlag: '🔴', awayFlag: '⚫', score: '3 — 1', result: 'win', isHome: true, venue: '1/4 · Emirates' },
-  { comp: 'Premier League', date: '26 апр 2026', home: 'Arsenal', away: 'Chelsea', homeFlag: '🔴', awayFlag: '🔵', score: '4 — 1', result: 'win', isHome: true, venue: 'Emirates' },
-  { comp: 'Premier League', date: '19 апр 2026', home: 'Tottenham', away: 'Arsenal', homeFlag: '⚪', awayFlag: '🔴', score: '0 — 3', result: 'win', isHome: false, venue: 'North London Derby' },
-];
-
-const matchList = document.getElementById('matchList');
-function renderMatches(tab) {
-  matchList.innerHTML = '';
-  const data = tab === 'upcoming' ? upcoming : results;
-  data.forEach((m, i) => {
-    const row = document.createElement('div');
-    row.className = 'match reveal';
-    row.style.transitionDelay = `${i * 40}ms`;
-    const middle = m.score
-      ? `<div class="match-score ${m.result}">${m.score}</div>`
-      : `<div class="match-vs">VS</div>`;
-    row.innerHTML = `
-      <div>
-        <div class="match-comp">${m.comp}</div>
-        <div class="match-date">${m.date}</div>
-      </div>
-      <div class="match-team home">
-        <span>${m.home}</span>
-        <div class="team-badge ${m.home === 'Arsenal' ? 'arsenal' : ''}">${m.homeFlag}</div>
-      </div>
-      ${middle}
-      <div class="match-team away">
-        <div class="team-badge ${m.away === 'Arsenal' ? 'arsenal' : ''}">${m.awayFlag}</div>
-        <span>${m.away}</span>
-      </div>
-      <div class="match-venue">${m.venue}</div>
-    `;
-    matchList.appendChild(row);
-  });
-  requestAnimationFrame(() => {
-    document.querySelectorAll('.match.reveal').forEach(el => el.classList.add('visible'));
-  });
-}
-renderMatches('upcoming');
-
-document.querySelectorAll('.match-tab').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.match-tab').forEach(b => b.classList.remove('active'));
-    t.classList.add('active');
-    renderMatches(t.dataset.tab);
+    const pos = btn.dataset.pos;
+    cards.forEach(card => {
+      const show = pos === 'all' || card.dataset.pos === pos;
+      card.style.display = show ? '' : 'none';
+    });
   });
 });
 
@@ -1724,9 +1996,9 @@ const revealObserver = new IntersectionObserver(entries => {
       revealObserver.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.05 });
 
-document.querySelectorAll('.section, .trophy, .stat-card, .t-item, .invincibles').forEach(el => {
+document.querySelectorAll('.player-card, .trophy, .stat-card, .t-item, .invincibles, .legend-card, .derby-card').forEach(el => {
   el.classList.add('reveal');
   revealObserver.observe(el);
 });

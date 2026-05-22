@@ -327,6 +327,38 @@ body {
   font-size: 12px; color: var(--text-dim);
   margin-bottom: 16px;
 }
+.player-meta {
+  display: flex; justify-content: space-between;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.pm { text-align: center; flex: 1; }
+.pm span {
+  display: block;
+  font-size: 9px; color: var(--text-dim);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pm b {
+  font-size: 13px; color: var(--gold);
+  font-weight: 700;
+  display: block;
+}
+
+.player-card.captain {
+  border-color: rgba(255,215,0,0.4);
+  background: linear-gradient(180deg, #2a1f00 0%, var(--ink-3) 100%);
+}
+.player-card.captain::before {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--gold), var(--red), var(--gold));
+}
+.player-card.captain .player-pos-badge {
+  background: var(--gold);
+  color: #1a1a2e;
+}
+
 .player-stats {
   display: flex; justify-content: space-between;
   padding-top: 16px;
