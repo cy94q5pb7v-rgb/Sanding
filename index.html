@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arsenal FC — Fan Zone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ANIMATED BACKGROUND -->
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <svg viewBox="0 0 100 100" class="logo-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cannonGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FFD700"/>
+            <stop offset="100%" stop-color="#E5A100"/>
+          </linearGradient>
+        </defs>
+        <path d="M50 5 L90 25 L90 60 Q90 85 50 95 Q10 85 10 60 L10 25 Z"
+              fill="#EF0107" stroke="#FFD700" stroke-width="2.5"/>
+        <path d="M20 45 L75 45 L80 50 L75 55 L20 55 Z" fill="url(#cannonGrad)"/>
+        <circle cx="78" cy="50" r="2" fill="#1a1a2e"/>
+        <rect x="15" y="42" width="6" height="16" fill="#8B4513"/>
+        <circle cx="18" cy="65" r="6" fill="#1a1a2e"/>
+        <circle cx="18" cy="65" r="3" fill="#FFD700"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">ARSENAL</span>
+        <span class="logo-sub">Fan Zone · since 1886</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#hero" class="active">Главная</a></li>
+      <li><a href="#squad">Состав</a></li>
+      <li><a href="#stats">Статистика</a></li>
+      <li><a href="#matches">Матчи</a></li>
+      <li><a href="#trophies">Трофеи</a></li>
+      <li><a href="#history">История</a></li>
+    </ul>
+    <div class="nav-cta">
+      <span class="live-dot"></span> COYG
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="pulse"></span> Premier League · Season 2025/26
+    </div>
+    <h1 class="hero-title">
+      <span class="line-1">VICTORIA</span>
+      <span class="line-2">CONCORDIA</span>
+      <span class="line-3">CRESCIT</span>
+    </h1>
+    <p class="hero-motto">«Победа приходит через гармонию» — девиз клуба с 1949 года</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-label">Стадион</div>
+        <div class="meta-value">Emirates · 60 704</div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <div class="meta-label">Тренер</div>
+        <div class="meta-value">Mikel Arteta</div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <div class="meta-label">Капитан</div>
+        <div class="meta-value">Martin Ødegaard</div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <div class="meta-label">Прозвища</div>
+        <div class="meta-value">The Gunners · The Arsenal</div>
+      </div>
+    </div>
+    <div class="hero-cannons">
+      <svg viewBox="0 0 600 80" class="cannon-bar">
+        <line x1="0" y1="40" x2="600" y2="40" stroke="#EF0107" stroke-width="2" opacity="0.3"/>
+        <circle cx="300" cy="40" r="6" fill="#FFD700"/>
+        <circle cx="300" cy="40" r="12" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE STATS BAR -->
+<section class="stats-bar">
+  <div class="stat-cell">
+    <div class="stat-num" data-target="139">0</div>
+    <div class="stat-label">Лет истории</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num" data-target="13">0</div>
+    <div class="stat-label">Чемпионств АПЛ</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num" data-target="14">0</div>
+    <div class="stat-label">Кубков Англии</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num" data-target="49">0</div>
+    <div class="stat-label">Матчей без поражений</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num" data-target="60704">0</div>
+    <div class="stat-label">Вместимость Emirates</div>
+  </div>
+</section>
+
+<!-- SQUAD -->
+<section id="squad" class="section">
+  <div class="section-header">
+    <div class="section-tag">01 / SQUAD</div>
+    <h2 class="section-title">Первая команда</h2>
+    <p class="section-sub">Молодое и амбициозное поколение «канониров»</p>
+  </div>
+
+  <div class="squad-filters">
+    <button class="filter active" data-pos="all">Все</button>
+    <button class="filter" data-pos="gk">Вратари</button>
+    <button class="filter" data-pos="df">Защитники</button>
+    <button class="filter" data-pos="mf">Полузащитники</button>
+    <button class="filter" data-pos="fw">Нападающие</button>
+  </div>
+
+  <div class="squad-grid" id="squadGrid"></div>
+</section>
+
+<!-- STATS -->
+<section id="stats" class="section section-dark">
+  <div class="section-header">
+    <div class="section-tag">02 / STATISTICS</div>
+    <h2 class="section-title">Сезон 2024/25 в цифрах</h2>
+    <p class="section-sub">Премьер-лига · итоги сезона</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-card-head">
+        <div class="stat-card-title">Место в таблице</div>
+        <div class="stat-card-icon">🏆</div>
+      </div>
+      <div class="stat-card-value">2<span class="suffix">nd</span></div>
+      <div class="stat-card-foot">74 очка · 19 побед</div>
+    </div>
+    <div class="stat-card highlight">
+      <div class="stat-card-head">
+        <div class="stat-card-title">Голов забито</div>
+        <div class="stat-card-icon">⚽</div>
+      </div>
+      <div class="stat-card-value">69</div>
+      <div class="progress"><div class="progress-fill" style="--w: 80%"></div></div>
+      <div class="stat-card-foot">1.82 за матч</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head">
+        <div class="stat-card-title">Голов пропущено</div>
+        <div class="stat-card-icon">🛡️</div>
+      </div>
+      <div class="stat-card-value">34</div>
+      <div class="progress"><div class="progress-fill green" style="--w: 30%"></div></div>
+      <div class="stat-card-foot">Лучшая оборона лиги</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head">
+        <div class="stat-card-title">«Сухие» матчи</div>
+        <div class="stat-card-icon">🧤</div>
+      </div>
+      <div class="stat-card-value">15</div>
+      <div class="stat-card-foot">Дэвид Райя — Золотая перчатка</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head">
+        <div class="stat-card-title">Владение мячом</div>
+        <div class="stat-card-icon">🎯</div>
+      </div>
+      <div class="stat-card-value">58<span class="suffix">%</span></div>
+      <div class="progress"><div class="progress-fill" style="--w: 58%"></div></div>
+      <div class="stat-card-foot">Средний показатель за сезон</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head">
+        <div class="stat-card-title">Лига Чемпионов</div>
+        <div class="stat-card-icon">⭐</div>
+      </div>
+      <div class="stat-card-value">1/2</div>
+      <div class="stat-card-foot">Полуфинал — лучший результат за 16 лет</div>
+    </div>
+  </div>
+
+  <div class="top-scorers">
+    <h3 class="block-title">Бомбардиры сезона</h3>
+    <div class="scorer-list" id="scorerList"></div>
+  </div>
+</section>
+
+<!-- MATCHES -->
+<section id="matches" class="section">
+  <div class="section-header">
+    <div class="section-tag">03 / FIXTURES</div>
+    <h2 class="section-title">Матчи</h2>
+    <p class="section-sub">Последние и предстоящие игры</p>
+  </div>
+
+  <div class="match-tabs">
+    <button class="match-tab active" data-tab="upcoming">Предстоящие</button>
+    <button class="match-tab" data-tab="results">Результаты</button>
+  </div>
+
+  <div class="match-list" id="matchList"></div>
+</section>
+
+<!-- TROPHIES -->
+<section id="trophies" class="section section-dark">
+  <div class="section-header">
+    <div class="section-tag">04 / HONOURS</div>
+    <h2 class="section-title">Трофейная комната</h2>
+    <p class="section-sub">Один из самых титулованных клубов Англии</p>
+  </div>
+
+  <div class="trophy-grid">
+    <div class="trophy big">
+      <div class="trophy-icon">🏆</div>
+      <div class="trophy-count">13</div>
+      <div class="trophy-name">Чемпионат Англии</div>
+      <div class="trophy-years">1931 · 1933 · 1934 · 1935 · 1938 · 1948 · 1953 · 1971 · 1989 · 1991 · 1998 · 2002 · 2004</div>
+    </div>
+    <div class="trophy big">
+      <div class="trophy-icon">🥇</div>
+      <div class="trophy-count">14</div>
+      <div class="trophy-name">Кубок Англии</div>
+      <div class="trophy-years">Рекорд турнира · последний — 2020</div>
+    </div>
+    <div class="trophy">
+      <div class="trophy-icon">🛡️</div>
+      <div class="trophy-count">17</div>
+      <div class="trophy-name">Community Shield</div>
+    </div>
+    <div class="trophy">
+      <div class="trophy-icon">🏅</div>
+      <div class="trophy-count">2</div>
+      <div class="trophy-name">Кубок Лиги</div>
+    </div>
+    <div class="trophy">
+      <div class="trophy-icon">🌍</div>
+      <div class="trophy-count">1</div>
+      <div class="trophy-name">Кубок обладателей кубков</div>
+      <div class="trophy-years">1994</div>
+    </div>
+    <div class="trophy">
+      <div class="trophy-icon">✨</div>
+      <div class="trophy-count">1</div>
+      <div class="trophy-name">Кубок Ярмарок</div>
+      <div class="trophy-years">1970</div>
+    </div>
+  </div>
+
+  <div class="invincibles">
+    <div class="invincibles-bg">THE INVINCIBLES</div>
+    <div class="invincibles-content">
+      <div class="invincibles-tag">⚜️ Легенда</div>
+      <h3>The Invincibles · 2003/04</h3>
+      <p>Единственная команда в истории Премьер-лиги, прошедшая весь сезон без поражений: <strong>26 побед, 12 ничьих, 0 поражений</strong>.</p>
+      <div class="invincibles-stats">
+        <div><b>38</b><span>матчей</span></div>
+        <div><b>49</b><span>серия б/п</span></div>
+        <div><b>73</b><span>гола</span></div>
+        <div><b>90</b><span>очков</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history" class="section">
+  <div class="section-header">
+    <div class="section-tag">05 / HISTORY</div>
+    <h2 class="section-title">Хронология клуба</h2>
+    <p class="section-sub">От «Дайл Сквер» до Emirates Stadium</p>
+  </div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-year">1886</div>
+      <div class="t-card">
+        <h4>Основание клуба</h4>
+        <p>Рабочие оружейного завода Royal Arsenal в Вулидже основали футбольный клуб «Dial Square».</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">1913</div>
+      <div class="t-card">
+        <h4>Переезд в Хайбери</h4>
+        <p>Клуб переезжает на север Лондона и становится «Arsenal FC». Начало эпохи.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">1930-е</div>
+      <div class="t-card">
+        <h4>Эра Чепмена</h4>
+        <p>Герберт Чепмен приводит клуб к первым чемпионским титулам и революционизирует тактику.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">1996</div>
+      <div class="t-card">
+        <h4>Приход Венгера</h4>
+        <p>Арсен Венгер начинает 22-летнюю эпоху. Революция в питании, тренировках и стиле игры.</p>
+      </div>
+    </div>
+    <div class="t-item highlight">
+      <div class="t-year">2004</div>
+      <div class="t-card">
+        <h4>The Invincibles</h4>
+        <p>Историческое чемпионство без единого поражения — навсегда в анналах английского футбола.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">2006</div>
+      <div class="t-card">
+        <h4>Emirates Stadium</h4>
+        <p>Прощание с легендарным Хайбери и переезд на современный 60-тысячник.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">2019</div>
+      <div class="t-card">
+        <h4>Эра Артеты</h4>
+        <p>Микель Артета возвращается в клуб тренером и начинает строить новое поколение «канониров».</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-year">2026</div>
+      <div class="t-card">
+        <h4>Сегодня</h4>
+        <p>140 лет легенде. Молодая команда — снова в борьбе за вершину Премьер-лиги и Европы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg viewBox="0 0 100 100" class="footer-logo" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 5 L90 25 L90 60 Q90 85 50 95 Q10 85 10 60 L10 25 Z"
+              fill="#EF0107" stroke="#FFD700" stroke-width="2"/>
+        <path d="M20 45 L75 45 L80 50 L75 55 L20 55 Z" fill="#FFD700"/>
+      </svg>
+      <div>
+        <div class="footer-title">ARSENAL FC</div>
+        <div class="footer-motto">Victoria Concordia Crescit</div>
+      </div>
+    </div>
+    <div class="footer-chants">
+      <div class="chant-title">Песни с трибун</div>
+      <div class="chant">«Good old Arsenal, we're proud to say that name...»</div>
+      <div class="chant">«We're the North Bank, we're the North Bank Highbury...»</div>
+      <div class="chant">«North London forever, whatever the weather...»</div>
+    </div>
+    <div class="footer-bottom">
+      Фанатское приложение · сделано с ❤️ для болельщиков «Арсенала» · <span class="coyg">COME ON YOU GUNNERS!</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
