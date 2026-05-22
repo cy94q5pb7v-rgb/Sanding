@@ -50,7 +50,7 @@ const revealObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.05 });
 
-document.querySelectorAll('.player-card, .trophy, .stat-card, .t-item, .invincibles, .legend-card, .derby-card').forEach(el => {
+document.querySelectorAll('.player-card, .trophy, .stat-card, .t-item, .invincibles, .legend-card, .derby-card, .fact-card, .stadium-text-card, .manager-card, .stadium-hero').forEach(el => {
   el.classList.add('reveal');
   revealObserver.observe(el);
 });
