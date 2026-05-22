@@ -1500,12 +1500,113 @@ body {
 
 /* ===== Managers history ===== */
 .managers-timeline {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
 }
+.managers-timeline::before {
+  content: '';
+  position: absolute;
+  left: 26px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--red), var(--gold), var(--red));
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Compact row for caretaker/non-champion managers */
+.mgr-row {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid rgba(239,1,7,0.4);
+  border-radius: 12px;
+  padding: 14px 20px 14px 16px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-left: 0;
+  transition: all .25s;
+  position: relative;
+  z-index: 1;
+}
+.mgr-row:hover {
+  border-color: rgba(239,1,7,0.4);
+  border-left-color: var(--gold);
+  transform: translateX(4px);
+}
+.mgr-row.mgr-row-caretaker {
+  border-left-style: dashed;
+  border-left-color: rgba(255,215,0,0.4);
+  background: rgba(255,255,255,0.02);
+}
+.mgr-row-no {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  color: var(--text-dim);
+  text-align: center;
+  background: var(--ink);
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  width: 48px; height: 48px;
+  line-height: 44px;
+  position: relative;
+}
+.mgr-row-caretaker .mgr-row-no {
+  border-color: rgba(255,215,0,0.5);
+  border-style: dashed;
+}
+.mgr-row-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.mgr-row-tag {
+  display: inline-block;
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.3);
+  color: var(--gold);
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-left: 8px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.mgr-row-years {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.mgr-row-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.mgr-card {
+  margin-left: 0;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  .managers-timeline::before { display: none; }
+  .mgr-row {
+    grid-template-columns: 48px 1fr;
+    padding: 12px 14px;
+  }
+  .mgr-row-no { font-size: 22px; width: 40px; height: 40px; line-height: 36px; }
+}
+
 .mgr-card {
   background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink-3) 100%);
   border: 1px solid var(--line);

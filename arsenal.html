@@ -70,7 +70,7 @@ body {
   gap: 32px;
 }
 .logo { display: flex; align-items: center; gap: 12px; }
-.logo-svg { width: 42px; height: 42px; filter: drop-shadow(0 4px 12px rgba(239,1,7,0.5)); }
+.logo-svg { width: 48px; height: 48px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(239,1,7,0.5)); }
 .logo-text { display: flex; flex-direction: column; line-height: 1; }
 .logo-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; }
 .logo-sub { font-size: 10px; color: var(--gold); letter-spacing: 1.5px; margin-top: 3px; }
@@ -299,25 +299,55 @@ body {
 
 .player-top {
   padding: 24px;
+  min-height: 200px;
   background:
     radial-gradient(circle at 80% 20%, rgba(239,1,7,0.2), transparent 50%),
     linear-gradient(135deg, var(--red-deep), transparent);
   position: relative;
+  overflow: hidden;
   display: flex; align-items: flex-start; justify-content: space-between;
+}
+.player-photo {
+  position: absolute;
+  top: 0; right: 0;
+  width: 65%; height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.player-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+  -webkit-mask-image: linear-gradient(270deg, rgba(0,0,0,0.95) 55%, transparent 100%);
+          mask-image: linear-gradient(270deg, rgba(0,0,0,0.95) 55%, transparent 100%);
+}
+.player-photo-empty {
+  background: radial-gradient(circle at 70% 30%, rgba(255,215,0,0.08), transparent 70%);
 }
 .player-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 72px; line-height: 0.8;
   color: rgba(255,255,255,0.95);
-  text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  text-shadow: 0 4px 16px rgba(0,0,0,0.65), 0 0 24px rgba(0,0,0,0.5);
+  position: relative; z-index: 2;
 }
+.player-flag { position: relative; z-index: 2; }
+.player-pos-badge { z-index: 2; }
 .player-flag {
-  width: 36px; height: 36px;
+  width: 44px; height: 32px;
   display: flex; align-items: center; justify-content: center;
   background: rgba(0,0,0,0.3);
-  border-radius: 8px;
-  font-size: 22px;
+  border-radius: 4px;
+  overflow: hidden;
   border: 1px solid var(--line);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+.player-flag img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .player-pos-badge {
   position: absolute; bottom: 12px; left: 24px;
@@ -683,24 +713,49 @@ body {
 
 /* ===== LEGENDS ===== */
 .legend-grid {
+  max-width: 1200px;
+  margin: 0 auto 32px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-bottom: 48px;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 16px;
+}
+@media (max-width: 480px) {
+  .legend-card { grid-template-columns: 100px 1fr; }
+  .legend-body { padding: 18px 16px; }
+}
+.legends-group-title {
+  max-width: 1200px;
+  margin: 32px auto 16px;
+  padding: 0 8px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 3px;
+  color: var(--gold);
+  position: relative;
+}
+.legends-group-title::after {
+  content: '';
+  display: block;
+  margin-top: 8px;
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
 }
 .legend-card {
   background: linear-gradient(180deg, var(--ink-2), var(--ink-3));
   border: 1px solid var(--line);
   border-radius: 18px;
-  padding: 28px 24px;
+  padding: 0;
   position: relative;
   overflow: hidden;
   transition: all .3s;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
 }
 .legend-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, var(--red), var(--gold));
   opacity: 0.5;
+  z-index: 2;
 }
 .legend-card:hover {
   transform: translateY(-6px);
@@ -708,30 +763,47 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 .legend-card:hover::before { opacity: 1; }
-.legend-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 80px; line-height: 0.8;
-  color: rgba(255,215,0,0.15);
-  position: absolute; top: 16px; right: 20px;
+.legend-photo {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--red-deep), var(--ink));
+}
+.legend-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+  filter: saturate(0.95);
+  transition: transform .5s;
+}
+.legend-card:hover .legend-photo img { transform: scale(1.05); }
+.legend-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 70%, var(--ink-3) 100%);
   pointer-events: none;
 }
+.legend-body {
+  padding: 24px 22px;
+  display: flex; flex-direction: column;
+}
 .legend-name {
-  font-size: 22px; font-weight: 800;
+  font-size: 20px; font-weight: 800;
   color: #fff; margin-bottom: 4px;
-  position: relative; z-index: 1;
 }
 .legend-pos {
   font-size: 12px; color: var(--gold);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   letter-spacing: 0.5px;
 }
 .legend-bio {
-  font-size: 14px; color: var(--text-dim);
-  line-height: 1.6; margin-bottom: 16px;
+  font-size: 13px; color: var(--text-dim);
+  line-height: 1.6; margin-bottom: 14px;
 }
 .legend-bio b { color: #fff; }
 .legend-tags {
   display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: auto;
 }
 .legend-tags span {
   background: rgba(239,1,7,0.15);
@@ -955,7 +1027,7 @@ body {
   position: relative;
 }
 .footer-brand { display: flex; align-items: center; gap: 16px; }
-.footer-logo { width: 64px; height: 64px; }
+.footer-logo { width: 72px; height: 72px; object-fit: contain; filter: drop-shadow(0 6px 18px rgba(239,1,7,0.4)); }
 .footer-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 32px; letter-spacing: 3px;
@@ -1005,6 +1077,784 @@ body {
   .section { padding: 60px 16px; }
 }
 
+/* ===== Champions 2025/26 ===== */
+.champions-section {
+  position: relative;
+  padding: 100px 32px 80px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,215,0,0.12), transparent 50%),
+    linear-gradient(180deg, var(--red-deep) 0%, var(--ink) 80%);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,215,0,0.2);
+}
+.champions-bg-glow {
+  position: absolute;
+  top: -200px; left: 50%; transform: translateX(-50%);
+  width: 1200px; height: 1200px;
+  background: radial-gradient(circle, rgba(255,215,0,0.08), transparent 60%);
+  pointer-events: none;
+}
+.champions-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.champions-tag {
+  display: inline-block;
+  font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,215,0,0.5);
+  padding: 8px 18px; border-radius: 999px;
+  margin-bottom: 28px;
+}
+.champions-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 13vw, 180px);
+  line-height: 0.9;
+  letter-spacing: 4px;
+  color: #fff;
+  background: linear-gradient(180deg, #fff 0%, var(--gold) 60%, var(--gold-dark) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 30px rgba(255,215,0,0.3);
+  margin-bottom: 24px;
+}
+.champions-sub {
+  font-size: 18px; line-height: 1.6;
+  max-width: 720px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 56px;
+}
+
+.champions-clinch {
+  background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 20px;
+  padding: 32px 36px;
+  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.champions-date {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: linear-gradient(180deg, var(--red), var(--red-dark));
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  padding: 18px 24px;
+  min-width: 130px;
+  box-shadow: 0 12px 32px rgba(239,1,7,0.4);
+}
+.cd-day {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px; line-height: 0.85;
+  color: var(--gold);
+}
+.cd-month {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: #fff;
+  margin: 4px 0 2px;
+}
+.cd-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 2px;
+  color: rgba(255,255,255,0.85);
+}
+.champions-clinch-text { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+.champions-clinch-text p { margin-bottom: 12px; }
+.champions-clinch-text p:last-child { margin-bottom: 0; }
+.champions-clinch-text b { color: var(--gold); }
+.clinch-tag {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.champions-coyg {
+  font-style: italic;
+  color: rgba(255,255,255,0.75) !important;
+  border-left: 2px solid var(--gold);
+  padding-left: 14px;
+}
+
+.champions-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.cstat {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--gold);
+  border-radius: 12px;
+  padding: 22px 24px;
+  text-align: center;
+}
+.cstat b {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px; line-height: 1;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.cstat span {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+.champions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.comp-card {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+}
+.comp-card.comp-winners {
+  background: linear-gradient(180deg, rgba(255,215,0,0.2), rgba(0,0,0,0.4));
+  border-color: var(--gold);
+  box-shadow: 0 12px 36px rgba(255,215,0,0.15);
+}
+.comp-card.comp-final { border-color: rgba(255,215,0,0.4); }
+.comp-trophy { font-size: 40px; margin-bottom: 12px; }
+.comp-name {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+.comp-result {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 2px;
+  color: #fff;
+}
+.comp-winners .comp-result { color: var(--gold); font-size: 32px; }
+.comp-result-sub {
+  font-size: 11px; color: rgba(255,255,255,0.55);
+  margin-top: 6px;
+}
+
+.champions-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.cm-card {
+  background: rgba(0,0,0,0.3);
+  border-left: 3px solid var(--red);
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.cm-label {
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.cm-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 1px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.cm-sub { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+.champions-footer {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.champions-footer a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted rgba(255,215,0,0.4); }
+.champions-footer a:hover { color: #fff; }
+
+.trophy.champions-2026 {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, rgba(255,215,0,0.1), var(--ink-3));
+  box-shadow: 0 12px 40px rgba(255,215,0,0.15);
+}
+.trophy.champions-2026 .trophy-years b { color: var(--gold); font-weight: 700; }
+
+@media (max-width: 700px) {
+  .champions-clinch { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+  .champions-date { justify-self: center; }
+}
+
+/* ===== Stadium section ===== */
+.stadium-hero {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto 32px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.stadium-hero img {
+  width: 100%; height: 480px;
+  object-fit: cover;
+  display: block;
+}
+.stadium-hero-overlay {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 32px 40px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+}
+.stadium-hero-tag {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(0,0,0,0.6); border: 1px solid rgba(255,215,0,0.4);
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 12px;
+}
+.stadium-hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px; line-height: 1;
+  letter-spacing: 3px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.stadium-hero-sub {
+  font-size: 14px; color: rgba(255,255,255,0.85);
+  max-width: 720px;
+}
+
+.stadium-facts {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+}
+.fact-card {
+  background: linear-gradient(180deg, var(--ink-2), var(--ink-3));
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--red);
+  border-radius: 12px;
+  padding: 20px 22px;
+  transition: all .3s;
+}
+.fact-card:hover {
+  transform: translateY(-4px);
+  border-left-color: var(--gold);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+.fact-card b {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px; line-height: 1;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.fact-card span {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.stadium-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.stadium-text-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 26px;
+}
+.stadium-text-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 2px;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.stadium-text-card p {
+  font-size: 14px; line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+}
+.stadium-text-card b { color: var(--gold); font-weight: 600; }
+
+/* ===== Manager section ===== */
+.manager-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
+  background: linear-gradient(135deg, var(--ink-2) 0%, var(--ink-3) 100%);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+.manager-photo {
+  position: relative;
+  background: linear-gradient(180deg, var(--red-deep), var(--ink));
+  min-height: 480px;
+}
+.manager-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 20%;
+  display: block;
+}
+.manager-photo-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 16px 20px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.92), transparent);
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: #fff;
+}
+.manager-flag {
+  width: 28px; height: 20px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+.manager-content {
+  padding: 40px 40px 40px 0;
+  display: flex; flex-direction: column;
+  justify-content: center;
+}
+.manager-tag {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(255,215,0,0.08);
+  border: 1px solid rgba(255,215,0,0.3);
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+.manager-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px; letter-spacing: 2px;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.manager-bio {
+  font-size: 15px; line-height: 1.8;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 28px;
+}
+.manager-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+.manager-stats > div { text-align: center; }
+.manager-stats b {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 1px;
+  color: var(--gold);
+  line-height: 1;
+}
+.manager-stats span {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-dim);
+}
+.manager-staff .staff-title {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.staff-list {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.staff-list span {
+  font-size: 12px;
+  padding: 6px 12px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: rgba(255,255,255,0.8);
+}
+.staff-list b { color: var(--gold); font-weight: 600; margin-right: 4px; }
+
+@media (max-width: 800px) {
+  .stadium-hero img { height: 280px; }
+  .stadium-hero-overlay { padding: 20px; }
+  .stadium-hero-title { font-size: 40px; }
+  .manager-card { grid-template-columns: 1fr; }
+  .manager-photo { min-height: 360px; }
+  .manager-content { padding: 32px 24px 32px; }
+  .manager-name { font-size: 36px; }
+}
+
+/* ===== Managers history ===== */
+.managers-timeline {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+.managers-timeline::before {
+  content: '';
+  position: absolute;
+  left: 26px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--red), var(--gold), var(--red));
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Compact row for caretaker/non-champion managers */
+.mgr-row {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid rgba(239,1,7,0.4);
+  border-radius: 12px;
+  padding: 14px 20px 14px 16px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-left: 0;
+  transition: all .25s;
+  position: relative;
+  z-index: 1;
+}
+.mgr-row:hover {
+  border-color: rgba(239,1,7,0.4);
+  border-left-color: var(--gold);
+  transform: translateX(4px);
+}
+.mgr-row.mgr-row-caretaker {
+  border-left-style: dashed;
+  border-left-color: rgba(255,215,0,0.4);
+  background: rgba(255,255,255,0.02);
+}
+.mgr-row-no {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  color: var(--text-dim);
+  text-align: center;
+  background: var(--ink);
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  width: 48px; height: 48px;
+  line-height: 44px;
+  position: relative;
+}
+.mgr-row-caretaker .mgr-row-no {
+  border-color: rgba(255,215,0,0.5);
+  border-style: dashed;
+}
+.mgr-row-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.mgr-row-tag {
+  display: inline-block;
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.3);
+  color: var(--gold);
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-left: 8px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.mgr-row-years {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.mgr-row-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.mgr-card {
+  margin-left: 0;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  .managers-timeline::before { display: none; }
+  .mgr-row {
+    grid-template-columns: 48px 1fr;
+    padding: 12px 14px;
+  }
+  .mgr-row-no { font-size: 22px; width: 40px; height: 40px; line-height: 36px; }
+}
+
+.mgr-card {
+  background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink-3) 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+  position: relative;
+}
+.mgr-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold), var(--red));
+  opacity: 0.35;
+  transition: opacity .3s;
+  z-index: 3;
+}
+.mgr-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,215,0,0.35);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.45);
+}
+.mgr-card:hover::before { opacity: 1; }
+.mgr-card.mgr-highlight::before {
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  opacity: 0.7;
+}
+.mgr-card.mgr-current {
+  border-color: rgba(255,215,0,0.5);
+  background: linear-gradient(180deg, rgba(255,215,0,0.06) 0%, var(--ink-3) 100%);
+  box-shadow: 0 16px 44px rgba(255,215,0,0.08);
+}
+.mgr-card.mgr-current::before {
+  background: linear-gradient(90deg, var(--gold), var(--red), var(--gold));
+  opacity: 1;
+}
+
+.mgr-photo {
+  position: relative;
+  height: 260px;
+  background: linear-gradient(180deg, var(--red-deep), var(--ink));
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.mgr-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  display: block;
+  filter: saturate(0.92) contrast(1.05);
+  transition: transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.mgr-card:hover .mgr-photo img { transform: scale(1.05); }
+.mgr-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,14,26,0.6) 80%, var(--ink-2) 100%);
+  pointer-events: none;
+}
+.mgr-photo-empty {
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,215,0,0.2), transparent 60%),
+    linear-gradient(135deg, var(--red-deep) 0%, var(--ink) 100%);
+}
+.mgr-photo-empty .mgr-photo-placeholder {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 88px;
+  color: rgba(255,215,0,0.5);
+  letter-spacing: 6px;
+  text-shadow: 0 6px 24px rgba(0,0,0,0.6);
+}
+
+.mgr-num {
+  position: absolute;
+  top: 14px; right: 18px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  line-height: 0.85;
+  color: rgba(255,215,0,0.85);
+  text-shadow: 0 4px 18px rgba(0,0,0,0.7);
+  letter-spacing: 1px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mgr-era {
+  position: absolute;
+  bottom: 16px; left: 16px;
+  z-index: 2;
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,215,0,0.4);
+  padding: 5px 11px; border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+.mgr-body {
+  padding: 20px 22px 22px;
+  display: flex; flex-direction: column;
+  flex: 1;
+}
+.mgr-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.mgr-name {
+  font-size: 20px; font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+.mgr-flag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.3px;
+}
+.mgr-flag img {
+  width: 20px; height: 13px;
+  object-fit: cover; border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+.mgr-period {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.mgr-years {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  margin-left: 4px;
+  letter-spacing: 0.5px;
+}
+.mgr-record {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.3px;
+  padding: 10px 0;
+  margin-bottom: 14px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.mgr-bio {
+  font-size: 13px; line-height: 1.65;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 16px;
+  flex: 1;
+}
+.mgr-bio b { color: var(--gold); font-weight: 700; }
+.mgr-trophies {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-top: auto;
+}
+.trophy-pill {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+  color: rgba(255,255,255,0.82);
+  padding: 7px 12px; border-radius: 8px;
+  font-size: 11.5px; letter-spacing: 0.2px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.trophy-pill.pill-league {
+  background: linear-gradient(135deg, rgba(255,215,0,0.14), rgba(255,215,0,0.04));
+  border-color: rgba(255,215,0,0.4);
+  color: var(--gold);
+  font-weight: 700;
+}
+.trophy-pill.pill-fa {
+  background: linear-gradient(135deg, rgba(239,1,7,0.12), rgba(239,1,7,0.03));
+  border-color: rgba(239,1,7,0.35);
+  color: #ffcaca;
+  font-weight: 600;
+}
+.trophy-pill.pill-eu {
+  background: linear-gradient(135deg, rgba(2,52,116,0.3), rgba(2,52,116,0.08));
+  border-color: rgba(2,52,116,0.55);
+  color: #cfe1ff;
+  font-weight: 600;
+}
+
+.mgr-extra {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 26px 30px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(239,1,7,0.06), transparent 50%),
+    rgba(255,255,255,0.015);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.mgr-extra-title {
+  font-size: 12px; color: var(--gold);
+  letter-spacing: 2.5px; text-transform: uppercase;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+.mgr-extra-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+.mgr-extra-card {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--red);
+  padding: 14px 18px;
+  border-radius: 10px;
+  transition: all .25s;
+}
+.mgr-extra-card:hover {
+  border-left-color: var(--gold);
+  background: rgba(0,0,0,0.5);
+}
+.mgr-extra-card b {
+  display: block;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.mgr-extra-card span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+@media (max-width: 600px) {
+  .managers-timeline { grid-template-columns: 1fr; }
+  .mgr-photo { height: 240px; }
+}
+
 /* Reveal on scroll */
 .reveal {
   opacity: 0; transform: translateY(30px);
@@ -1023,20 +1873,7 @@ body {
 <nav class="nav">
   <div class="nav-inner">
     <div class="logo">
-      <svg viewBox="0 0 100 100" class="logo-svg" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="cannonGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#FFD700"/>
-            <stop offset="100%" stop-color="#E5A100"/>
-          </linearGradient>
-        </defs>
-        <path d="M50 5 L90 25 L90 60 Q90 85 50 95 Q10 85 10 60 L10 25 Z" fill="#EF0107" stroke="#FFD700" stroke-width="2.5"/>
-        <path d="M20 45 L75 45 L80 50 L75 55 L20 55 Z" fill="url(#cannonGrad)"/>
-        <circle cx="78" cy="50" r="2" fill="#1a1a2e"/>
-        <rect x="15" y="42" width="6" height="16" fill="#8B4513"/>
-        <circle cx="18" cy="65" r="6" fill="#1a1a2e"/>
-        <circle cx="18" cy="65" r="3" fill="#FFD700"/>
-      </svg>
+      <img src="arsenal-crest.svg" alt="Arsenal FC crest" class="logo-svg" />
       <div class="logo-text">
         <span class="logo-title">ARSENAL</span>
         <span class="logo-sub">Fan Zone · since 1886</span>
@@ -1044,11 +1881,13 @@ body {
     </div>
     <ul class="nav-links">
       <li><a href="#hero" class="active">Главная</a></li>
+      <li><a href="#champions">2025/26</a></li>
       <li><a href="#squad">Состав</a></li>
-      <li><a href="#records">Рекорды</a></li>
+      <li><a href="#stadium">Стадион</a></li>
+      <li><a href="#manager">Тренер</a></li>
+      <li><a href="#managers">История тренеров</a></li>
       <li><a href="#trophies">Трофеи</a></li>
       <li><a href="#legends">Легенды</a></li>
-      <li><a href="#derbies">Дерби</a></li>
       <li><a href="#history">История</a></li>
     </ul>
     <div class="nav-cta"><span class="live-dot"></span> COYG</div>
@@ -1091,10 +1930,89 @@ body {
 <!-- STATS BAR -->
 <section class="stats-bar">
   <div class="stat-cell"><div class="stat-num" data-target="140">0</div><div class="stat-label">Лет истории · с 1886</div></div>
-  <div class="stat-cell"><div class="stat-num" data-target="13">0</div><div class="stat-label">Чемпионств Англии</div></div>
+  <div class="stat-cell"><div class="stat-num" data-target="14">0</div><div class="stat-label">Чемпионств Англии</div></div>
   <div class="stat-cell"><div class="stat-num" data-target="14">0</div><div class="stat-label">Кубков Англии · рекорд</div></div>
   <div class="stat-cell"><div class="stat-num" data-target="49">0</div><div class="stat-label">Матчей без поражений</div></div>
   <div class="stat-cell"><div class="stat-num" data-target="60704">0</div><div class="stat-label">Вместимость Emirates</div></div>
+</section>
+
+<!-- CHAMPIONS 2025/26 -->
+<section id="champions" class="champions-section">
+  <div class="champions-bg-glow"></div>
+  <div class="champions-inner">
+    <div class="champions-tag">⭐ Premier League Champions 2025/26</div>
+    <h2 class="champions-title">14-Й ТИТУЛ</h2>
+    <p class="champions-sub">Первый чемпионский титул со времён «Непобеждённых» 2003/04. 22 года ожидания позади.</p>
+
+    <div class="champions-clinch">
+      <div class="champions-date">
+        <div class="cd-day">19</div>
+        <div class="cd-month">мая</div>
+        <div class="cd-year">2026</div>
+      </div>
+      <div class="champions-clinch-text">
+        <div class="clinch-tag">День оформления титула</div>
+        <p>«Манчестер Сити» сыграл вничью с «Борнмутом» 1:1 — за тур до конца сезона «Арсенал» стал математически недосягаем. <b>Чемпионство оформлено за один матч до финиша</b>, как в 2002 и 2004 годах.</p>
+        <p class="champions-coyg">24 мая — финальный матч сезона vs Crystal Palace на «Эмирейтс» с церемонией вручения трофея.</p>
+      </div>
+    </div>
+
+    <div class="champions-stats">
+      <div class="cstat"><b>14-й</b><span>титул в истории клуба</span></div>
+      <div class="cstat"><b>4-й</b><span>в эпоху Премьер-лиги</span></div>
+      <div class="cstat"><b>22</b><span>года с прошлого чемпионства</span></div>
+      <div class="cstat"><b>100</b><span>сезонов подряд в высшем дивизионе</span></div>
+    </div>
+
+    <div class="champions-grid">
+      <div class="comp-card comp-winners">
+        <div class="comp-trophy">🏆</div>
+        <div class="comp-name">Премьер-лига</div>
+        <div class="comp-result">ЧЕМПИОНЫ</div>
+      </div>
+      <div class="comp-card comp-final">
+        <div class="comp-trophy">🌍</div>
+        <div class="comp-name">Лига чемпионов</div>
+        <div class="comp-result">Финал</div>
+      </div>
+      <div class="comp-card comp-runner">
+        <div class="comp-trophy">🥈</div>
+        <div class="comp-name">EFL Cup</div>
+        <div class="comp-result">Финалисты</div>
+        <div class="comp-result-sub">0:2 vs Man City · 22.03.2026, Уэмбли</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-trophy">⚽</div>
+        <div class="comp-name">FA Cup</div>
+        <div class="comp-result">1/4 финала</div>
+      </div>
+    </div>
+
+    <div class="champions-meta">
+      <div class="cm-card">
+        <div class="cm-label">Лучший бомбардир сезона</div>
+        <div class="cm-value">Виктор Гёкереш</div>
+        <div class="cm-sub">21 гол во всех турнирах · 14 в АПЛ</div>
+      </div>
+      <div class="cm-card">
+        <div class="cm-label">Крупнейшая победа</div>
+        <div class="cm-value">5:0 vs Leeds United</div>
+        <div class="cm-sub">Emirates · 23 августа 2025 · Премьер-лига</div>
+      </div>
+      <div class="cm-card">
+        <div class="cm-label">Самая большая посещаемость</div>
+        <div class="cm-value">60 345</div>
+        <div class="cm-sub">vs Tottenham Hotspur · 23 ноября 2025</div>
+      </div>
+      <div class="cm-card">
+        <div class="cm-label">Крупнейшее поражение</div>
+        <div class="cm-value">0:2 vs Man City</div>
+        <div class="cm-sub">Wembley · 22 марта 2026 · финал EFL Cup</div>
+      </div>
+    </div>
+
+    <div class="champions-footer">Источник фактов: <a href="https://en.wikipedia.org/wiki/2025%E2%80%9326_Arsenal_F.C._season" target="_blank" rel="noopener">English Wikipedia — 2025–26 Arsenal F.C. season</a></div>
+  </div>
 </section>
 
 <!-- SQUAD -->
@@ -1117,8 +2035,9 @@ body {
     <!-- GOALKEEPERS -->
     <div class="player-card" data-pos="gk">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/da/David_Raya_in_2025_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">22</div>
-        <div class="player-flag">🇪🇸</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/es.png" alt="Испания" loading="lazy"></div>
         <div class="player-pos-badge">Вратарь</div>
       </div>
       <div class="player-info">
@@ -1134,8 +2053,9 @@ body {
 
     <div class="player-card" data-pos="gk">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Kepa.jpg" alt="" loading="lazy"></div>
         <div class="player-num">31</div>
-        <div class="player-flag">🇪🇸</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/es.png" alt="Испания" loading="lazy"></div>
         <div class="player-pos-badge">Вратарь</div>
       </div>
       <div class="player-info">
@@ -1151,8 +2071,9 @@ body {
 
     <div class="player-card" data-pos="gk">
       <div class="player-top">
+        <div class="player-photo player-photo-empty"></div>
         <div class="player-num">32</div>
-        <div class="player-flag">🇪🇪</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/ee.png" alt="Эстония" loading="lazy"></div>
         <div class="player-pos-badge">Вратарь</div>
       </div>
       <div class="player-info">
@@ -1169,8 +2090,9 @@ body {
     <!-- DEFENDERS -->
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/1_william_saliba_arsenal_2025_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">2</div>
-        <div class="player-flag">🇫🇷</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/fr.png" alt="Франция" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1186,8 +2108,9 @@ body {
 
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/GabrielLille2019.png" alt="" loading="lazy"></div>
         <div class="player-num">6</div>
-        <div class="player-flag">🇧🇷</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/br.png" alt="Бразилия" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1203,8 +2126,9 @@ body {
 
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Ben_White_2018.jpg" alt="" loading="lazy"></div>
         <div class="player-num">4</div>
-        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/gb-eng.png" alt="Англия" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1220,8 +2144,9 @@ body {
 
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/JURRIEN_TIMBER.jpg" alt="" loading="lazy"></div>
         <div class="player-num">12</div>
-        <div class="player-flag">🇳🇱</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/nl.png" alt="Нидерланды" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1237,8 +2162,9 @@ body {
 
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/2024_Emirates_Cup_-_Riccardo_Calafiori_%282%29_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">33</div>
-        <div class="player-flag">🇮🇹</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/it.png" alt="Италия" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1254,8 +2180,9 @@ body {
 
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo player-photo-empty"></div>
         <div class="player-num">15</div>
-        <div class="player-flag">🇪🇸</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/es.png" alt="Испания" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1271,8 +2198,9 @@ body {
 
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo player-photo-empty"></div>
         <div class="player-num">35</div>
-        <div class="player-flag">🇺🇦</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/ua.png" alt="Украина" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1288,8 +2216,9 @@ body {
 
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Piero_Hincapi%C3%A9%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">3</div>
-        <div class="player-flag">🇪🇨</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/ec.png" alt="Эквадор" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1305,8 +2234,9 @@ body {
 
     <div class="player-card" data-pos="df">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/1_Myles_Lewis-Skelly_arsenal_2025_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">49</div>
-        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/gb-eng.png" alt="Англия" loading="lazy"></div>
         <div class="player-pos-badge">Защитник</div>
       </div>
       <div class="player-info">
@@ -1323,8 +2253,9 @@ body {
     <!-- MIDFIELDERS -->
     <div class="player-card captain" data-pos="mf">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Norway_Italy_-_June_2025_E_04.jpg" alt="" loading="lazy"></div>
         <div class="player-num">8</div>
-        <div class="player-flag">🇳🇴</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/no.png" alt="Норвегия" loading="lazy"></div>
         <div class="player-pos-badge">ⓒ Капитан</div>
       </div>
       <div class="player-info">
@@ -1340,8 +2271,9 @@ body {
 
     <div class="player-card" data-pos="mf">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/1_declan_rice_arsenal_2025_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">41</div>
-        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/gb-eng.png" alt="Англия" loading="lazy"></div>
         <div class="player-pos-badge">Полузащитник</div>
       </div>
       <div class="player-info">
@@ -1357,8 +2289,9 @@ body {
 
     <div class="player-card" data-pos="mf">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Mart%C3%ADn_Zubimendi.jpg" alt="" loading="lazy"></div>
         <div class="player-num">36</div>
-        <div class="player-flag">🇪🇸</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/es.png" alt="Испания" loading="lazy"></div>
         <div class="player-pos-badge">Опорный п/з</div>
       </div>
       <div class="player-info">
@@ -1374,8 +2307,9 @@ body {
 
     <div class="player-card" data-pos="mf">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/1_mikel_merino_arsenal_2025_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">23</div>
-        <div class="player-flag">🇪🇸</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/es.png" alt="Испания" loading="lazy"></div>
         <div class="player-pos-badge">Полузащитник</div>
       </div>
       <div class="player-info">
@@ -1391,8 +2325,9 @@ body {
 
     <div class="player-card" data-pos="mf">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Christian_N%C3%B8rgaard%2C_Brentford_F.C._footballer%2C_May_2022.jpg" alt="" loading="lazy"></div>
         <div class="player-num">16</div>
-        <div class="player-flag">🇩🇰</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/dk.png" alt="Дания" loading="lazy"></div>
         <div class="player-pos-badge">Полузащитник</div>
       </div>
       <div class="player-info">
@@ -1408,8 +2343,9 @@ body {
 
     <div class="player-card" data-pos="mf">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Ethan_Nwaneri.png" alt="" loading="lazy"></div>
         <div class="player-num">53</div>
-        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/gb-eng.png" alt="Англия" loading="lazy"></div>
         <div class="player-pos-badge">Талант академии</div>
       </div>
       <div class="player-info">
@@ -1426,8 +2362,9 @@ body {
     <!-- FORWARDS -->
     <div class="player-card" data-pos="fw">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Viktor_Gy%C3%B6keres_2018.jpg" alt="" loading="lazy"></div>
         <div class="player-num">14</div>
-        <div class="player-flag">🇸🇪</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/se.png" alt="Швеция" loading="lazy"></div>
         <div class="player-pos-badge">Центрфорвард</div>
       </div>
       <div class="player-info">
@@ -1443,8 +2380,9 @@ body {
 
     <div class="player-card" data-pos="fw">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/1_bukayo_saka_arsenal_2025_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">7</div>
-        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/gb-eng.png" alt="Англия" loading="lazy"></div>
         <div class="player-pos-badge">Правый вингер</div>
       </div>
       <div class="player-info">
@@ -1460,8 +2398,9 @@ body {
 
     <div class="player-card" data-pos="fw">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Qpr2018eberechieeze001.jpg" alt="" loading="lazy"></div>
         <div class="player-num">10</div>
-        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/gb-eng.png" alt="Англия" loading="lazy"></div>
         <div class="player-pos-badge">Атак. полузащитник</div>
       </div>
       <div class="player-info">
@@ -1477,8 +2416,9 @@ body {
 
     <div class="player-card" data-pos="fw">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/df/1_Gabriel_Martinelli_arsenal_2025_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">11</div>
-        <div class="player-flag">🇧🇷</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/br.png" alt="Бразилия" loading="lazy"></div>
         <div class="player-pos-badge">Левый вингер</div>
       </div>
       <div class="player-info">
@@ -1494,8 +2434,9 @@ body {
 
     <div class="player-card" data-pos="fw">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">19</div>
-        <div class="player-flag">🇧🇪</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/be.png" alt="Бельгия" loading="lazy"></div>
         <div class="player-pos-badge">Нападающий</div>
       </div>
       <div class="player-info">
@@ -1511,8 +2452,9 @@ body {
 
     <div class="player-card" data-pos="fw">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2059_LR10_by_Stepro.jpg" alt="" loading="lazy"></div>
         <div class="player-num">29</div>
-        <div class="player-flag">🇩🇪</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/de.png" alt="Германия" loading="lazy"></div>
         <div class="player-pos-badge">Универсал</div>
       </div>
       <div class="player-info">
@@ -1528,8 +2470,9 @@ body {
 
     <div class="player-card" data-pos="fw">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Fulham_v_Chelsea_20042025_%287%29_%28Noni_Madueke%29.jpg" alt="" loading="lazy"></div>
         <div class="player-num">20</div>
-        <div class="player-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/gb-eng.png" alt="Англия" loading="lazy"></div>
         <div class="player-pos-badge">Вингер</div>
       </div>
       <div class="player-info">
@@ -1545,8 +2488,9 @@ body {
 
     <div class="player-card" data-pos="fw">
       <div class="player-top">
+        <div class="player-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/8/87/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gabriel_Jesus_850_1688.jpg" alt="" loading="lazy"></div>
         <div class="player-num">9</div>
-        <div class="player-flag">🇧🇷</div>
+        <div class="player-flag"><img src="https://flagcdn.com/w80/br.png" alt="Бразилия" loading="lazy"></div>
         <div class="player-pos-badge">Нападающий</div>
       </div>
       <div class="player-info">
@@ -1562,10 +2506,430 @@ body {
   </div>
 </section>
 
+<!-- STADIUM -->
+<section id="stadium" class="section section-dark">
+  <div class="section-header">
+    <div class="section-tag">02 / STADIUM</div>
+    <h2 class="section-title">Emirates Stadium</h2>
+    <p class="section-sub">Эшбёрн Гров, северный Лондон · домашняя арена с 2006 года</p>
+  </div>
+
+  <div class="stadium-hero">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/London_Emirates_Stadium_arsenal.jpg" alt="Emirates Stadium снаружи" loading="lazy">
+    <div class="stadium-hero-overlay">
+      <div class="stadium-hero-tag">🏟️ Главный стадион клуба</div>
+      <div class="stadium-hero-title">«Эмирейтс»</div>
+      <div class="stadium-hero-sub">22 июля 2006 — товарищеский с «Аяксом» в честь открытия. На прощальном матче в Хайбери Тьерри Анри сделал хет-трик.</div>
+    </div>
+  </div>
+
+  <div class="stadium-facts">
+    <div class="fact-card"><b>60 704</b><span>вместимость</span></div>
+    <div class="fact-card"><b>2006</b><span>год открытия</span></div>
+    <div class="fact-card"><b>£390 млн</b><span>стоимость строительства</span></div>
+    <div class="fact-card"><b>105×68</b><span>поле, м</span></div>
+    <div class="fact-card"><b>3-й</b><span>по вместимости клубный в Англии</span></div>
+    <div class="fact-card"><b>Populous</b><span>архитектурное бюро (HOK Sport)</span></div>
+  </div>
+
+  <div class="stadium-grid">
+    <div class="stadium-text-card">
+      <h3>От Хайбери до Эмирейтс</h3>
+      <p>«Хайбери» был домом «Арсенала» 93 года (1913–2006). Стадион вмещал всего 38 419 зрителей, расширить его мешали соседние жилые дома, поэтому в 1999 году клуб начал проект нового стадиона в полумиле к северо-западу. Старое поле «Хайбери» сегодня — жилой комплекс Highbury Square, сохранивший фасады East и West Stand как памятники архитектуры.</p>
+    </div>
+    <div class="stadium-text-card">
+      <h3>Архитектура</h3>
+      <p>Овальная чаша с четырьмя ярусами трибун. На фасаде — восемь огромных букв «ARSENAL» из стали высотой 4 м. У восточного входа — статуи легенд: Тьерри Анри, Денниса Бергкампа, Тони Адамса и Герберта Чепмена. Внутри — Diamond Club, самые дорогие ВИП-места АПЛ.</p>
+    </div>
+    <div class="stadium-text-card">
+      <h3>Трибуны</h3>
+      <p><b>North Bank</b> — сектор активных фанатов, наследник одноимённой трибуны Хайбери. <b>Clock End</b> — южная трибуна с легендарными часами, перенесёнными с Хайбери (висели там с 1930-х). East и West Stand — двухъярусные с премиум-местами и Diamond Club.</p>
+    </div>
+    <div class="stadium-text-card">
+      <h3>Не только футбол</h3>
+      <p>«Эмирейтс» принимал чемпионат мира по регби (2015), матчи бокса (Гудфри vs Прайс), концерты Coldplay, Bruce Springsteen, Green Day, Eminem, Rolling Stones, Muse. На стадионе проходят корпоративные мероприятия и свадьбы.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MANAGER -->
+<section id="manager" class="section">
+  <div class="section-header">
+    <div class="section-tag">03 / HEAD COACH</div>
+    <h2 class="section-title">Главный тренер</h2>
+    <p class="section-sub">Микель Артета — у руля «канониров» с декабря 2019</p>
+  </div>
+
+  <div class="manager-card">
+    <div class="manager-photo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Mikel_Arteta_2021_%28cropped%29.png" alt="Mikel Arteta" loading="lazy">
+      <div class="manager-photo-overlay">
+        <img src="https://flagcdn.com/w80/es.png" alt="Испания" class="manager-flag">
+        <span>Сан-Себастьян · 1982</span>
+      </div>
+    </div>
+    <div class="manager-content">
+      <div class="manager-tag">⭐ Возвращение легенды</div>
+      <h3 class="manager-name">Mikel Arteta Amatriain</h3>
+      <p class="manager-bio">Полузащитник «Арсенала» 2011–2016, капитан с 2014-го. Учился тренерскому делу у Пепа Гвардиолы (ассистент в «Манчестер Сити» 2016–2019). Вернулся в декабре 2019 года, когда команда находилась в 11-й строчке таблицы. За 6 лет перестроил клуб вокруг молодого ядра: Сака, Салиба, Магальяйнс, Эдегор.</p>
+      <div class="manager-stats">
+        <div><b>351</b><span>матчей у руля</span></div>
+        <div><b>60,4%</b><span>побед (212-66-73)</span></div>
+        <div><b>2-е</b><span>места в АПЛ 2022/23, 2023/24, 2024/25</span></div>
+        <div><b>4</b><span>трофея: АПЛ 2025/26, FA Cup 2020, Community Shield 2020 и 2023</span></div>
+      </div>
+      <div class="manager-staff">
+        <div class="staff-title">Тренерский штаб 2025/26</div>
+        <div class="staff-list">
+          <span><b>Альберт Стювенберг</b> · первый ассистент</span>
+          <span><b>Карлос Куэста</b> · ассистент</span>
+          <span><b>Мигель Молина</b> · ассистент</span>
+          <span><b>Иньяки Кана</b> · тренер вратарей</span>
+          <span><b>Николас Йовер</b> · тренер по стандартам</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANAGERS HISTORY -->
+<section id="managers" class="section section-dark">
+  <div class="section-header">
+    <div class="section-tag">04 / MANAGERS · HISTORY</div>
+    <h2 class="section-title">История тренеров</h2>
+    <p class="section-sub">Все 26 главных тренеров «Арсенала» от Сэма Холлиса (1894) до Микеля Артеты — в хронологическом порядке</p>
+  </div>
+
+  <div class="managers-timeline">
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">01</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Sam Hollis 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="mgr-row-years">авг 1894 — май 1897 · ~3 года</div>
+        <div class="mgr-row-note">Первый в истории клуба главный тренер. Эпоха Woolwich Arsenal.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">02</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Thomas Mitchell 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+        <div class="mgr-row-years">мар 1897 — мар 1898 · 1 год</div>
+        <div class="mgr-row-note">Шотландец. Подал в отставку после неудачного сезона в Лиге второго дивизиона.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">03</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">George Elcoat 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="mgr-row-years">мар 1898 — май 1899 · 1 год</div>
+        <div class="mgr-row-note">Короткий тренерский период.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">04</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Harry Bradshaw 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="mgr-row-years">авг 1899 — май 1904 · 5 лет</div>
+        <div class="mgr-row-note">⭐ Вывел клуб в Первый дивизион впервые в истории — 1903/04.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">05</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Phil Kelso 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+        <div class="mgr-row-years">июл 1904 — фев 1908 · 3,5 года</div>
+        <div class="mgr-row-note">Закрепил клуб в высшем дивизионе. Полуфинал FA Cup 1906 и 1907.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">06</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">George Morrell 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+        <div class="mgr-row-years">фев 1908 — май 1915 · 7 лет</div>
+        <div class="mgr-row-note">Самый сложный период клуба: переезд из Вулиджа в Хайбери (1913) и борьба за выживание.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">07</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Leslie Knighton 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="mgr-row-years">май 1919 — май 1925 · 6 лет</div>
+        <div class="mgr-row-note">Первый послевоенный тренер. Уволен председателем Генри Норрисом перед приходом Чепмена.</div>
+      </div>
+    </div>
+
+    <article class="mgr-card mgr-highlight">
+      <div class="mgr-photo"><div class="mgr-num">08</div><div class="mgr-era">Эра 1920–30-х</div><img src="https://upload.wikimedia.org/wikipedia/en/6/67/Herbert_Chapman_1.jpg" alt="Herbert Chapman" loading="lazy"></div>
+      <div class="mgr-body">
+        <div class="mgr-head">
+          <div class="mgr-name">Herbert Chapman</div>
+          <div class="mgr-flag"><img src="https://flagcdn.com/w40/gb-eng.png" alt="Англия"> Англия</div>
+        </div>
+        <div class="mgr-period">11 июня 1925 — 6 января 1934 <span class="mgr-years">· 8,5 лет</span></div>
+        <div class="mgr-record">411 матчей · 204-97-110 · 49,6% побед</div>
+        <p class="mgr-bio">Революционер английского футбола. Придумал систему «W-M», нумерацию футболок, переименовал станцию метро «Gillespie Road» в «Arsenal». Умер от пневмонии в январе 1934-го.</p>
+        <div class="mgr-trophies">
+          <span class="trophy-pill pill-league">🏆 2× Чемпион Англии: 1930/31, 1932/33</span>
+          <span class="trophy-pill pill-fa">⚽ 1× FA Cup: 1929/30</span>
+          <span class="trophy-pill">🛡 3× Charity Shield: 1930, 1931, 1933</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="mgr-row mgr-row-caretaker">
+      <div class="mgr-row-no">09</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Joe Shaw 🏴󠁧󠁢󠁥󠁮󠁧󠁿 <span class="mgr-row-tag">caretaker</span></div>
+        <div class="mgr-row-years">янв 1934 — июн 1934 · 5 месяцев</div>
+        <div class="mgr-row-note">⭐ Подхватил команду после смерти Чепмена и довёл до чемпионства 1933/34.</div>
+      </div>
+    </div>
+
+    <article class="mgr-card mgr-highlight">
+      <div class="mgr-photo"><div class="mgr-num">10</div><div class="mgr-era">Эра 1930–40-х</div><img src="https://upload.wikimedia.org/wikipedia/en/c/c5/George_Frederick_Allison.jpg" alt="George Allison" loading="lazy"></div>
+      <div class="mgr-body">
+        <div class="mgr-head">
+          <div class="mgr-name">George Allison</div>
+          <div class="mgr-flag"><img src="https://flagcdn.com/w40/gb-eng.png" alt="Англия"> Англия</div>
+        </div>
+        <div class="mgr-period">28 мая 1934 — 31 мая 1947 <span class="mgr-years">· 13 лет</span></div>
+        <div class="mgr-record">279 матчей · 129-74-76 · 46,2% побед</div>
+        <p class="mgr-bio">Журналист BBC, преемник Чепмена. Продлил доминирование «Арсенала» в 30-е и провёл клуб через Вторую мировую войну.</p>
+        <div class="mgr-trophies">
+          <span class="trophy-pill pill-league">🏆 2× Чемпион Англии: 1934/35, 1937/38</span>
+          <span class="trophy-pill pill-fa">⚽ 1× FA Cup: 1935/36</span>
+          <span class="trophy-pill">🛡 2× Charity Shield: 1934, 1938</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="mgr-card mgr-highlight">
+      <div class="mgr-photo mgr-photo-empty"><div class="mgr-num">11</div><div class="mgr-era">Послевоенная эра</div>
+        <div class="mgr-photo-placeholder">TW</div>
+      </div>
+      <div class="mgr-body">
+        <div class="mgr-head">
+          <div class="mgr-name">Tom Whittaker</div>
+          <div class="mgr-flag"><img src="https://flagcdn.com/w40/gb-eng.png" alt="Англия"> Англия</div>
+        </div>
+        <div class="mgr-period">2 июня 1947 — 24 октября 1956 <span class="mgr-years">· 9 лет</span></div>
+        <div class="mgr-record">430 матчей · 203-106-121 · 47,2% побед</div>
+        <p class="mgr-bio">Многолетний физиотерапевт клуба, ставший главным тренером. Возродил «Арсенал» после войны. Умер в должности.</p>
+        <div class="mgr-trophies">
+          <span class="trophy-pill pill-league">🏆 2× Чемпион Англии: 1947/48, 1952/53</span>
+          <span class="trophy-pill pill-fa">⚽ 1× FA Cup: 1949/50</span>
+          <span class="trophy-pill">🛡 2× Charity Shield: 1948, 1953</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">12</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Jack Crayston 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="mgr-row-years">окт 1956 — май 1958 · 1,5 года</div>
+        <div class="mgr-row-note">Бывший игрок, поднявшийся из ассистентов после смерти Уиттакера.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">13</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">George Swindin 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="mgr-row-years">июн 1958 — май 1962 · 4 года</div>
+        <div class="mgr-row-note">Бывший вратарь чемпионских составов 30–40-х годов.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">14</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Billy Wright 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="mgr-row-years">май 1962 — июн 1966 · 4 года</div>
+        <div class="mgr-row-note">Легенда сборной Англии (105 матчей), но как тренер титулов не выиграл.</div>
+      </div>
+    </div>
+
+    <article class="mgr-card mgr-highlight">
+      <div class="mgr-photo"><div class="mgr-num">15</div><div class="mgr-era">Эра «дабла» 1971</div><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Bertie_Mee.jpg" alt="Bertie Mee" loading="lazy"></div>
+      <div class="mgr-body">
+        <div class="mgr-head">
+          <div class="mgr-name">Bertie Mee</div>
+          <div class="mgr-flag"><img src="https://flagcdn.com/w40/gb-eng.png" alt="Англия"> Англия</div>
+        </div>
+        <div class="mgr-period">20 июня 1966 — 4 мая 1976 <span class="mgr-years">· 9,9 лет</span></div>
+        <div class="mgr-record">539 матчей · 241-148-150 · 44,7% побед</div>
+        <p class="mgr-bio">Физиотерапевт, ставший тренером. Привёл «Арсенал» к историческому «даблу» 1971 года — чемпионство и FA Cup в один сезон.</p>
+        <div class="mgr-trophies">
+          <span class="trophy-pill pill-league">🏆 1× Чемпион Англии: 1970/71</span>
+          <span class="trophy-pill pill-fa">⚽ 1× FA Cup: 1970/71 — «Дабл»</span>
+          <span class="trophy-pill pill-eu">🌍 Кубок Ярмарок 1969/70</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="mgr-card mgr-highlight">
+      <div class="mgr-photo mgr-photo-empty"><div class="mgr-num">16</div><div class="mgr-era">FA Cup 1979</div>
+        <div class="mgr-photo-placeholder">TN</div>
+      </div>
+      <div class="mgr-body">
+        <div class="mgr-head">
+          <div class="mgr-name">Terry Neill</div>
+          <div class="mgr-flag"><img src="https://flagcdn.com/w40/gb-nir.png" alt="Северная Ирландия"> Северная Ирландия</div>
+        </div>
+        <div class="mgr-period">9 июля 1976 — 16 декабря 1983 <span class="mgr-years">· 7,4 года</span></div>
+        <div class="mgr-record">416 матчей · 187-117-112 · 45,0% побед</div>
+        <p class="mgr-bio">Автор знаменитой «5-минутной победы» в финале FA Cup 1979 vs «Манчестер Юнайтед» (3:2). Три подряд финала FA Cup 1978–1980.</p>
+        <div class="mgr-trophies">
+          <span class="trophy-pill pill-fa">⚽ 1× FA Cup: 1978/79</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">17</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Don Howe 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="mgr-row-years">дек 1983 — мар 1986 · 2,3 года</div>
+        <div class="mgr-row-note">Бывший ассистент Ми, тактик-теоретик. 117 матчей у руля.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row mgr-row-caretaker">
+      <div class="mgr-row-no">18</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Steve Burtenshaw 🏴󠁧󠁢󠁥󠁮󠁧󠁿 <span class="mgr-row-tag">caretaker</span></div>
+        <div class="mgr-row-years">мар 1986 — май 1986 · 2 месяца</div>
+        <div class="mgr-row-note">Исполняющий обязанности до прихода Грэма.</div>
+      </div>
+    </div>
+
+    <article class="mgr-card mgr-highlight">
+      <div class="mgr-photo"><div class="mgr-num">19</div><div class="mgr-era">Back four · 80-90-е</div><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/George_Graham_%281970%29.png" alt="George Graham" loading="lazy"></div>
+      <div class="mgr-body">
+        <div class="mgr-head">
+          <div class="mgr-name">George Graham</div>
+          <div class="mgr-flag"><img src="https://flagcdn.com/w40/gb-sct.png" alt="Шотландия"> Шотландия</div>
+        </div>
+        <div class="mgr-period">14 мая 1986 — 21 февраля 1995 <span class="mgr-years">· 8,8 лет</span></div>
+        <div class="mgr-record">460 матчей · 225-133-102 · 48,9% побед</div>
+        <p class="mgr-bio">Бывший игрок «дабла» 1971-го, вернулся в клуб тренером. Построил легендарную «back four» (Адамс-Боулд-Диксон-Уинтербёрн). Знаменитое «Анфилд-89». Уволен после скандала с откатами.</p>
+        <div class="mgr-trophies">
+          <span class="trophy-pill pill-league">🏆 2× Чемпион Англии: 1988/89, 1990/91</span>
+          <span class="trophy-pill pill-fa">⚽ 1× FA Cup: 1992/93</span>
+          <span class="trophy-pill">🥇 2× Кубок Лиги: 1986/87, 1992/93</span>
+          <span class="trophy-pill pill-eu">🌍 Кубок обладателей кубков 1993/94</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="mgr-row mgr-row-caretaker">
+      <div class="mgr-row-no">20</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Stewart Houston 🏴󠁧󠁢󠁳󠁣󠁴󠁿 <span class="mgr-row-tag">caretaker</span></div>
+        <div class="mgr-row-years">фев 1995 — июн 1995 · 4 месяца</div>
+        <div class="mgr-row-note">Довёл клуб до финала Кубка обладателей кубков (поражение от «Сарагосы» 1:2).</div>
+      </div>
+    </div>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">21</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Bruce Rioch 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+        <div class="mgr-row-years">июн 1995 — авг 1996 · 1,2 года</div>
+        <div class="mgr-row-note">Один сезон во главе клуба. Подписал Денниса Бергкампа и Дэвида Платта.</div>
+      </div>
+    </div>
+
+    <div class="mgr-row mgr-row-caretaker">
+      <div class="mgr-row-no">22</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Pat Rice 🏴󠁧󠁢󠁮󠁩󠁲󠁿 <span class="mgr-row-tag">caretaker</span></div>
+        <div class="mgr-row-years">авг 1996 — окт 1996 · 2 месяца</div>
+        <div class="mgr-row-note">Легенда клуба-игрок. Подменял до приезда Венгера. Позже — его ассистент 16 лет.</div>
+      </div>
+    </div>
+
+    <article class="mgr-card mgr-highlight">
+      <div class="mgr-photo"><div class="mgr-num">23</div><div class="mgr-era">The Invincibles</div><img src="https://upload.wikimedia.org/wikipedia/commons/8/87/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Ars%C3%A8ne_Wenger_-_240422_192850_%28cropped%29.jpg" alt="Arsène Wenger" loading="lazy"></div>
+      <div class="mgr-body">
+        <div class="mgr-head">
+          <div class="mgr-name">Arsène Wenger</div>
+          <div class="mgr-flag"><img src="https://flagcdn.com/w40/fr.png" alt="Франция"> Франция</div>
+        </div>
+        <div class="mgr-period">1 октября 1996 — 13 мая 2018 <span class="mgr-years">· 21,7 года · longest serving</span></div>
+        <div class="mgr-record">1 235 матчей · 707-280-248 · 57,2% побед</div>
+        <p class="mgr-bio">«Le Professeur». Революция в питании, тренировках и стиле — превратил «Арсенал» в эталон современного футбола. Три чемпионства (включая Invincibles 2003/04), рекордные 7 побед в FA Cup.</p>
+        <div class="mgr-trophies">
+          <span class="trophy-pill pill-league">🏆 3× Чемпион Англии: 1997/98, 2001/02, 2003/04 (Invincibles)</span>
+          <span class="trophy-pill pill-fa">⚽ 7× FA Cup (рекорд): 1998, 2002, 2003, 2005, 2014, 2015, 2017</span>
+          <span class="trophy-pill">🛡 7× Community Shield: 1998, 1999, 2002, 2004, 2014, 2015, 2017</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="mgr-row">
+      <div class="mgr-row-no">24</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Unai Emery 🇪🇸</div>
+        <div class="mgr-row-years">май 2018 — нояб 2019 · 1,5 года</div>
+        <div class="mgr-row-note">Первый сменщик Венгера. 78 матчей · финал Лиги Европы 2019 в Баку (поражение от «Челси» 1:4).</div>
+      </div>
+    </div>
+
+    <div class="mgr-row mgr-row-caretaker">
+      <div class="mgr-row-no">25</div>
+      <div class="mgr-row-main">
+        <div class="mgr-row-name">Freddie Ljungberg 🇸🇪 <span class="mgr-row-tag">caretaker</span></div>
+        <div class="mgr-row-years">нояб 2019 — дек 2019 · 1 месяц</div>
+        <div class="mgr-row-note">Легендарный «непобеждённый». Подменял до прихода Артеты — 1 победа в 6 матчах.</div>
+      </div>
+    </div>
+
+    <article class="mgr-card mgr-current">
+      <div class="mgr-photo"><div class="mgr-num">26</div><div class="mgr-era">Современная эра</div><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Mikel_Arteta_2021_%28cropped%29.png" alt="Mikel Arteta" loading="lazy"></div>
+      <div class="mgr-body">
+        <div class="mgr-head">
+          <div class="mgr-name">Mikel Arteta</div>
+          <div class="mgr-flag"><img src="https://flagcdn.com/w40/es.png" alt="Испания"> Испания</div>
+        </div>
+        <div class="mgr-period">22 декабря 2019 — действующий <span class="mgr-years">· 6+ лет</span></div>
+        <div class="mgr-record">Лучший % побед среди современных тренеров</div>
+        <p class="mgr-bio">Возвращение легенды: капитан-игрок 2014–2016, ассистент Гвардиолы в «Сити», главный тренер с декабря 2019-го. За 6 лет перестроил клуб вокруг молодого ядра.</p>
+        <div class="mgr-trophies">
+          <span class="trophy-pill pill-fa">⚽ 1× FA Cup: 2019/20</span>
+          <span class="trophy-pill">🛡 2× Community Shield: 2020, 2023</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="mgr-extra">
+    <div class="mgr-extra-title">📊 Итоги по 132 годам</div>
+    <div class="mgr-extra-grid">
+      <div class="mgr-extra-card"><b>26</b><span>главных тренеров с 1894 года</span></div>
+      <div class="mgr-extra-card"><b>21,7</b><span>года Венгера · рекорд клуба и АПЛ</span></div>
+      <div class="mgr-extra-card"><b>7</b><span>тренеров — обладатели чемпионского титула</span></div>
+      <div class="mgr-extra-card"><b>2</b><span>умерли на посту: Чепмен (1934), Уиттакер (1956)</span></div>
+    </div>
+  </div>
+
+  <div class="champions-footer" style="margin-top:32px">Источники: <a href="https://en.wikipedia.org/wiki/List_of_Arsenal_F.C._managers" target="_blank" rel="noopener">Wikipedia · List of Arsenal F.C. managers</a></div>
+</section>
+
+
 <!-- RECORDS / FACTS -->
 <section id="records" class="section section-dark">
   <div class="section-header">
-    <div class="section-tag">02 / CLUB RECORDS</div>
+    <div class="section-tag">05 / CLUB RECORDS</div>
     <h2 class="section-title">Клубные рекорды</h2>
     <p class="section-sub">Проверенные факты в истории «Арсенала»</p>
   </div>
@@ -1607,17 +2971,17 @@ body {
 <!-- TROPHIES -->
 <section id="trophies" class="section">
   <div class="section-header">
-    <div class="section-tag">03 / HONOURS</div>
+    <div class="section-tag">06 / HONOURS</div>
     <h2 class="section-title">Трофейная комната</h2>
     <p class="section-sub">Один из самых титулованных клубов Англии</p>
   </div>
 
   <div class="trophy-grid">
-    <div class="trophy big">
+    <div class="trophy big champions-2026">
       <div class="trophy-icon">🏆</div>
-      <div class="trophy-count">13</div>
+      <div class="trophy-count">14</div>
       <div class="trophy-name">Чемпионат Англии</div>
-      <div class="trophy-years">1931 · 1933 · 1934 · 1935 · 1938 · 1948 · 1953 · 1971 · 1989 · 1991 · 1998 · 2002 · 2004</div>
+      <div class="trophy-years">1931 · 1933 · 1934 · 1935 · 1938 · 1948 · 1953 · 1971 · 1989 · 1991 · 1998 · 2002 · 2004 · <b>2026</b></div>
     </div>
     <div class="trophy big">
       <div class="trophy-icon">🥇</div>
@@ -1670,86 +3034,256 @@ body {
 <!-- LEGENDS -->
 <section id="legends" class="section section-dark">
   <div class="section-header">
-    <div class="section-tag">04 / LEGENDS</div>
+    <div class="section-tag">07 / LEGENDS</div>
     <h2 class="section-title">Легенды «Канониров»</h2>
-    <p class="section-sub">Игроки, вписавшие имена в историю клуба</p>
+    <p class="section-sub">Игроки и тренеры, вписавшие имена в историю клуба</p>
   </div>
 
+  <div class="legends-group-title">⚜️ Менеджеры-легенды</div>
   <div class="legend-grid">
     <div class="legend-card">
-      <div class="legend-num">14</div>
-      <div class="legend-name">Thierry Henry</div>
-      <div class="legend-pos">🇫🇷 Нападающий · 1999–2007, 2012</div>
-      <div class="legend-bio">Лучший бомбардир в истории клуба — <b>228 голов</b>. 4-кратный обладатель «Золотой бутсы» АПЛ. Символ эры Венгера и «Непобеждённых».</div>
-      <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>Памятник у Emirates</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/en/6/67/Herbert_Chapman_1.jpg" alt="Herbert Chapman" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Herbert Chapman</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Главный тренер · 1925–1934</div>
+        <div class="legend-bio">Революционер футбола. Привёл «Арсенал» к первой эре доминирования. Придумал систему «W-M», нумерацию футболок и часы на «Хайбери». Умер от пневмонии в январе 1934-го, не доработав сезон, в котором клуб выиграл третий титул подряд.</div>
+        <div class="legend-tags"><span>2× АПЛ-чемпион (1931, 33)</span><span>FA Cup 1930</span><span>Статуя у Emirates</span></div>
+      </div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">10</div>
-      <div class="legend-name">Dennis Bergkamp</div>
-      <div class="legend-pos">🇳🇱 Атакующий п/з · 1995–2006</div>
-      <div class="legend-bio">«Нелетающий голландец». Магия первого касания, гол года против «Ньюкасла» (2002), икона интеллигентного футбола.</div>
-      <div class="legend-tags"><span>3× АПЛ</span><span>The Invincible</span><span>Памятник у Emirates</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/8/87/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Ars%C3%A8ne_Wenger_-_240422_192850_%28cropped%29.jpg" alt="Arsène Wenger" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Arsène Wenger</div>
+        <div class="legend-pos">🇫🇷 Главный тренер · 1996–2018</div>
+        <div class="legend-bio">22 сезона у руля — рекорд для тренера в АПЛ. Революция в питании, тренировках, стиле игры. Создал The Invincibles 2003/04. 3 чемпионства, 7 FA Cup. С «Le Professeur» «Арсенал» стал тем, что мы знаем сегодня.</div>
+        <div class="legend-tags"><span>3× АПЛ</span><span>7× FA Cup рекорд</span><span>The Invincibles</span><span>1235 матчей</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legends-group-title">⚜️ Эра 70-х · Первый «дабл»</div>
+  <div class="legend-grid">
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Frank_McLintock_%281970%29.png" alt="Frank McLintock" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Frank McLintock</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Защитник · 1964–1973</div>
+        <div class="legend-bio">Капитан «дабла» 1971 года. Лидер команды, выигравшей и АПЛ, и FA Cup в один сезон — второй случай в XX веке. Игрок года Англии 1971.</div>
+        <div class="legend-tags"><span>«Дабл» 1971</span><span>Кубок Ярмарок 1970</span><span>Игрок года 1971</span></div>
+      </div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">04</div>
-      <div class="legend-name">Patrick Vieira</div>
-      <div class="legend-pos">🇫🇷 Полузащитник · 1996–2005</div>
-      <div class="legend-bio">Капитан The Invincibles. Двигатель и сердце команды эры Венгера, олицетворение характера «Арсенала» начала 2000-х.</div>
-      <div class="legend-tags"><span>3× АПЛ</span><span>4× FA Cup</span><span>406 матчей</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Charlie_George_%281970%29.png" alt="Charlie George" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Charlie George</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Атак. полузащитник · 1969–1975</div>
+        <div class="legend-bio">«Гордость North Bank». Забил знаменитый победный гол в финале FA Cup 1971 против «Ливерпуля» — лёг на газон после удара. Один из самых любимых игроков в истории клуба.</div>
+        <div class="legend-tags"><span>«Дабл» 1971</span><span>49 голов</span></div>
+      </div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">06</div>
-      <div class="legend-name">Tony Adams</div>
-      <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Центр. защитник · 1983–2002</div>
-      <div class="legend-bio">«Mr. Arsenal». Капитан-легенда, выигрывал чемпионство в трёх десятилетиях (80-е, 90-е, 00-е). Бронзовая статуя у Emirates.</div>
-      <div class="legend-tags"><span>4× чемпион</span><span>One-club man</span><span>669 матчей</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Liam_Brady_2021_RT%C3%89_Sport.png" alt="Liam Brady" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Liam Brady</div>
+        <div class="legend-pos">🇮🇪 Полузащитник · 1973–1980</div>
+        <div class="legend-bio">«Чиппи» — мастер левого фланга и стандартов 70-х. PFA Игрок года 1979. Главное вооружение «Арсенала» во время трёх подряд финалов FA Cup 1978–1980.</div>
+        <div class="legend-tags"><span>FA Cup 1979</span><span>PFA Player of the Year</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legends-group-title">⚜️ Эра 90-х · «1-0 to the Arsenal»</div>
+  <div class="legend-grid">
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Tony_Adams_2017_portrait_%28cropped%29.jpg" alt="Tony Adams" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Tony Adams</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Центр. защитник · 1983–2002</div>
+        <div class="legend-bio">«Mr. Arsenal». Капитан-легенда, выигрывал чемпионство в трёх десятилетиях (80-е, 90-е, 00-е). Бронзовая статуя у Emirates.</div>
+        <div class="legend-tags"><span>4× чемпион</span><span>One-club man</span><span>669 матчей</span></div>
+      </div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">07</div>
-      <div class="legend-name">Robert Pirès</div>
-      <div class="legend-pos">🇫🇷 Полузащитник · 2000–2006</div>
-      <div class="legend-bio">Левый волшебник Венгера. Игрок года АПЛ 2002, ассист-машина, неотъемлемая часть The Invincibles.</div>
-      <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>84 гола</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/David_Seaman.jpg" alt="David Seaman" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">David Seaman</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Вратарь · 1990–2003</div>
+        <div class="legend-bio">«Safe hands». Один из величайших английских вратарей. 564 матча, 3 чемпионства, 4 Кубка Англии. «Конский хвост» — узнаваемый образ 90-х.</div>
+        <div class="legend-tags"><span>3× АПЛ</span><span>4× FA Cup</span><span>Икона 90-х</span></div>
+      </div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">08</div>
-      <div class="legend-name">Ian Wright</div>
-      <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Нападающий · 1991–1998</div>
-      <div class="legend-bio">До прихода Анри — главный бомбардир клуба (185 голов). Страсть и магия Хайбери, народный любимец North Bank.</div>
-      <div class="legend-tags"><span>FA Cup 1993</span><span>Кубок кубков 1994</span><span>185 голов</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Ian_Wright_at_SXSW_London_June_2025_%28cropped%29.jpg" alt="Ian Wright" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Ian Wright</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Нападающий · 1991–1998</div>
+        <div class="legend-bio">До прихода Анри — главный бомбардир клуба (185 голов). Страсть и магия Хайбери, народный любимец North Bank.</div>
+        <div class="legend-tags"><span>FA Cup 1993</span><span>Кубок кубков 1994</span><span>185 голов</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legends-group-title">⚜️ The Invincibles · 2003/04</div>
+  <div class="legend-grid">
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Thierry_Henry_%2851649035951%29_%28cropped%29.jpg" alt="Thierry Henry" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Thierry Henry</div>
+        <div class="legend-pos">🇫🇷 Нападающий · 1999–2007, 2012</div>
+        <div class="legend-bio">Лучший бомбардир в истории клуба — <b>228 голов</b>. 4-кратный обладатель «Золотой бутсы» АПЛ. Символ эры Венгера и «Непобеждённых».</div>
+        <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>Памятник у Emirates</span></div>
+      </div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">01</div>
-      <div class="legend-name">David Seaman</div>
-      <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Вратарь · 1990–2003</div>
-      <div class="legend-bio">«Safe hands». Один из величайших английских вратарей. 564 матча, 3 чемпионства, 4 Кубка Англии.</div>
-      <div class="legend-tags"><span>3× АПЛ</span><span>4× FA Cup</span><span>Икона 90-х</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Dennis_Bergkamp_2014_%28cropped%29.jpg" alt="Dennis Bergkamp" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Dennis Bergkamp</div>
+        <div class="legend-pos">🇳🇱 Атакующий п/з · 1995–2006</div>
+        <div class="legend-bio">«Нелетающий голландец». Магия первого касания, гол года против «Ньюкасла» (2002), икона интеллигентного футбола.</div>
+        <div class="legend-tags"><span>3× АПЛ</span><span>The Invincible</span><span>Памятник у Emirates</span></div>
+      </div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">04</div>
-      <div class="legend-name">Cesc Fàbregas</div>
-      <div class="legend-pos">🇪🇸 Полузащитник · 2003–2011</div>
-      <div class="legend-bio">Чудо-ребёнок из «Барсы». Стал самым молодым капитаном в истории клуба. Магистр передач конца 2000-х.</div>
-      <div class="legend-tags"><span>FA Cup 2005</span><span>57 голов</span><span>91 ассист</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Patrick_Vieira_NYCFC_%28cropped%29.JPG" alt="Patrick Vieira" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Patrick Vieira</div>
+        <div class="legend-pos">🇫🇷 Полузащитник · 1996–2005</div>
+        <div class="legend-bio">Капитан The Invincibles. Двигатель и сердце команды эры Венгера, олицетворение характера «Арсенала» начала 2000-х.</div>
+        <div class="legend-tags"><span>3× АПЛ</span><span>4× FA Cup</span><span>406 матчей</span></div>
+      </div>
     </div>
     <div class="legend-card">
-      <div class="legend-num">11</div>
-      <div class="legend-name">Robin van Persie</div>
-      <div class="legend-pos">🇳🇱 Нападающий · 2004–2012</div>
-      <div class="legend-bio">Лучший бомбардир АПЛ-2011/12 (30 голов). Капитан, технарь, мастер дальних ударов — пока не уехал к Фергюсону.</div>
-      <div class="legend-tags"><span>FA Cup 2005</span><span>132 гола</span><span>Игрок года АПЛ 2012</span></div>
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Robert_Pires_2011.jpg" alt="Robert Pirès" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Robert Pirès</div>
+        <div class="legend-pos">🇫🇷 Полузащитник · 2000–2006</div>
+        <div class="legend-bio">Левый волшебник Венгера. Игрок года АПЛ 2002, ассист-машина, неотъемлемая часть The Invincibles.</div>
+        <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>84 гола</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Football_against_poverty_2014_-_Fredrik_Ljungberg.jpg" alt="Freddie Ljungberg" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Freddie Ljungberg</div>
+        <div class="legend-pos">🇸🇪 Вингер · 1998–2007</div>
+        <div class="legend-bio">Шведский метеор Венгера. Красные волосы и забивные подключения с правого фланга. Лучший игрок ФА сезон-2001/02 (по версии Барклайс).</div>
+        <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>3× FA Cup</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Jens_Lehmann_-_2019202184453_2019-07-21_Champions_for_Charity_-_3017_-_B70I3052_%28cropped%29.jpg" alt="Jens Lehmann" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Jens Lehmann</div>
+        <div class="legend-pos">🇩🇪 Вратарь · 2003–2008, 2011</div>
+        <div class="legend-bio">Единственный вратарь, отыгравший весь сезон Премьер-лиги без поражений (2003/04, 38 матчей). Эксцентричный, заводной, ключевой для The Invincibles.</div>
+        <div class="legend-tags"><span>The Invincible</span><span>UCL final 2006</span><span>200 матчей</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Sol_Campbell_%2854921202604%29_%28cropped%29.jpg" alt="Sol Campbell" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Sol Campbell</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Центр. защитник · 2001–2006, 2010</div>
+        <div class="legend-bio">Перешёл свободным агентом из заклятого «Тоттенхэма» в 2001 году — крупнейший трансферный скандал десятилетия. Стал стеной обороны Invincibles в паре с Колом Туре.</div>
+        <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>3× FA Cup</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/ACole.JPG" alt="Ashley Cole" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Ashley Cole</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Левый защитник · 1999–2006</div>
+        <div class="legend-bio">Один из лучших левых защитников в истории АПЛ. Воспитанник академии Хайбери. В 2006-м после скандального ухода в «Челси» отношения с фанатами испортились — но игровое наследие неоспоримо.</div>
+        <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>3× FA Cup</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legends-group-title">⚜️ Эпоха Эмирейтс · 2010-е</div>
+  <div class="legend-grid">
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/2023_-_Cesc_Fabregas_%28cropped%29.jpg" alt="Cesc Fàbregas" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Cesc Fàbregas</div>
+        <div class="legend-pos">🇪🇸 Полузащитник · 2003–2011</div>
+        <div class="legend-bio">Чудо-ребёнок из «Барсы». Стал самым молодым капитаном в истории клуба. Магистр передач конца 2000-х.</div>
+        <div class="legend-tags"><span>FA Cup 2005</span><span>57 голов</span><span>91 ассист</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Loco-Fener_%2810%29.jpg" alt="Robin van Persie" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Robin van Persie</div>
+        <div class="legend-pos">🇳🇱 Нападающий · 2004–2012</div>
+        <div class="legend-bio">Лучший бомбардир АПЛ-2011/12 (30 голов). Капитан, технарь, мастер дальних ударов — пока не уехал к Фергюсону в «Юнайтед».</div>
+        <div class="legend-tags"><span>FA Cup 2005</span><span>132 гола</span><span>Игрок года АПЛ 2012</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Mesut_%C3%96zil_at_Baku_before_2019_UEFA_Europe_League_Final.jpg" alt="Mesut Özil" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Mesut Özil</div>
+        <div class="legend-pos">🇩🇪 Атак. полузащитник · 2013–2021</div>
+        <div class="legend-bio">Первый суперзвёздный трансфер в эпоху Эмирейтс — £42,5 млн из «Реала». Делитель пасов экстра-класса, отдал рекордные 19 ассистов в одном сезоне АПЛ (2015/16).</div>
+        <div class="legend-tags"><span>4× FA Cup</span><span>44 ассиста в АПЛ</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Alexis_S%C3%A1nchez_2017.jpg" alt="Alexis Sánchez" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Alexis Sánchez</div>
+        <div class="legend-pos">🇨🇱 Нападающий · 2014–2018</div>
+        <div class="legend-bio">Чилийская «вьюга» Венгера. Лучший игрок «Арсенала» 2015 и 2017, два «гола года». Ушёл свободным в «Манчестер Юнайтед» в январе 2018-го.</div>
+        <div class="legend-tags"><span>2× FA Cup</span><span>80 голов</span><span>45 ассистов</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2836%29_%28cropped%29.jpg" alt="Aaron Ramsey" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Aaron Ramsey</div>
+        <div class="legend-pos">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Полузащитник · 2008–2019</div>
+        <div class="legend-bio">Валлийский гол-таргет в финалах. Забил победные мячи в финалах FA Cup 2014 (vs Hull) и 2017 (vs Chelsea). Чудом восстановился после жуткой травмы 2010 года.</div>
+        <div class="legend-tags"><span>3× FA Cup</span><span>2 победных гола в финалах</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Olivier_Giroud_December_2024.png" alt="Olivier Giroud" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Olivier Giroud</div>
+        <div class="legend-pos">🇫🇷 Центрфорвард · 2012–2018</div>
+        <div class="legend-bio">Эстет «скорпиона» против «Кристал Пэлас» 2017 — гол года ФИФА. Французский таран, надёжный финишер 6 сезонов в Лондоне.</div>
+        <div class="legend-tags"><span>3× FA Cup</span><span>105 голов</span><span>Goal of the Season 2017</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/1_Pierre-Emerick_Aubameyang_%28cropped%29.jpg" alt="Pierre-Emerick Aubameyang" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Pierre-Emerick Aubameyang</div>
+        <div class="legend-pos">🇬🇦 Нападающий · 2018–2022</div>
+        <div class="legend-bio">Дубль в финале FA Cup 2020 против «Челси» — он один привёз «Арсеналу» 14-й кубок Англии. Капитан, делил «Золотую бутсу» АПЛ 2018/19.</div>
+        <div class="legend-tags"><span>FA Cup 2020</span><span>Golden Boot 2019</span><span>92 гола</span></div>
+      </div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Arsenal_players_training_before_2019_UEFA_Europa_League_final_07_%28cropped%29.jpg" alt="Petr Čech" loading="lazy"></div>
+      <div class="legend-body">
+        <div class="legend-name">Petr Čech</div>
+        <div class="legend-pos">🇨🇿 Вратарь · 2015–2019</div>
+        <div class="legend-bio">Чешская скала, перешедшая из «Челси». Рекорд АПЛ по «сухим» матчам (202). FA Cup 2017 — последний трофей в карьере.</div>
+        <div class="legend-tags"><span>FA Cup 2017</span><span>202 сухих в АПЛ</span></div>
+      </div>
     </div>
   </div>
 
   <div class="legends-extra">
     <div class="legends-extra-title">⭐ Также в зале славы:</div>
     <div class="legends-extra-list">
-      <span>Liam Brady</span><span>Charlie George</span><span>Frank McLintock</span>
-      <span>David Rocastle</span><span>Sol Campbell</span><span>Ashley Cole</span>
-      <span>Mesut Özil</span><span>Alexis Sánchez</span><span>Pierre-Emerick Aubameyang</span>
-      <span>Aaron Ramsey</span><span>Jack Wilshere</span><span>Santi Cazorla</span>
-      <span>Lukas Podolski</span><span>Olivier Giroud</span><span>Petr Čech</span>
-      <span>Per Mertesacker</span><span>Laurent Koscielny</span><span>Alex Song</span>
+      <span>David Rocastle</span><span>Lauren</span><span>Kolo Touré</span>
+      <span>Emmanuel Petit</span><span>Marc Overmars</span><span>Nicolas Anelka</span>
+      <span>Edu Gaspar</span><span>Sylvain Wiltord</span><span>Jack Wilshere</span>
+      <span>Santi Cazorla</span><span>Lukas Podolski</span><span>Per Mertesacker</span>
+      <span>Laurent Koscielny</span><span>Alex Song</span><span>Kieran Tierney</span>
+      <span>Granit Xhaka</span><span>Alexandre Lacazette</span><span>Hector Bellerín</span>
     </div>
   </div>
 </section>
@@ -1757,7 +3291,7 @@ body {
 <!-- DERBIES -->
 <section id="derbies" class="section">
   <div class="section-header">
-    <div class="section-tag">05 / RIVALRIES</div>
+    <div class="section-tag">08 / RIVALRIES</div>
     <h2 class="section-title">Дерби и соперничества</h2>
     <p class="section-sub">Главные противостояния «канониров»</p>
   </div>
@@ -1827,7 +3361,7 @@ body {
 <!-- HISTORY -->
 <section id="history" class="section section-dark">
   <div class="section-header">
-    <div class="section-tag">06 / HISTORY</div>
+    <div class="section-tag">09 / HISTORY</div>
     <h2 class="section-title">Хронология клуба</h2>
     <p class="section-sub">От «Dial Square» до Emirates Stadium</p>
   </div>
@@ -1917,6 +3451,13 @@ body {
         <p>Крупнейшая летняя трансферная кампания за многие годы: Виктор Гёкереш, Эберечи Эзе, Мартин Субименди, Нони Мадуэке, Кристиан Нёргор и другие — около £250 млн вложений.</p>
       </div>
     </div>
+    <div class="t-item highlight">
+      <div class="t-year">2026</div>
+      <div class="t-card">
+        <h4>Чемпионство Артеты — 14-й титул</h4>
+        <p>19 мая 2026 «Арсенал» становится чемпионом Англии — впервые с 2003/04. Виктор Гёкереш — лучший бомбардир сезона (21 гол), команда добралась до финала Лиги чемпионов и финала Кубка Лиги. 100-й сезон подряд в высшем дивизионе.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1924,10 +3465,7 @@ body {
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <svg viewBox="0 0 100 100" class="footer-logo" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 5 L90 25 L90 60 Q90 85 50 95 Q10 85 10 60 L10 25 Z" fill="#EF0107" stroke="#FFD700" stroke-width="2"/>
-        <path d="M20 45 L75 45 L80 50 L75 55 L20 55 Z" fill="#FFD700"/>
-      </svg>
+      <img src="arsenal-crest.svg" alt="Arsenal FC crest" class="footer-logo" />
       <div>
         <div class="footer-title">ARSENAL FC</div>
         <div class="footer-motto">Victoria Concordia Crescit</div>
@@ -1998,7 +3536,7 @@ const revealObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.05 });
 
-document.querySelectorAll('.player-card, .trophy, .stat-card, .t-item, .invincibles, .legend-card, .derby-card').forEach(el => {
+document.querySelectorAll('.player-card, .trophy, .stat-card, .t-item, .invincibles, .legend-card, .derby-card, .fact-card, .stadium-text-card, .manager-card, .stadium-hero, .cstat, .comp-card, .cm-card, .mgr-card, .mgr-extra-card').forEach(el => {
   el.classList.add('reveal');
   revealObserver.observe(el);
 });
