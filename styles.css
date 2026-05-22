@@ -639,6 +639,208 @@ body {
   letter-spacing: 2px; text-transform: uppercase;
 }
 
+/* ===== LEGENDS ===== */
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.legend-card {
+  background: linear-gradient(180deg, var(--ink-2), var(--ink-3));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+.legend-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  opacity: 0.5;
+}
+.legend-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,215,0,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.legend-card:hover::before { opacity: 1; }
+.legend-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px; line-height: 0.8;
+  color: rgba(255,215,0,0.15);
+  position: absolute; top: 16px; right: 20px;
+  pointer-events: none;
+}
+.legend-name {
+  font-size: 22px; font-weight: 800;
+  color: #fff; margin-bottom: 4px;
+  position: relative; z-index: 1;
+}
+.legend-pos {
+  font-size: 12px; color: var(--gold);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.legend-bio {
+  font-size: 14px; color: var(--text-dim);
+  line-height: 1.6; margin-bottom: 16px;
+}
+.legend-bio b { color: #fff; }
+.legend-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.legend-tags span {
+  background: rgba(239,1,7,0.15);
+  border: 1px solid rgba(239,1,7,0.3);
+  color: #fff;
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 10px; letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.legends-extra {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+.legends-extra-title {
+  font-size: 13px; color: var(--gold);
+  letter-spacing: 2px; margin-bottom: 16px;
+  text-transform: uppercase; font-weight: 600;
+}
+.legends-extra-list {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.legends-extra-list span {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  padding: 6px 14px; border-radius: 999px;
+  font-size: 13px; color: var(--text);
+  transition: all .2s;
+}
+.legends-extra-list span:hover {
+  background: rgba(239,1,7,0.15);
+  border-color: var(--red);
+  color: #fff;
+}
+
+/* ===== DERBIES ===== */
+.derby-feature {
+  position: relative;
+  background: linear-gradient(135deg, #1a0000, var(--red-deep) 50%, #0a0a3a);
+  border: 1px solid var(--gold);
+  border-radius: 24px;
+  padding: 48px 40px;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.derby-feature-bg {
+  position: absolute; inset: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(180px, 30vw, 380px);
+  color: rgba(255,215,0,0.05);
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; letter-spacing: 8px;
+}
+.derby-feature-content { position: relative; z-index: 2; text-align: center; }
+.derby-feature-tag {
+  display: inline-block;
+  background: rgba(255,215,0,0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 6px 16px; border-radius: 999px;
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.derby-feature h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 64px);
+  color: #fff; letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.derby-feature-sub {
+  color: var(--gold); font-size: 16px;
+  letter-spacing: 2px; margin-bottom: 20px;
+  font-weight: 600;
+}
+.derby-feature-text {
+  max-width: 700px; margin: 0 auto 32px;
+  color: var(--text-dim); font-size: 15px;
+}
+.derby-feature-stats {
+  display: flex; justify-content: center;
+  gap: 32px; flex-wrap: wrap;
+}
+.derby-feature-stats > div {
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+.derby-feature-stats b {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px; color: var(--gold); line-height: 1;
+}
+.derby-feature-stats span {
+  font-size: 10px; color: var(--text-dim);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.derby-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.derby-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.derby-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--red);
+  opacity: 0.4; transition: opacity .3s;
+}
+.derby-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(239,1,7,0.4);
+}
+.derby-card:hover::before { opacity: 1; }
+.derby-icon {
+  font-size: 32px; margin-bottom: 12px;
+}
+.derby-card h4 {
+  font-size: 20px; font-weight: 700;
+  color: #fff; margin-bottom: 4px;
+}
+.derby-sub {
+  font-size: 11px; color: var(--gold);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.derby-card p {
+  color: var(--text-dim);
+  font-size: 13px; line-height: 1.6;
+  margin-bottom: 14px;
+}
+.derby-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.derby-tags span {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  padding: 3px 10px; border-radius: 4px;
+  font-size: 10px; letter-spacing: 0.5px;
+}
+
 /* ===== TIMELINE ===== */
 .timeline {
   position: relative;

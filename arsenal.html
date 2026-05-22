@@ -649,6 +649,208 @@ body {
   letter-spacing: 2px; text-transform: uppercase;
 }
 
+/* ===== LEGENDS ===== */
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.legend-card {
+  background: linear-gradient(180deg, var(--ink-2), var(--ink-3));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+.legend-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  opacity: 0.5;
+}
+.legend-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,215,0,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.legend-card:hover::before { opacity: 1; }
+.legend-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px; line-height: 0.8;
+  color: rgba(255,215,0,0.15);
+  position: absolute; top: 16px; right: 20px;
+  pointer-events: none;
+}
+.legend-name {
+  font-size: 22px; font-weight: 800;
+  color: #fff; margin-bottom: 4px;
+  position: relative; z-index: 1;
+}
+.legend-pos {
+  font-size: 12px; color: var(--gold);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.legend-bio {
+  font-size: 14px; color: var(--text-dim);
+  line-height: 1.6; margin-bottom: 16px;
+}
+.legend-bio b { color: #fff; }
+.legend-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.legend-tags span {
+  background: rgba(239,1,7,0.15);
+  border: 1px solid rgba(239,1,7,0.3);
+  color: #fff;
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 10px; letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.legends-extra {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+.legends-extra-title {
+  font-size: 13px; color: var(--gold);
+  letter-spacing: 2px; margin-bottom: 16px;
+  text-transform: uppercase; font-weight: 600;
+}
+.legends-extra-list {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.legends-extra-list span {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  padding: 6px 14px; border-radius: 999px;
+  font-size: 13px; color: var(--text);
+  transition: all .2s;
+}
+.legends-extra-list span:hover {
+  background: rgba(239,1,7,0.15);
+  border-color: var(--red);
+  color: #fff;
+}
+
+/* ===== DERBIES ===== */
+.derby-feature {
+  position: relative;
+  background: linear-gradient(135deg, #1a0000, var(--red-deep) 50%, #0a0a3a);
+  border: 1px solid var(--gold);
+  border-radius: 24px;
+  padding: 48px 40px;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.derby-feature-bg {
+  position: absolute; inset: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(180px, 30vw, 380px);
+  color: rgba(255,215,0,0.05);
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; letter-spacing: 8px;
+}
+.derby-feature-content { position: relative; z-index: 2; text-align: center; }
+.derby-feature-tag {
+  display: inline-block;
+  background: rgba(255,215,0,0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 6px 16px; border-radius: 999px;
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.derby-feature h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 64px);
+  color: #fff; letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.derby-feature-sub {
+  color: var(--gold); font-size: 16px;
+  letter-spacing: 2px; margin-bottom: 20px;
+  font-weight: 600;
+}
+.derby-feature-text {
+  max-width: 700px; margin: 0 auto 32px;
+  color: var(--text-dim); font-size: 15px;
+}
+.derby-feature-stats {
+  display: flex; justify-content: center;
+  gap: 32px; flex-wrap: wrap;
+}
+.derby-feature-stats > div {
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+.derby-feature-stats b {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px; color: var(--gold); line-height: 1;
+}
+.derby-feature-stats span {
+  font-size: 10px; color: var(--text-dim);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.derby-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.derby-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.derby-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--red);
+  opacity: 0.4; transition: opacity .3s;
+}
+.derby-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(239,1,7,0.4);
+}
+.derby-card:hover::before { opacity: 1; }
+.derby-icon {
+  font-size: 32px; margin-bottom: 12px;
+}
+.derby-card h4 {
+  font-size: 20px; font-weight: 700;
+  color: #fff; margin-bottom: 4px;
+}
+.derby-sub {
+  font-size: 11px; color: var(--gold);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.derby-card p {
+  color: var(--text-dim);
+  font-size: 13px; line-height: 1.6;
+  margin-bottom: 14px;
+}
+.derby-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.derby-tags span {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  padding: 3px 10px; border-radius: 4px;
+  font-size: 10px; letter-spacing: 0.5px;
+}
+
 /* ===== TIMELINE ===== */
 .timeline {
   position: relative;
@@ -816,6 +1018,8 @@ body {
       <li><a href="#stats">Статистика</a></li>
       <li><a href="#matches">Матчи</a></li>
       <li><a href="#trophies">Трофеи</a></li>
+      <li><a href="#legends">Легенды</a></li>
+      <li><a href="#derbies">Дерби</a></li>
       <li><a href="#history">История</a></li>
     </ul>
     <div class="nav-cta">
@@ -844,12 +1048,17 @@ body {
       <div class="meta-divider"></div>
       <div class="meta-item">
         <div class="meta-label">Тренер</div>
-        <div class="meta-value">Mikel Arteta</div>
+        <div class="meta-value">Mikel Arteta · с 2019</div>
       </div>
       <div class="meta-divider"></div>
       <div class="meta-item">
         <div class="meta-label">Капитан</div>
         <div class="meta-value">Martin Ødegaard</div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <div class="meta-label">Владелец</div>
+        <div class="meta-value">Stan Kroenke · KSE</div>
       </div>
       <div class="meta-divider"></div>
       <div class="meta-item">
@@ -870,16 +1079,16 @@ body {
 <!-- LIVE STATS BAR -->
 <section class="stats-bar">
   <div class="stat-cell">
-    <div class="stat-num" data-target="139">0</div>
-    <div class="stat-label">Лет истории</div>
+    <div class="stat-num" data-target="140">0</div>
+    <div class="stat-label">Лет истории · с 1886</div>
   </div>
   <div class="stat-cell">
     <div class="stat-num" data-target="13">0</div>
-    <div class="stat-label">Чемпионств АПЛ</div>
+    <div class="stat-label">Чемпионств Англии</div>
   </div>
   <div class="stat-cell">
     <div class="stat-num" data-target="14">0</div>
-    <div class="stat-label">Кубков Англии</div>
+    <div class="stat-label">Кубков Англии · рекорд</div>
   </div>
   <div class="stat-cell">
     <div class="stat-num" data-target="49">0</div>
@@ -914,35 +1123,35 @@ body {
 <section id="stats" class="section section-dark">
   <div class="section-header">
     <div class="section-tag">02 / STATISTICS</div>
-    <h2 class="section-title">Сезон 2024/25 в цифрах</h2>
-    <p class="section-sub">Премьер-лига · итоги сезона</p>
+    <h2 class="section-title">Сезон 2025/26 в цифрах</h2>
+    <p class="section-sub">Премьер-лига · итоги сезона на 22 мая 2026</p>
   </div>
 
   <div class="stats-grid">
-    <div class="stat-card">
+    <div class="stat-card highlight">
       <div class="stat-card-head">
         <div class="stat-card-title">Место в таблице</div>
         <div class="stat-card-icon">🏆</div>
       </div>
-      <div class="stat-card-value">2<span class="suffix">nd</span></div>
-      <div class="stat-card-foot">74 очка · 19 побед</div>
+      <div class="stat-card-value">1<span class="suffix">st</span></div>
+      <div class="stat-card-foot">89 очков · 28 побед · 5 ничьих · 5 поражений</div>
     </div>
-    <div class="stat-card highlight">
+    <div class="stat-card">
       <div class="stat-card-head">
         <div class="stat-card-title">Голов забито</div>
         <div class="stat-card-icon">⚽</div>
       </div>
-      <div class="stat-card-value">69</div>
-      <div class="progress"><div class="progress-fill" style="--w: 80%"></div></div>
-      <div class="stat-card-foot">1.82 за матч</div>
+      <div class="stat-card-value">87</div>
+      <div class="progress"><div class="progress-fill" style="--w: 92%"></div></div>
+      <div class="stat-card-foot">2.29 за матч · лучшая атака лиги</div>
     </div>
     <div class="stat-card">
       <div class="stat-card-head">
         <div class="stat-card-title">Голов пропущено</div>
         <div class="stat-card-icon">🛡️</div>
       </div>
-      <div class="stat-card-value">34</div>
-      <div class="progress"><div class="progress-fill green" style="--w: 30%"></div></div>
+      <div class="stat-card-value">29</div>
+      <div class="progress"><div class="progress-fill green" style="--w: 25%"></div></div>
       <div class="stat-card-foot">Лучшая оборона лиги</div>
     </div>
     <div class="stat-card">
@@ -950,25 +1159,25 @@ body {
         <div class="stat-card-title">«Сухие» матчи</div>
         <div class="stat-card-icon">🧤</div>
       </div>
-      <div class="stat-card-value">15</div>
-      <div class="stat-card-foot">Дэвид Райя — Золотая перчатка</div>
+      <div class="stat-card-value">17</div>
+      <div class="stat-card-foot">Дэвид Райя — Золотая перчатка ⭐</div>
     </div>
     <div class="stat-card">
       <div class="stat-card-head">
         <div class="stat-card-title">Владение мячом</div>
         <div class="stat-card-icon">🎯</div>
       </div>
-      <div class="stat-card-value">58<span class="suffix">%</span></div>
-      <div class="progress"><div class="progress-fill" style="--w: 58%"></div></div>
-      <div class="stat-card-foot">Средний показатель за сезон</div>
+      <div class="stat-card-value">60<span class="suffix">%</span></div>
+      <div class="progress"><div class="progress-fill" style="--w: 60%"></div></div>
+      <div class="stat-card-foot">xG: 78.4 · pressing-индекс лиги №1</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card highlight">
       <div class="stat-card-head">
         <div class="stat-card-title">Лига Чемпионов</div>
         <div class="stat-card-icon">⭐</div>
       </div>
-      <div class="stat-card-value">1/2</div>
-      <div class="stat-card-foot">Полуфинал — лучший результат за 16 лет</div>
+      <div class="stat-card-value">Финал</div>
+      <div class="stat-card-foot">30 мая · vs Real Madrid · Будапешт</div>
     </div>
   </div>
 
@@ -1055,10 +1264,167 @@ body {
   </div>
 </section>
 
+<!-- LEGENDS -->
+<section id="legends" class="section">
+  <div class="section-header">
+    <div class="section-tag">05 / LEGENDS</div>
+    <h2 class="section-title">Легенды «Канониров»</h2>
+    <p class="section-sub">Игроки, навсегда вписавшие имена в историю клуба</p>
+  </div>
+
+  <div class="legend-grid">
+    <div class="legend-card">
+      <div class="legend-num">14</div>
+      <div class="legend-name">Thierry Henry</div>
+      <div class="legend-pos">🇫🇷 Нападающий · 1999–2007, 2012</div>
+      <div class="legend-bio">Лучший бомбардир в истории клуба — <b>228 голов</b>. 4× игрок года АПЛ, 2× «Золотая бутса». Символ эры Венгера и непобеждённых.</div>
+      <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>Памятник у Emirates</span></div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-num">10</div>
+      <div class="legend-name">Dennis Bergkamp</div>
+      <div class="legend-pos">🇳🇱 Атакующий п/з · 1995–2006</div>
+      <div class="legend-bio">«Нелетающий голландец». Магия первого касания, гол года против «Ньюкасла» (2002), икона интеллигентного футбола.</div>
+      <div class="legend-tags"><span>3× АПЛ</span><span>120 голов</span><span>Памятник у Emirates</span></div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-num">04</div>
+      <div class="legend-name">Patrick Vieira</div>
+      <div class="legend-pos">🇫🇷 Полузащитник · 1996–2005</div>
+      <div class="legend-bio">Капитан The Invincibles. Двигатель и сердце команды, олицетворение характера «Арсенала» начала 2000-х.</div>
+      <div class="legend-tags"><span>3× АПЛ</span><span>4× FA Cup</span><span>406 матчей</span></div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-num">06</div>
+      <div class="legend-name">Tony Adams</div>
+      <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Центральный защитник · 1983–2002</div>
+      <div class="legend-bio">«Mr. Arsenal». Капитан-легенда, выигравший чемпионство в трёх разных десятилетиях. Бронзовая статуя — на Emirates.</div>
+      <div class="legend-tags"><span>4× АПЛ</span><span>669 матчей</span><span>One-club man</span></div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-num">07</div>
+      <div class="legend-name">Robert Pires</div>
+      <div class="legend-pos">🇫🇷 Полузащитник · 2000–2006</div>
+      <div class="legend-bio">Левый волшебник Венгера. Игрок года АПЛ-2002, ассист-машина, неотъемлемая часть The Invincibles.</div>
+      <div class="legend-tags"><span>2× АПЛ</span><span>The Invincible</span><span>84 гола</span></div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-num">11</div>
+      <div class="legend-name">Ian Wright</div>
+      <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Нападающий · 1991–1998</div>
+      <div class="legend-bio">До прихода Анри — главный бомбардир клуба. 185 голов, страсть и магия Хайбери. Народный любимец North Bank.</div>
+      <div class="legend-tags"><span>FA Cup 1993</span><span>Кубок кубков 1994</span><span>Wright Wright Wright!</span></div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-num">01</div>
+      <div class="legend-name">David Seaman</div>
+      <div class="legend-pos">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Вратарь · 1990–2003</div>
+      <div class="legend-bio">«Safe hands». Один из величайших вратарей в истории Англии. 564 матча, 3 чемпионства, 4 Кубка Англии.</div>
+      <div class="legend-tags"><span>3× АПЛ</span><span>4× FA Cup</span><span>Икона 90-х</span></div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-num">08</div>
+      <div class="legend-name">Cesc Fàbregas</div>
+      <div class="legend-pos">🇪🇸 Полузащитник · 2003–2011</div>
+      <div class="legend-bio">Чудо-ребёнок из Ла Масии. Самый молодой капитан в истории клуба. Король передач эпохи 2008–2011.</div>
+      <div class="legend-tags"><span>FA Cup 2005</span><span>57 голов</span><span>91 ассист</span></div>
+    </div>
+    <div class="legend-card">
+      <div class="legend-num">04</div>
+      <div class="legend-name">Per Mertesacker</div>
+      <div class="legend-pos">🇩🇪 Защитник · 2011–2018</div>
+      <div class="legend-bio">«Большая немецкая стена». Чемпион мира 2014, лидер раздевалки. Сегодня — глава академии клуба.</div>
+      <div class="legend-tags"><span>3× FA Cup</span><span>Капитан 2017/18</span><span>Глава академии</span></div>
+    </div>
+  </div>
+
+  <div class="legends-extra">
+    <div class="legends-extra-title">⭐ Также вписаны в зал славы:</div>
+    <div class="legends-extra-list">
+      <span>Charlie George</span><span>Liam Brady</span><span>Ian Wright</span>
+      <span>Frank McLintock</span><span>David Rocastle</span><span>Sol Campbell</span>
+      <span>Ashley Cole</span><span>Robin van Persie</span><span>Alex Song</span>
+      <span>Mesut Özil</span><span>Pierre-Emerick Aubameyang</span><span>Alexis Sánchez</span>
+      <span>Aaron Ramsey</span><span>Jack Wilshere</span><span>Santi Cazorla</span>
+      <span>Lukas Podolski</span><span>Olivier Giroud</span><span>Petr Čech</span>
+    </div>
+  </div>
+</section>
+
+<!-- DERBIES -->
+<section id="derbies" class="section section-dark">
+  <div class="section-header">
+    <div class="section-tag">06 / RIVALRIES</div>
+    <h2 class="section-title">Дерби и соперничества</h2>
+    <p class="section-sub">Главные противостояния «канониров»</p>
+  </div>
+
+  <div class="derby-feature">
+    <div class="derby-feature-bg">NLD</div>
+    <div class="derby-feature-content">
+      <div class="derby-feature-tag">🔥 Главное дерби</div>
+      <h3>North London Derby</h3>
+      <p class="derby-feature-sub">Arsenal · vs · Tottenham Hotspur</p>
+      <p class="derby-feature-text">Самое острое противостояние клуба — с тех пор, как «Арсенал» переехал на север Лондона в 1913 году. По разным сторонам Севен-Систерс-роуд, разделяющей фанатов на красно-белых и бело-синих.</p>
+      <div class="derby-feature-stats">
+        <div><b>200+</b><span>матчей</span></div>
+        <div><b>85+</b><span>побед «Арсенала»</span></div>
+        <div><b>11–1</b><span>NLD рекорд · 1934</span></div>
+        <div><b>5–0</b><span>последний разгром · 2025</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="derby-grid">
+    <div class="derby-card">
+      <div class="derby-icon">⚔️</div>
+      <h4>Manchester United</h4>
+      <div class="derby-sub">Классика эпохи Премьер-лиги</div>
+      <p>Венгер против Фергюсона — самое яркое противостояние тренеров АПЛ. «Пицца-гейт», 6:1 в 2001-м, 8:2 в 2011-м, перевёрнутая страница.</p>
+      <div class="derby-tags"><span>Венгер vs Фергюсон</span><span>Highbury 2003</span></div>
+    </div>
+    <div class="derby-card">
+      <div class="derby-icon">🔵</div>
+      <h4>Chelsea</h4>
+      <div class="derby-sub">Лондонское дерби</div>
+      <p>«Дерби моста». Соседи по столице с 1907 года. С приходом Абрамовича в 2003-м рутина обострилась — финал ЛЕ-2019 в Баку, столкновения за топ-4.</p>
+      <div class="derby-tags"><span>FA Cup 2017</span><span>EL Final 2019</span></div>
+    </div>
+    <div class="derby-card">
+      <div class="derby-icon">🔴</div>
+      <h4>Liverpool</h4>
+      <div class="derby-sub">Битва эстетов</div>
+      <p>Два клуба, играющих в самый зрелищный футбол поколения. Решающий титул-матч 1989 («Анфилд-89») — один из величайших моментов английского футбола.</p>
+      <div class="derby-tags"><span>Анфилд 1989</span><span>Гонка за титул 2024/25</span></div>
+    </div>
+    <div class="derby-card">
+      <div class="derby-icon">🌍</div>
+      <h4>Manchester City</h4>
+      <div class="derby-sub">Современный соперник</div>
+      <p>Главный визави эпохи Артеты — Гвардиолы. С 2022-го борются за каждый титул АПЛ. Драматичные матчи на Emirates и Etihad.</p>
+      <div class="derby-tags"><span>Артета vs Гвардиола</span><span>Топ-2 АПЛ 2024/25</span></div>
+    </div>
+    <div class="derby-card">
+      <div class="derby-icon">⚒️</div>
+      <h4>West Ham</h4>
+      <div class="derby-sub">Лондонское дерби</div>
+      <p>Восточный Лондон vs Северный. Менее жгучее, чем NLD, но всегда заряженное — особенно с тех пор, как «молотобойцы» переехали на Олимпийский стадион.</p>
+      <div class="derby-tags"><span>Дерби столицы</span></div>
+    </div>
+    <div class="derby-card">
+      <div class="derby-icon">⚪</div>
+      <h4>Real Madrid</h4>
+      <div class="derby-sub">Европейская сага</div>
+      <p>Финал ЛЧ-2026 в Будапеште — историческое противостояние с «Королевским клубом». Шанс на первый европейский кубок чемпионов в истории «Арсенала».</p>
+      <div class="derby-tags"><span>UCL Final 2026</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- HISTORY -->
 <section id="history" class="section">
   <div class="section-header">
-    <div class="section-tag">05 / HISTORY</div>
+    <div class="section-tag">07 / HISTORY</div>
     <h2 class="section-title">Хронология клуба</h2>
     <p class="section-sub">От «Дайл Сквер» до Emirates Stadium</p>
   </div>
@@ -1114,10 +1480,17 @@ body {
       </div>
     </div>
     <div class="t-item">
+      <div class="t-year">2025</div>
+      <div class="t-card">
+        <h4>Летняя революция</h4>
+        <p>Виктор Гёкереш, Эберечи Эзе, Мартин Субименди, Нони Мадуэке — амбициозная трансферная кампания на ~£250 млн под решающий рывок Артеты.</p>
+      </div>
+    </div>
+    <div class="t-item highlight">
       <div class="t-year">2026</div>
       <div class="t-card">
-        <h4>Сегодня</h4>
-        <p>140 лет легенде. Молодая команда — снова в борьбе за вершину Премьер-лиги и Европы.</p>
+        <h4>Возвращение на вершину</h4>
+        <p>140 лет легенде. «Канониры» — лидеры Премьер-лиги и финалисты Лиги Чемпионов. Шанс на первый европейский кубок чемпионов в истории клуба.</p>
       </div>
     </div>
   </div>
@@ -1150,37 +1523,39 @@ body {
 </footer>
 
 <script>
-// ===== Squad data =====
+// ===== Squad data — сезон 2025/26 =====
 const squad = [
   // GK
-  { num: 22, name: 'David Raya', full: 'David Raya Martín', pos: 'gk', posName: 'Вратарь', flag: '🇪🇸', age: 30, apps: 38, goals: 0, assists: 0, cleansheets: 15 },
-  { num: 32, name: 'Karl Hein', full: 'Karl Jakob Hein', pos: 'gk', posName: 'Вратарь', flag: '🇪🇪', age: 23, apps: 4, goals: 0, assists: 0, cleansheets: 1 },
+  { num: 22, name: 'David Raya', full: 'David Raya Martín', pos: 'gk', posName: 'Вратарь', flag: '🇪🇸', age: 30, apps: 36, goals: 0, assists: 0, cleansheets: 17 },
+  { num: 31, name: 'Kepa Arrizabalaga', full: 'Kepa Arrizabalaga Revuelta', pos: 'gk', posName: 'Вратарь', flag: '🇪🇸', age: 31, apps: 8, goals: 0, assists: 0, cleansheets: 3 },
+  { num: 32, name: 'Karl Hein', full: 'Karl Jakob Hein', pos: 'gk', posName: 'Вратарь', flag: '🇪🇪', age: 24, apps: 2, goals: 0, assists: 0, cleansheets: 1 },
 
   // DF
-  { num: 2, name: 'William Saliba', full: 'William Alain André Gabriel Saliba', pos: 'df', posName: 'Защитник', flag: '🇫🇷', age: 24, apps: 37, goals: 1, assists: 2, cleansheets: 14 },
-  { num: 6, name: 'Gabriel', full: 'Gabriel dos Santos Magalhães', pos: 'df', posName: 'Защитник', flag: '🇧🇷', age: 27, apps: 36, goals: 5, assists: 0, cleansheets: 14 },
-  { num: 4, name: 'Ben White', full: 'Benjamin William White', pos: 'df', posName: 'Защитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 27, apps: 32, goals: 2, assists: 6, cleansheets: 12 },
-  { num: 12, name: 'Jurriën Timber', full: 'Jurriën Timber', pos: 'df', posName: 'Защитник', flag: '🇳🇱', age: 24, apps: 34, goals: 1, assists: 3, cleansheets: 13 },
-  { num: 35, name: 'Oleksandr Zinchenko', full: 'Oleksandr Zinchenko', pos: 'df', posName: 'Защитник', flag: '🇺🇦', age: 28, apps: 21, goals: 0, assists: 4, cleansheets: 8 },
-  { num: 17, name: 'Riccardo Calafiori', full: 'Riccardo Calafiori', pos: 'df', posName: 'Защитник', flag: '🇮🇹', age: 23, apps: 24, goals: 1, assists: 3, cleansheets: 10 },
-  { num: 18, name: 'Takehiro Tomiyasu', full: 'Takehiro Tomiyasu', pos: 'df', posName: 'Защитник', flag: '🇯🇵', age: 26, apps: 12, goals: 0, assists: 1, cleansheets: 5 },
+  { num: 2, name: 'William Saliba', full: 'William Alain André Gabriel Saliba', pos: 'df', posName: 'Защитник', flag: '🇫🇷', age: 25, apps: 35, goals: 2, assists: 2, cleansheets: 16 },
+  { num: 6, name: 'Gabriel', full: 'Gabriel dos Santos Magalhães', pos: 'df', posName: 'Защитник', flag: '🇧🇷', age: 28, apps: 33, goals: 4, assists: 1, cleansheets: 15 },
+  { num: 4, name: 'Ben White', full: 'Benjamin William White', pos: 'df', posName: 'Защитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 28, apps: 26, goals: 1, assists: 5, cleansheets: 11 },
+  { num: 12, name: 'Jurriën Timber', full: 'Jurriën Timber', pos: 'df', posName: 'Защитник', flag: '🇳🇱', age: 24, apps: 36, goals: 2, assists: 4, cleansheets: 16 },
+  { num: 15, name: 'Cristhian Mosquera', full: 'Cristhian Felix Mosquera Erazo', pos: 'df', posName: 'Защитник', flag: '🇪🇸', age: 21, apps: 22, goals: 1, assists: 0, cleansheets: 11 },
+  { num: 33, name: 'Riccardo Calafiori', full: 'Riccardo Calafiori', pos: 'df', posName: 'Защитник', flag: '🇮🇹', age: 24, apps: 28, goals: 2, assists: 3, cleansheets: 12 },
+  { num: 35, name: 'Oleksandr Zinchenko', full: 'Oleksandr Zinchenko', pos: 'df', posName: 'Защитник', flag: '🇺🇦', age: 29, apps: 14, goals: 0, assists: 2, cleansheets: 5 },
+  { num: 17, name: 'Myles Lewis-Skelly', full: 'Myles Marvin Lewis-Skelly', pos: 'df', posName: 'Защитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 19, apps: 24, goals: 1, assists: 3, cleansheets: 10 },
 
   // MF
-  { num: 8, name: 'Martin Ødegaard ©', full: 'Martin Ødegaard (Капитан)', pos: 'mf', posName: 'Полузащитник', flag: '🇳🇴', age: 26, apps: 28, goals: 3, assists: 9, cleansheets: 0 },
-  { num: 5, name: 'Thomas Partey', full: 'Thomas Teye Partey', pos: 'mf', posName: 'Полузащитник', flag: '🇬🇭', age: 31, apps: 27, goals: 4, assists: 1, cleansheets: 0 },
-  { num: 41, name: 'Declan Rice', full: 'Declan Rice', pos: 'mf', posName: 'Полузащитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 26, apps: 38, goals: 9, assists: 5, cleansheets: 0 },
-  { num: 25, name: 'Mikel Merino', full: 'Mikel Merino Zazón', pos: 'mf', posName: 'Полузащитник', flag: '🇪🇸', age: 29, apps: 32, goals: 7, assists: 2, cleansheets: 0 },
-  { num: 20, name: 'Jorginho', full: 'Jorge Luiz Frello Filho', pos: 'mf', posName: 'Полузащитник', flag: '🇮🇹', age: 33, apps: 19, goals: 1, assists: 3, cleansheets: 0 },
-  { num: 10, name: 'Fábio Vieira', full: 'Fábio Daniel Soares Silva Vieira', pos: 'mf', posName: 'Полузащитник', flag: '🇵🇹', age: 25, apps: 14, goals: 1, assists: 4, cleansheets: 0 },
+  { num: 8, name: 'Martin Ødegaard ©', full: 'Martin Ødegaard · Капитан', pos: 'mf', posName: 'Полузащитник', flag: '🇳🇴', age: 27, apps: 32, goals: 8, assists: 11, cleansheets: 0 },
+  { num: 41, name: 'Declan Rice', full: 'Declan Rice', pos: 'mf', posName: 'Полузащитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 27, apps: 37, goals: 7, assists: 9, cleansheets: 0 },
+  { num: 36, name: 'Martín Zubimendi', full: 'Martín Zubimendi Ibáñez', pos: 'mf', posName: 'Опорник', flag: '🇪🇸', age: 27, apps: 34, goals: 3, assists: 4, cleansheets: 0 },
+  { num: 16, name: 'Christian Nørgaard', full: 'Christian Nørgaard', pos: 'mf', posName: 'Полузащитник', flag: '🇩🇰', age: 31, apps: 21, goals: 1, assists: 2, cleansheets: 0 },
+  { num: 23, name: 'Mikel Merino', full: 'Mikel Merino Zazón', pos: 'mf', posName: 'Полузащитник', flag: '🇪🇸', age: 30, apps: 30, goals: 9, assists: 4, cleansheets: 0 },
+  { num: 53, name: 'Ethan Nwaneri', full: 'Ethan Kwame Colin Nwaneri', pos: 'mf', posName: 'Талант академии', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 18, apps: 28, goals: 6, assists: 4, cleansheets: 0 },
 
   // FW
-  { num: 7, name: 'Bukayo Saka', full: 'Bukayo Ayoyinka Temidayo Saka', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 23, apps: 27, goals: 8, assists: 13, cleansheets: 0 },
-  { num: 11, name: 'Gabriel Martinelli', full: 'Gabriel Teodoro Martinelli Silva', pos: 'fw', posName: 'Нападающий', flag: '🇧🇷', age: 23, apps: 36, goals: 8, assists: 4, cleansheets: 0 },
-  { num: 9, name: 'Gabriel Jesus', full: 'Gabriel Fernando de Jesus', pos: 'fw', posName: 'Нападающий', flag: '🇧🇷', age: 27, apps: 17, goals: 4, assists: 2, cleansheets: 0 },
-  { num: 14, name: 'Kai Havertz', full: 'Kai Lukas Havertz', pos: 'fw', posName: 'Нападающий', flag: '🇩🇪', age: 25, apps: 30, goals: 9, assists: 3, cleansheets: 0 },
-  { num: 19, name: 'Leandro Trossard', full: 'Leandro Trossard', pos: 'fw', posName: 'Нападающий', flag: '🇧🇪', age: 30, apps: 34, goals: 10, assists: 4, cleansheets: 0 },
-  { num: 29, name: 'Raheem Sterling', full: 'Raheem Shaquille Sterling', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 30, apps: 18, goals: 2, assists: 2, cleansheets: 0 },
-  { num: 56, name: 'Ethan Nwaneri', full: 'Ethan Kwame Colin Nwaneri', pos: 'fw', posName: 'Талант академии', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 17, apps: 20, goals: 6, assists: 2, cleansheets: 0 },
+  { num: 14, name: 'Viktor Gyökeres', full: 'Viktor Einar Gyökeres', pos: 'fw', posName: 'Нападающий', flag: '🇸🇪', age: 27, apps: 35, goals: 26, assists: 6, cleansheets: 0 },
+  { num: 7, name: 'Bukayo Saka', full: 'Bukayo Ayoyinka Temidayo Saka', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 24, apps: 34, goals: 14, assists: 15, cleansheets: 0 },
+  { num: 10, name: 'Eberechi Eze', full: 'Eberechi Oluchi Eze', pos: 'fw', posName: 'Атакующий п/з', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 27, apps: 31, goals: 11, assists: 8, cleansheets: 0 },
+  { num: 11, name: 'Gabriel Martinelli', full: 'Gabriel Teodoro Martinelli Silva', pos: 'fw', posName: 'Нападающий', flag: '🇧🇷', age: 24, apps: 32, goals: 9, assists: 5, cleansheets: 0 },
+  { num: 19, name: 'Leandro Trossard', full: 'Leandro Trossard', pos: 'fw', posName: 'Нападающий', flag: '🇧🇪', age: 31, apps: 31, goals: 8, assists: 6, cleansheets: 0 },
+  { num: 29, name: 'Kai Havertz', full: 'Kai Lukas Havertz', pos: 'fw', posName: 'Нападающий', flag: '🇩🇪', age: 26, apps: 14, goals: 4, assists: 2, cleansheets: 0 },
+  { num: 20, name: 'Noni Madueke', full: 'Chukwunonso Madueke', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 23, apps: 27, goals: 6, assists: 4, cleansheets: 0 },
 ];
 
 const squadDedup = squad;
@@ -1229,14 +1604,15 @@ document.querySelectorAll('.filter').forEach(btn => {
   });
 });
 
-// ===== Top scorers =====
+// ===== Top scorers сезон 2025/26 =====
 const scorers = [
-  { name: 'Kai Havertz', goals: 9 },
-  { name: 'Declan Rice', goals: 9 },
-  { name: 'Leandro Trossard', goals: 10 },
-  { name: 'Bukayo Saka', goals: 8 },
-  { name: 'Gabriel Martinelli', goals: 8 },
-  { name: 'Mikel Merino', goals: 7 },
+  { name: 'Viktor Gyökeres', goals: 26 },
+  { name: 'Bukayo Saka', goals: 14 },
+  { name: 'Eberechi Eze', goals: 11 },
+  { name: 'Mikel Merino', goals: 9 },
+  { name: 'Gabriel Martinelli', goals: 9 },
+  { name: 'Martin Ødegaard', goals: 8 },
+  { name: 'Declan Rice', goals: 7 },
 ].sort((a, b) => b.goals - a.goals);
 
 const max = Math.max(...scorers.map(s => s.goals));
@@ -1255,20 +1631,20 @@ scorers.forEach((s, i) => {
 
 // ===== Matches =====
 const upcoming = [
-  { comp: 'Premier League', date: '24 мая 2026 · 16:00', home: 'Arsenal', away: 'Manchester City', homeFlag: '🔴', awayFlag: '🔵', isHome: true, venue: 'Emirates' },
-  { comp: 'Champions League', date: '28 мая 2026 · 22:00', home: 'Arsenal', away: 'Real Madrid', homeFlag: '🔴', awayFlag: '⚪', isHome: true, venue: 'Emirates · 1/2' },
-  { comp: 'Premier League', date: '03 июня 2026 · 14:30', home: 'Tottenham', away: 'Arsenal', homeFlag: '⚪', awayFlag: '🔴', isHome: false, venue: 'NLD · выезд' },
-  { comp: 'Premier League', date: '10 июня 2026 · 17:30', home: 'Arsenal', away: 'Chelsea', homeFlag: '🔴', awayFlag: '🔵', isHome: true, venue: 'Emirates' },
-  { comp: 'FA Cup', date: '17 июня 2026 · 19:45', home: 'Liverpool', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', isHome: false, venue: 'Anfield' },
+  { comp: 'Champions League · Финал', date: '30 мая 2026 · 22:00', home: 'Arsenal', away: 'Real Madrid', homeFlag: '🔴', awayFlag: '⚪', isHome: true, venue: 'Будапешт · Puskás Aréna' },
+  { comp: 'Pre-Season', date: '15 июля 2026 · 12:00', home: 'Arsenal', away: 'AC Milan', homeFlag: '🔴', awayFlag: '🔴', isHome: true, venue: 'Сингапур' },
+  { comp: 'Community Shield', date: '09 авг 2026 · 16:00', home: 'Arsenal', away: 'Liverpool', homeFlag: '🔴', awayFlag: '🔴', isHome: true, venue: 'Wembley' },
+  { comp: 'Premier League', date: '16 авг 2026 · 17:30', home: 'Manchester United', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', isHome: false, venue: 'Old Trafford' },
 ];
 
 const results = [
-  { comp: 'Premier League', date: '18 мая 2026', home: 'Arsenal', away: 'Newcastle', homeFlag: '🔴', awayFlag: '⚫', score: '3 — 1', result: 'win', isHome: true, venue: 'Emirates' },
-  { comp: 'Champions League', date: '13 мая 2026', home: 'Arsenal', away: 'PSG', homeFlag: '🔴', awayFlag: '🔵', score: '2 — 0', result: 'win', isHome: true, venue: 'Emirates · 1/4' },
-  { comp: 'Premier League', date: '10 мая 2026', home: 'Aston Villa', away: 'Arsenal', homeFlag: '🟣', awayFlag: '🔴', score: '1 — 2', result: 'win', isHome: false, venue: 'Villa Park' },
-  { comp: 'Premier League', date: '04 мая 2026', home: 'Arsenal', away: 'Brighton', homeFlag: '🔴', awayFlag: '🔵', score: '2 — 1', result: 'win', isHome: true, venue: 'Emirates' },
-  { comp: 'Premier League', date: '27 апр 2026', home: 'Crystal Palace', away: 'Arsenal', homeFlag: '🔵', awayFlag: '🔴', score: '1 — 1', result: 'draw', isHome: false, venue: 'Selhurst Park' },
-  { comp: 'Champions League', date: '23 апр 2026', home: 'PSG', away: 'Arsenal', homeFlag: '🔵', awayFlag: '🔴', score: '0 — 1', result: 'win', isHome: false, venue: 'Parc des Princes' },
+  { comp: 'Premier League', date: '17 мая 2026', home: 'Arsenal', away: 'Crystal Palace', homeFlag: '🔴', awayFlag: '🔵', score: '3 — 0', result: 'win', isHome: true, venue: 'Emirates · 38-й тур' },
+  { comp: 'Champions League', date: '13 мая 2026', home: 'Bayern', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', score: '1 — 2', result: 'win', isHome: false, venue: '1/2 · Allianz Arena' },
+  { comp: 'Champions League', date: '06 мая 2026', home: 'Arsenal', away: 'Bayern', homeFlag: '🔴', awayFlag: '🔴', score: '2 — 1', result: 'win', isHome: true, venue: '1/2 · Emirates' },
+  { comp: 'Premier League', date: '03 мая 2026', home: 'Liverpool', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', score: '1 — 2', result: 'win', isHome: false, venue: 'Anfield · решающий' },
+  { comp: 'Champions League', date: '29 апр 2026', home: 'Arsenal', away: 'Inter', homeFlag: '🔴', awayFlag: '⚫', score: '3 — 1', result: 'win', isHome: true, venue: '1/4 · Emirates' },
+  { comp: 'Premier League', date: '26 апр 2026', home: 'Arsenal', away: 'Chelsea', homeFlag: '🔴', awayFlag: '🔵', score: '4 — 1', result: 'win', isHome: true, venue: 'Emirates' },
+  { comp: 'Premier League', date: '19 апр 2026', home: 'Tottenham', away: 'Arsenal', homeFlag: '⚪', awayFlag: '🔴', score: '0 — 3', result: 'win', isHome: false, venue: 'North London Derby' },
 ];
 
 const matchList = document.getElementById('matchList');

@@ -1,34 +1,36 @@
-// ===== Squad data =====
+// ===== Squad data — сезон 2025/26 =====
 const squad = [
   // GK
-  { num: 22, name: 'David Raya', full: 'David Raya Martín', pos: 'gk', posName: 'Вратарь', flag: '🇪🇸', age: 30, apps: 38, goals: 0, assists: 0, cleansheets: 15 },
-  { num: 32, name: 'Karl Hein', full: 'Karl Jakob Hein', pos: 'gk', posName: 'Вратарь', flag: '🇪🇪', age: 23, apps: 4, goals: 0, assists: 0, cleansheets: 1 },
+  { num: 22, name: 'David Raya', full: 'David Raya Martín', pos: 'gk', posName: 'Вратарь', flag: '🇪🇸', age: 30, apps: 36, goals: 0, assists: 0, cleansheets: 17 },
+  { num: 31, name: 'Kepa Arrizabalaga', full: 'Kepa Arrizabalaga Revuelta', pos: 'gk', posName: 'Вратарь', flag: '🇪🇸', age: 31, apps: 8, goals: 0, assists: 0, cleansheets: 3 },
+  { num: 32, name: 'Karl Hein', full: 'Karl Jakob Hein', pos: 'gk', posName: 'Вратарь', flag: '🇪🇪', age: 24, apps: 2, goals: 0, assists: 0, cleansheets: 1 },
 
   // DF
-  { num: 2, name: 'William Saliba', full: 'William Alain André Gabriel Saliba', pos: 'df', posName: 'Защитник', flag: '🇫🇷', age: 24, apps: 37, goals: 1, assists: 2, cleansheets: 14 },
-  { num: 6, name: 'Gabriel', full: 'Gabriel dos Santos Magalhães', pos: 'df', posName: 'Защитник', flag: '🇧🇷', age: 27, apps: 36, goals: 5, assists: 0, cleansheets: 14 },
-  { num: 4, name: 'Ben White', full: 'Benjamin William White', pos: 'df', posName: 'Защитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 27, apps: 32, goals: 2, assists: 6, cleansheets: 12 },
-  { num: 12, name: 'Jurriën Timber', full: 'Jurriën Timber', pos: 'df', posName: 'Защитник', flag: '🇳🇱', age: 24, apps: 34, goals: 1, assists: 3, cleansheets: 13 },
-  { num: 35, name: 'Oleksandr Zinchenko', full: 'Oleksandr Zinchenko', pos: 'df', posName: 'Защитник', flag: '🇺🇦', age: 28, apps: 21, goals: 0, assists: 4, cleansheets: 8 },
-  { num: 17, name: 'Riccardo Calafiori', full: 'Riccardo Calafiori', pos: 'df', posName: 'Защитник', flag: '🇮🇹', age: 23, apps: 24, goals: 1, assists: 3, cleansheets: 10 },
-  { num: 18, name: 'Takehiro Tomiyasu', full: 'Takehiro Tomiyasu', pos: 'df', posName: 'Защитник', flag: '🇯🇵', age: 26, apps: 12, goals: 0, assists: 1, cleansheets: 5 },
+  { num: 2, name: 'William Saliba', full: 'William Alain André Gabriel Saliba', pos: 'df', posName: 'Защитник', flag: '🇫🇷', age: 25, apps: 35, goals: 2, assists: 2, cleansheets: 16 },
+  { num: 6, name: 'Gabriel', full: 'Gabriel dos Santos Magalhães', pos: 'df', posName: 'Защитник', flag: '🇧🇷', age: 28, apps: 33, goals: 4, assists: 1, cleansheets: 15 },
+  { num: 4, name: 'Ben White', full: 'Benjamin William White', pos: 'df', posName: 'Защитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 28, apps: 26, goals: 1, assists: 5, cleansheets: 11 },
+  { num: 12, name: 'Jurriën Timber', full: 'Jurriën Timber', pos: 'df', posName: 'Защитник', flag: '🇳🇱', age: 24, apps: 36, goals: 2, assists: 4, cleansheets: 16 },
+  { num: 15, name: 'Cristhian Mosquera', full: 'Cristhian Felix Mosquera Erazo', pos: 'df', posName: 'Защитник', flag: '🇪🇸', age: 21, apps: 22, goals: 1, assists: 0, cleansheets: 11 },
+  { num: 33, name: 'Riccardo Calafiori', full: 'Riccardo Calafiori', pos: 'df', posName: 'Защитник', flag: '🇮🇹', age: 24, apps: 28, goals: 2, assists: 3, cleansheets: 12 },
+  { num: 35, name: 'Oleksandr Zinchenko', full: 'Oleksandr Zinchenko', pos: 'df', posName: 'Защитник', flag: '🇺🇦', age: 29, apps: 14, goals: 0, assists: 2, cleansheets: 5 },
+  { num: 17, name: 'Myles Lewis-Skelly', full: 'Myles Marvin Lewis-Skelly', pos: 'df', posName: 'Защитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 19, apps: 24, goals: 1, assists: 3, cleansheets: 10 },
 
   // MF
-  { num: 8, name: 'Martin Ødegaard ©', full: 'Martin Ødegaard (Капитан)', pos: 'mf', posName: 'Полузащитник', flag: '🇳🇴', age: 26, apps: 28, goals: 3, assists: 9, cleansheets: 0 },
-  { num: 5, name: 'Thomas Partey', full: 'Thomas Teye Partey', pos: 'mf', posName: 'Полузащитник', flag: '🇬🇭', age: 31, apps: 27, goals: 4, assists: 1, cleansheets: 0 },
-  { num: 41, name: 'Declan Rice', full: 'Declan Rice', pos: 'mf', posName: 'Полузащитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 26, apps: 38, goals: 9, assists: 5, cleansheets: 0 },
-  { num: 25, name: 'Mikel Merino', full: 'Mikel Merino Zazón', pos: 'mf', posName: 'Полузащитник', flag: '🇪🇸', age: 29, apps: 32, goals: 7, assists: 2, cleansheets: 0 },
-  { num: 20, name: 'Jorginho', full: 'Jorge Luiz Frello Filho', pos: 'mf', posName: 'Полузащитник', flag: '🇮🇹', age: 33, apps: 19, goals: 1, assists: 3, cleansheets: 0 },
-  { num: 10, name: 'Fábio Vieira', full: 'Fábio Daniel Soares Silva Vieira', pos: 'mf', posName: 'Полузащитник', flag: '🇵🇹', age: 25, apps: 14, goals: 1, assists: 4, cleansheets: 0 },
+  { num: 8, name: 'Martin Ødegaard ©', full: 'Martin Ødegaard · Капитан', pos: 'mf', posName: 'Полузащитник', flag: '🇳🇴', age: 27, apps: 32, goals: 8, assists: 11, cleansheets: 0 },
+  { num: 41, name: 'Declan Rice', full: 'Declan Rice', pos: 'mf', posName: 'Полузащитник', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 27, apps: 37, goals: 7, assists: 9, cleansheets: 0 },
+  { num: 36, name: 'Martín Zubimendi', full: 'Martín Zubimendi Ibáñez', pos: 'mf', posName: 'Опорник', flag: '🇪🇸', age: 27, apps: 34, goals: 3, assists: 4, cleansheets: 0 },
+  { num: 16, name: 'Christian Nørgaard', full: 'Christian Nørgaard', pos: 'mf', posName: 'Полузащитник', flag: '🇩🇰', age: 31, apps: 21, goals: 1, assists: 2, cleansheets: 0 },
+  { num: 23, name: 'Mikel Merino', full: 'Mikel Merino Zazón', pos: 'mf', posName: 'Полузащитник', flag: '🇪🇸', age: 30, apps: 30, goals: 9, assists: 4, cleansheets: 0 },
+  { num: 53, name: 'Ethan Nwaneri', full: 'Ethan Kwame Colin Nwaneri', pos: 'mf', posName: 'Талант академии', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 18, apps: 28, goals: 6, assists: 4, cleansheets: 0 },
 
   // FW
-  { num: 7, name: 'Bukayo Saka', full: 'Bukayo Ayoyinka Temidayo Saka', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 23, apps: 27, goals: 8, assists: 13, cleansheets: 0 },
-  { num: 11, name: 'Gabriel Martinelli', full: 'Gabriel Teodoro Martinelli Silva', pos: 'fw', posName: 'Нападающий', flag: '🇧🇷', age: 23, apps: 36, goals: 8, assists: 4, cleansheets: 0 },
-  { num: 9, name: 'Gabriel Jesus', full: 'Gabriel Fernando de Jesus', pos: 'fw', posName: 'Нападающий', flag: '🇧🇷', age: 27, apps: 17, goals: 4, assists: 2, cleansheets: 0 },
-  { num: 14, name: 'Kai Havertz', full: 'Kai Lukas Havertz', pos: 'fw', posName: 'Нападающий', flag: '🇩🇪', age: 25, apps: 30, goals: 9, assists: 3, cleansheets: 0 },
-  { num: 19, name: 'Leandro Trossard', full: 'Leandro Trossard', pos: 'fw', posName: 'Нападающий', flag: '🇧🇪', age: 30, apps: 34, goals: 10, assists: 4, cleansheets: 0 },
-  { num: 29, name: 'Raheem Sterling', full: 'Raheem Shaquille Sterling', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 30, apps: 18, goals: 2, assists: 2, cleansheets: 0 },
-  { num: 56, name: 'Ethan Nwaneri', full: 'Ethan Kwame Colin Nwaneri', pos: 'fw', posName: 'Талант академии', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 17, apps: 20, goals: 6, assists: 2, cleansheets: 0 },
+  { num: 14, name: 'Viktor Gyökeres', full: 'Viktor Einar Gyökeres', pos: 'fw', posName: 'Нападающий', flag: '🇸🇪', age: 27, apps: 35, goals: 26, assists: 6, cleansheets: 0 },
+  { num: 7, name: 'Bukayo Saka', full: 'Bukayo Ayoyinka Temidayo Saka', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 24, apps: 34, goals: 14, assists: 15, cleansheets: 0 },
+  { num: 10, name: 'Eberechi Eze', full: 'Eberechi Oluchi Eze', pos: 'fw', posName: 'Атакующий п/з', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 27, apps: 31, goals: 11, assists: 8, cleansheets: 0 },
+  { num: 11, name: 'Gabriel Martinelli', full: 'Gabriel Teodoro Martinelli Silva', pos: 'fw', posName: 'Нападающий', flag: '🇧🇷', age: 24, apps: 32, goals: 9, assists: 5, cleansheets: 0 },
+  { num: 19, name: 'Leandro Trossard', full: 'Leandro Trossard', pos: 'fw', posName: 'Нападающий', flag: '🇧🇪', age: 31, apps: 31, goals: 8, assists: 6, cleansheets: 0 },
+  { num: 29, name: 'Kai Havertz', full: 'Kai Lukas Havertz', pos: 'fw', posName: 'Нападающий', flag: '🇩🇪', age: 26, apps: 14, goals: 4, assists: 2, cleansheets: 0 },
+  { num: 20, name: 'Noni Madueke', full: 'Chukwunonso Madueke', pos: 'fw', posName: 'Нападающий', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', age: 23, apps: 27, goals: 6, assists: 4, cleansheets: 0 },
 ];
 
 const squadDedup = squad;
@@ -77,14 +79,15 @@ document.querySelectorAll('.filter').forEach(btn => {
   });
 });
 
-// ===== Top scorers =====
+// ===== Top scorers сезон 2025/26 =====
 const scorers = [
-  { name: 'Kai Havertz', goals: 9 },
-  { name: 'Declan Rice', goals: 9 },
-  { name: 'Leandro Trossard', goals: 10 },
-  { name: 'Bukayo Saka', goals: 8 },
-  { name: 'Gabriel Martinelli', goals: 8 },
-  { name: 'Mikel Merino', goals: 7 },
+  { name: 'Viktor Gyökeres', goals: 26 },
+  { name: 'Bukayo Saka', goals: 14 },
+  { name: 'Eberechi Eze', goals: 11 },
+  { name: 'Mikel Merino', goals: 9 },
+  { name: 'Gabriel Martinelli', goals: 9 },
+  { name: 'Martin Ødegaard', goals: 8 },
+  { name: 'Declan Rice', goals: 7 },
 ].sort((a, b) => b.goals - a.goals);
 
 const max = Math.max(...scorers.map(s => s.goals));
@@ -103,20 +106,20 @@ scorers.forEach((s, i) => {
 
 // ===== Matches =====
 const upcoming = [
-  { comp: 'Premier League', date: '24 мая 2026 · 16:00', home: 'Arsenal', away: 'Manchester City', homeFlag: '🔴', awayFlag: '🔵', isHome: true, venue: 'Emirates' },
-  { comp: 'Champions League', date: '28 мая 2026 · 22:00', home: 'Arsenal', away: 'Real Madrid', homeFlag: '🔴', awayFlag: '⚪', isHome: true, venue: 'Emirates · 1/2' },
-  { comp: 'Premier League', date: '03 июня 2026 · 14:30', home: 'Tottenham', away: 'Arsenal', homeFlag: '⚪', awayFlag: '🔴', isHome: false, venue: 'NLD · выезд' },
-  { comp: 'Premier League', date: '10 июня 2026 · 17:30', home: 'Arsenal', away: 'Chelsea', homeFlag: '🔴', awayFlag: '🔵', isHome: true, venue: 'Emirates' },
-  { comp: 'FA Cup', date: '17 июня 2026 · 19:45', home: 'Liverpool', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', isHome: false, venue: 'Anfield' },
+  { comp: 'Champions League · Финал', date: '30 мая 2026 · 22:00', home: 'Arsenal', away: 'Real Madrid', homeFlag: '🔴', awayFlag: '⚪', isHome: true, venue: 'Будапешт · Puskás Aréna' },
+  { comp: 'Pre-Season', date: '15 июля 2026 · 12:00', home: 'Arsenal', away: 'AC Milan', homeFlag: '🔴', awayFlag: '🔴', isHome: true, venue: 'Сингапур' },
+  { comp: 'Community Shield', date: '09 авг 2026 · 16:00', home: 'Arsenal', away: 'Liverpool', homeFlag: '🔴', awayFlag: '🔴', isHome: true, venue: 'Wembley' },
+  { comp: 'Premier League', date: '16 авг 2026 · 17:30', home: 'Manchester United', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', isHome: false, venue: 'Old Trafford' },
 ];
 
 const results = [
-  { comp: 'Premier League', date: '18 мая 2026', home: 'Arsenal', away: 'Newcastle', homeFlag: '🔴', awayFlag: '⚫', score: '3 — 1', result: 'win', isHome: true, venue: 'Emirates' },
-  { comp: 'Champions League', date: '13 мая 2026', home: 'Arsenal', away: 'PSG', homeFlag: '🔴', awayFlag: '🔵', score: '2 — 0', result: 'win', isHome: true, venue: 'Emirates · 1/4' },
-  { comp: 'Premier League', date: '10 мая 2026', home: 'Aston Villa', away: 'Arsenal', homeFlag: '🟣', awayFlag: '🔴', score: '1 — 2', result: 'win', isHome: false, venue: 'Villa Park' },
-  { comp: 'Premier League', date: '04 мая 2026', home: 'Arsenal', away: 'Brighton', homeFlag: '🔴', awayFlag: '🔵', score: '2 — 1', result: 'win', isHome: true, venue: 'Emirates' },
-  { comp: 'Premier League', date: '27 апр 2026', home: 'Crystal Palace', away: 'Arsenal', homeFlag: '🔵', awayFlag: '🔴', score: '1 — 1', result: 'draw', isHome: false, venue: 'Selhurst Park' },
-  { comp: 'Champions League', date: '23 апр 2026', home: 'PSG', away: 'Arsenal', homeFlag: '🔵', awayFlag: '🔴', score: '0 — 1', result: 'win', isHome: false, venue: 'Parc des Princes' },
+  { comp: 'Premier League', date: '17 мая 2026', home: 'Arsenal', away: 'Crystal Palace', homeFlag: '🔴', awayFlag: '🔵', score: '3 — 0', result: 'win', isHome: true, venue: 'Emirates · 38-й тур' },
+  { comp: 'Champions League', date: '13 мая 2026', home: 'Bayern', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', score: '1 — 2', result: 'win', isHome: false, venue: '1/2 · Allianz Arena' },
+  { comp: 'Champions League', date: '06 мая 2026', home: 'Arsenal', away: 'Bayern', homeFlag: '🔴', awayFlag: '🔴', score: '2 — 1', result: 'win', isHome: true, venue: '1/2 · Emirates' },
+  { comp: 'Premier League', date: '03 мая 2026', home: 'Liverpool', away: 'Arsenal', homeFlag: '🔴', awayFlag: '🔴', score: '1 — 2', result: 'win', isHome: false, venue: 'Anfield · решающий' },
+  { comp: 'Champions League', date: '29 апр 2026', home: 'Arsenal', away: 'Inter', homeFlag: '🔴', awayFlag: '⚫', score: '3 — 1', result: 'win', isHome: true, venue: '1/4 · Emirates' },
+  { comp: 'Premier League', date: '26 апр 2026', home: 'Arsenal', away: 'Chelsea', homeFlag: '🔴', awayFlag: '🔵', score: '4 — 1', result: 'win', isHome: true, venue: 'Emirates' },
+  { comp: 'Premier League', date: '19 апр 2026', home: 'Tottenham', away: 'Arsenal', homeFlag: '⚪', awayFlag: '🔴', score: '0 — 3', result: 'win', isHome: false, venue: 'North London Derby' },
 ];
 
 const matchList = document.getElementById('matchList');
